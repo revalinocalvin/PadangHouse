@@ -5,22 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Customer
-  - NPC
-  - Interactable
-  - Spawnable
-  - StaticInteract
-  - StaticObject
-  - DynamicObject
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Object
-  - Background
-  - Furniture
+  - 
+  - 
+  - 
   - 
   - 
   - 
