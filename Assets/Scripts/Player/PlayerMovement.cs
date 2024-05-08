@@ -4,39 +4,35 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float playerMoveSpeed = 10f;
+    public float moveSpeed = 5.0f;
+    public Rigidbody2D rb;
+    private Vector2 moveDirection;
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
-
+    
     void Update()
     {
-        WASDMovement();
+        ProcessInputs();
     }
 
-    void WASDMovement()
+    private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * playerMoveSpeed * Time.deltaTime;
+        Move();
+    }
 
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.right * -playerMoveSpeed * Time.deltaTime;
+    void ProcessInputs()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+        moveDirection = new Vector2(moveX, moveY).normalized;
+    }
 
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += Vector3.up * playerMoveSpeed * Time.deltaTime;
-
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += Vector3.up * -playerMoveSpeed * Time.deltaTime;
-
-        }
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 }
+
