@@ -25,7 +25,7 @@ public class PlayerInteractionV2 : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.0f); // Adjust the radius as needed
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
+            if (collider.CompareTag("Menu Dish")) // Check if the player is interacting with the object spawner
             {
                 PickUpObject(collider.gameObject);
                 return;

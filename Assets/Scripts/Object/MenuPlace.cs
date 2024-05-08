@@ -6,7 +6,7 @@ public class MenuPlace : MonoBehaviour
 {
     public GameObject player; // Reference to the player GameObject
     public string interactKey = "e"; // The key used to interact
-    public string requiredObjectTag = "FoodSpawn";
+    public string requiredObjectTag = "Menu Dish";
 
     void start()
     {
@@ -50,5 +50,6 @@ public class MenuPlace : MonoBehaviour
         item.transform.position = transform.position;
         // Detach the submitted item from the player
         item.transform.SetParent(null);
+        item.tag = "FoodSpawn";
     }
 }

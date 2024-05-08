@@ -8,6 +8,8 @@ TagManager:
   - Obstacle
   - FoodSpawn
   - Food
+  - Menu Place
+  - Menu Dish
   layers:
   - Default
   - TransparentFX
