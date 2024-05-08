@@ -280,6 +280,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6265606250158715891, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265606250158715891, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723509328513063109, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723509328513063109, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225865092439807286, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.36
+      objectReference: {fileID: 0}
     - target: {fileID: 7325816773505070870, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
       propertyPath: m_Name
       value: Customer Pathing (1)
@@ -380,6 +400,10 @@ PrefabInstance:
     - target: {fileID: 7287921697246484067, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7853920798890773094, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
