@@ -25,7 +25,7 @@ public class MenuPlace : MonoBehaviour
     private void TrySubmitItem()
     {
         // Determine if the player is close enough to the NPC to interact
-        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) // Interaction radius
+        if (Vector3.Distance(player.transform.position, transform.position) < 1f) // Interaction radius
         {
             Debug.Log("Player is close enough to interact with Object.");
 
@@ -51,5 +51,7 @@ public class MenuPlace : MonoBehaviour
         // Detach the submitted item from the player
         item.transform.SetParent(null);
         item.tag = "FoodSpawn";
+        item.GetComponent<PolygonCollider2D>().enabled = true;
+        enabled = false;
     }
 }

@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteractionV2 : MonoBehaviour
+public class PlayerInteractionV0 : MonoBehaviour
 {
     private GameObject heldObject;
     private ObjectSpawner objectSpawner;
-    
 
     private void Start()
     {
@@ -26,22 +25,15 @@ public class PlayerInteractionV2 : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.0f); // Adjust the radius as needed
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("Menu Dish")) // Check if the player is interacting with the object spawner
+            if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
             {
-                PickUpObject(collider.gameObject);
-                return;
-            }
-            
-                else if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
+                GameObject spawnedObject = objectSpawner.SpawnObject(); // Attempt to spawn a new object
+                if (spawnedObject != null)
                 {
-                    GameObject spawnedObject = objectSpawner.SpawnObject(); // Attempt to spawn a new object
-                    if (spawnedObject != null)
-                    {
-                        PickUpObject(spawnedObject); // Pick up the spawned object immediately if it's not null
-                    }
-                    break;
+                    PickUpObject(spawnedObject); // Pick up the spawned object immediately if it's not null
                 }
-        
+                break;
+            }
             else if (collider.CompareTag("Customer"))
             {
                 DropObject();

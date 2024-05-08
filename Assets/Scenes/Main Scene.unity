@@ -123,11 +123,42 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &681323310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 622742406442296991, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+  m_PrefabInstance: {fileID: 8205065706090895149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &681323315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681323310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1fb335c49236f46a35f8d3229abfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 689203908}
+  interactKey: e
+  requiredObjectTag: Food
 --- !u!1 &689203908 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6625373977011535829, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
   m_PrefabInstance: {fileID: 5511932582359361087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365404547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8502416634577516369, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+  m_PrefabInstance: {fileID: 2388010826950983057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fb2ce6a6ca59e47a4913970d08b953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1467204231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -195,6 +226,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4640444303223945957, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
   m_PrefabInstance: {fileID: 1467204231}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1608791760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2301302933399739767, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+  m_PrefabInstance: {fileID: 8205065706090895149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1608791765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608791760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1fb335c49236f46a35f8d3229abfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 689203908}
+  interactKey: e
+  requiredObjectTag: Food
 --- !u!1 &1611083502
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,10 +468,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 692890411631941035, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+      propertyPath: m_TagString
+      value: Food
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646201830447764244, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 689203908}
     - target: {fileID: 6011222057421664229, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8502416634577516369, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 689203908}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -482,6 +545,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Display Shelf
       objectReference: {fileID: 0}
+    - target: {fileID: 4172613379959558420, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172613379959558420, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199610644384091972, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199610644384091972, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199610644384091972, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199610644384091972, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219629178821353802, guid: 1d01afd018f75194e9c2d81a0fd12366, type: 3}
       propertyPath: player
       value: 
@@ -511,6 +598,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6544071920572257927, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 689203908}
+    - target: {fileID: 6544071920572257927, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
+      propertyPath: objectSpawner
+      value: 
+      objectReference: {fileID: 1365404547}
     - target: {fileID: 6625373977011535829, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -612,6 +707,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4477411497064973912, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5574301050427957959, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
       propertyPath: m_Name
       value: Level Design
@@ -704,7 +803,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2301302933399739767, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1608791765}
+    - targetCorrespondingSourceObject: {fileID: 622742406442296991, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 681323315}
   m_SourcePrefab: {fileID: 100100000, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
