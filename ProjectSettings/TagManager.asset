@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Customer
   - Obstacle
+  - FoodSpawn
+  - Food
+  - Foods
   layers:
   - Default
   - TransparentFX

@@ -3,10 +3,10 @@ using UnityEngine;
 public class ItemSubmission : MonoBehaviour
 {
     //public NPCMovement npc; // Reference to the NPC's movement script
-    public Vector2 exitPosition; // Define this in the inspector, where the NPC should head to leave
+    //public Vector2 exitPosition; // Define this in the inspector, where the NPC should head to leave
     public GameObject player; // Reference to the player GameObject
     public string interactKey = "e"; // The key used to interact
-    public string requiredObjectTag = "Interactable";
+    public string requiredObjectTag = "Food";
 
     private void Update()
     {
@@ -27,6 +27,7 @@ public class ItemSubmission : MonoBehaviour
             // Check if the player is holding an interactable item
             foreach (Transform child in player.transform)
             {
+                Debug.Log("Founded");
                 if (child.gameObject.CompareTag(requiredObjectTag))
                 {
                     Debug.Log("Interactable item found. Submitting item to NPC.");
