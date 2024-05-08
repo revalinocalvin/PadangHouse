@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerInteractionV2 : MonoBehaviour
 {
     private GameObject heldObject;
-    private ObjectSpawner objectSpawner;
+    
 
     private void Start()
     {
-        objectSpawner = FindObjectOfType<ObjectSpawner>(); // Find the ObjectSpawner in the scene
+        
     }
 
     private void Update()
@@ -27,14 +27,10 @@ public class PlayerInteractionV2 : MonoBehaviour
         {
             if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
             {
-                GameObject spawnedObject = objectSpawner.SpawnObject(); // Attempt to spawn a new object
-                if (spawnedObject != null)
-                {
-                    PickUpObject(spawnedObject); // Pick up the spawned object immediately if it's not null
-                }
-                break;
+                PickUpObject(collider.gameObject);
+                return;
             }
-            else if (collider.CompareTag("Customer"))
+            else if (collider.CompareTag("Menu Place"))
             {
                 DropObject();
             }
