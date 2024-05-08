@@ -70,6 +70,7 @@ public class CustomerPathing : MonoBehaviour
         {
             Customer.instance.chairPoint[0] = null;
             onTable = true;
+            this.enabled = false;
         }
 
         transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
@@ -85,6 +86,7 @@ public class CustomerPathing : MonoBehaviour
         {
             Customer.instance.chairPoint[1] = null;
             onTable = true;
+            this.enabled = false;
         }
 
         transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
@@ -100,6 +102,7 @@ public class CustomerPathing : MonoBehaviour
         {
             Customer.instance.chairPoint[2] = null;
             onTable = true;
+            this.enabled = false;
         }
 
         transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
@@ -132,6 +135,7 @@ public class CustomerPathing : MonoBehaviour
         {
             Customer.instance.chairPoint[3] = null;
             onTable = true;
+            this.enabled = false;
         }
 
         transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
