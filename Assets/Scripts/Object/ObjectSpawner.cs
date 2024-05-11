@@ -13,7 +13,9 @@ public class ObjectSpawner : MonoBehaviour
         if (interactionCount < maxInteractions)
         {
             GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+
             interactionCount++; 
+
             if (interactionCount >= maxInteractions)
             {
                 Destroy(gameObject); 
@@ -21,10 +23,7 @@ public class ObjectSpawner : MonoBehaviour
 
             return spawnedObject;
         }
-        else
-        {
-            Debug.Log("Object spawner has reached its maximum usage.");
-            return null; 
-        }
+
+        return null;
     }
 }

@@ -4,39 +4,61 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private bool isCustomer = false;
+    private GameObject heldObject;
+    private ObjectSpawner objectSpawner;
 
-    void Start()
+    private void Start()
     {
-        
+        objectSpawner = FindObjectOfType<ObjectSpawner>(); // Find the ObjectSpawner in the scene
     }
 
-    void Update()
+    private void Update()
     {
-        Interact();
-    }
-
-    void Interact()
-    {
-        if (isCustomer && Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) // Change to the interaction key you prefer
         {
-            Debug.Log("Interact");
+            Interact();
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    private void Interact()
     {
-        if (col.CompareTag("Customer"))
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.0f); // Adjust the radius as needed
+
+        foreach (Collider2D collider in colliders)
         {
-            isCustomer = true;
+            if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
+            {
+                GameObject spawnedObject = objectSpawner.SpawnObject(); // Attempt to spawn a new object
+
+                if (spawnedObject != null)
+                {
+                    PickUpObject(spawnedObject); // Pick up the spawned object immediately if it's not null
+                }
+
+                break;
+            }
+            else if (collider.CompareTag("Customer"))
+            {
+                DropObject();
+            }
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    private void PickUpObject(GameObject obj)
     {
-        if (col.CompareTag("Customer"))
+        heldObject = obj;
+        heldObject.transform.SetParent(transform); // Attach the object to the player
+        heldObject.transform.localPosition = Vector3.zero; // Center the object on the player
+        heldObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
+    }
+
+    private void DropObject()
+    {
+        if (heldObject != null)
         {
-            isCustomer = false;
+            heldObject.transform.SetParent(null); // Release the object from the player
+            heldObject.GetComponent<Collider2D>().enabled = true; // Enable the object's collider
+            heldObject = null;
         }
     }
 }

@@ -7,10 +7,25 @@ public class CustomerPathing : MonoBehaviour
     /*Missing
     Revert null on chairPoint[i] when finish eating
     */
-
+    //private bool enabled = false;
     private bool onTable = false;
     private int pathCounter = 0;
+    
     Vector3 direction;
+
+    void Start()
+    {
+        // Disable script at start
+        this.enabled = false;
+        // Start coroutine to enable script after 5 seconds
+        StartCoroutine(EnableScriptAfterDelay(5));
+    }
+
+    IEnumerator EnableScriptAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        this.enabled = true;
+    }
 
     void Update()
     {

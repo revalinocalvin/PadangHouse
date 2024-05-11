@@ -4,9 +4,10 @@ public class ItemSubmission : MonoBehaviour
 {
     //public NPCMovement npc; // Reference to the NPC's movement script
     //public Vector2 exitPosition; // Define this in the inspector, where the NPC should head to leave
+
     public GameObject player; // Reference to the player GameObject
     public string interactKey = "e"; // The key used to interact
-    public string requiredObjectTag = "Food";
+    [SerializeField] private string requiredObjectTag = "Food";
 
     private void Update()
     {
@@ -19,20 +20,21 @@ public class ItemSubmission : MonoBehaviour
 
     private void TrySubmitItem()
     {
-        // Determine if the player is close enough to the NPC to interact
-        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) // Interaction radius
-        {
-            Debug.Log("Player is close enough to interact with NPC.");
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
 
-            // Check if the player is holding an interactable item
-            foreach (Transform child in player.transform)
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Founded");
-                if (child.gameObject.CompareTag(requiredObjectTag))
+                foreach (Transform heldObj in player.transform)
                 {
-                    Debug.Log("Interactable item found. Submitting item to NPC.");
-                    SubmitItem(child.gameObject); // Submit the item to the NPC
-                    return;
+                    Debug.Log("Founded");
+                    if (heldObj.gameObject.CompareTag(requiredObjectTag))
+                    {
+                        Debug.Log("Interactable item found. Submitting item to NPC.");
+                        SubmitItem(heldObj.gameObject); // Submit the item to the NPC
+                        return;
+                    }
                 }
             }
         }
