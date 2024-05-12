@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CustomerPathing : MonoBehaviour
 {
-    /*Missing
-    Revert null on chairPoint[i] when finish eating
-    */
-    //private bool enabled = false;
     private bool onChair = false;
     private bool chairDecided = false;
     private int chairNumber;
@@ -22,7 +18,7 @@ public class CustomerPathing : MonoBehaviour
             DecideChair();
         }
 
-        if (chairDecided)
+        if (chairDecided && !onChair)
         {
             MoveToChair();
         }
@@ -52,44 +48,25 @@ public class CustomerPathing : MonoBehaviour
         {
             MoveToChair2();
         }
-        else if (chairNumber == 3)
+        /*else if (chairNumber == 3)
         {
             MoveToChair3();
         }
         else if (chairNumber == 4)
         {
             MoveToChair4();
-        }
+        }*/
     }
 
     void MoveToChair1()
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
-        }
-        else if (pathCounter == 1)
-        {
-            direction = (Customer.Instance.pathPoint[1].transform.position - transform.position).normalized;
-        }
-        else
-        {
             direction = (Customer.Instance.chairPoint[0].transform.position - transform.position).normalized;
         }
-
-        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
+        if (Vector2.Distance(Customer.Instance.chairPoint[0].transform.position, transform.position) <= 0.1f)
         {
-            pathCounter++;
-        }
-        else if (Vector2.Distance(Customer.Instance.pathPoint[1].transform.position, transform.position) <= 0.1f && pathCounter == 1)
-        {
-            pathCounter++;
-        }
-        else if (Vector2.Distance(Customer.Instance.chairPoint[0].transform.position, transform.position) <= 0.1f)
-        {
-            Customer.Instance.chairPoint[0] = null;
             onChair = true;
-            this.enabled = false;
         }
 
         transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
@@ -99,19 +76,26 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
+            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
+        }
+        else if (pathCounter == 1)
+        {
             direction = (Customer.Instance.chairPoint[1].transform.position - transform.position).normalized;
         }
-        if (Vector2.Distance(Customer.Instance.chairPoint[1].transform.position, transform.position) <= 0.1f)
+
+        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
         {
-            Customer.Instance.chairPoint[1] = null;
+            pathCounter++;
+        }
+        else if (Vector2.Distance(Customer.Instance.chairPoint[1].transform.position, transform.position) <= 0.1f && pathCounter == 1)
+        {
             onChair = true;
-            this.enabled = false;
         }
 
         transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
-    void MoveToChair3()
+    /*void MoveToChair3()
     {
         if (pathCounter == 0)
         {
@@ -119,9 +103,7 @@ public class CustomerPathing : MonoBehaviour
         }
         if (Vector2.Distance(Customer.Instance.chairPoint[2].transform.position, transform.position) <= 0.1f)
         {
-            Customer.Instance.chairPoint[2] = null;
             onChair = true;
-            this.enabled = false;
         }
 
         transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
@@ -152,11 +134,9 @@ public class CustomerPathing : MonoBehaviour
         }
         else if (Vector2.Distance(Customer.Instance.chairPoint[3].transform.position, transform.position) <= 0.1f)
         {
-            Customer.Instance.chairPoint[3] = null;
             onChair = true;
-            this.enabled = false;
         }
 
         transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
-    }
+    }*/
 }

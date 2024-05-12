@@ -14,7 +14,7 @@ public class CustomerSpawner : MonoBehaviour
 
     void Start()
     {
-        customerNextSpawnTime = Time.time + 2f;
+        customerNextSpawnTime = Time.time + 1f;
     }
 
     void Update()
