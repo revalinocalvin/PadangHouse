@@ -48,31 +48,55 @@ public class CustomerPathing : MonoBehaviour
         {
             MoveToChair2();
         }
-        /*else if (chairNumber == 3)
+        else if (chairNumber == 3)
         {
             MoveToChair3();
         }
         else if (chairNumber == 4)
         {
             MoveToChair4();
-        }*/
+        }
+
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
+    }
+
+    private Vector3 DirectionToChair(int index, bool checkDistance)
+    {
+        if (!checkDistance)
+        {
+            return Customer.Instance.chairPoint[index].transform.position;
+        }
+        else
+        {
+            return direction = (Customer.Instance.chairPoint[index].transform.position - transform.position).normalized;
+        }
     }
 
     void MoveToChair1()
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.Instance.chairPoint[0].transform.position - transform.position).normalized;
+            DirectionToChair(0, true);
         }
-        if (Vector2.Distance(Customer.Instance.chairPoint[0].transform.position, transform.position) <= 0.1f)
+        if (Vector2.Distance(DirectionToChair(0, false), transform.position) <= 0.1f)
         {
             onChair = true;
         }
-
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToChair2()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair(1, true);
+        }
+        if (Vector2.Distance(DirectionToChair(1, false), transform.position) <= 0.1f)
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair3()
     {
         if (pathCounter == 0)
         {
@@ -80,33 +104,17 @@ public class CustomerPathing : MonoBehaviour
         }
         else if (pathCounter == 1)
         {
-            direction = (Customer.Instance.chairPoint[1].transform.position - transform.position).normalized;
+            DirectionToChair(2, true);
         }
 
         if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.Instance.chairPoint[1].transform.position, transform.position) <= 0.1f && pathCounter == 1)
+        else if (Vector2.Distance(DirectionToChair(2, false), transform.position) <= 0.1f && pathCounter == 1)
         {
             onChair = true;
         }
-
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
-    }
-
-    /*void MoveToChair3()
-    {
-        if (pathCounter == 0)
-        {
-            direction = (Customer.Instance.chairPoint[2].transform.position - transform.position).normalized;
-        }
-        if (Vector2.Distance(Customer.Instance.chairPoint[2].transform.position, transform.position) <= 0.1f)
-        {
-            onChair = true;
-        }
-
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToChair4()
@@ -117,26 +125,16 @@ public class CustomerPathing : MonoBehaviour
         }
         else if (pathCounter == 1)
         {
-            direction = (Customer.Instance.pathPoint[2].transform.position - transform.position).normalized;
-        }
-        else
-        {
-            direction = (Customer.Instance.chairPoint[3].transform.position - transform.position).normalized;
+            DirectionToChair(3, true);
         }
 
         if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.Instance.pathPoint[2].transform.position, transform.position) <= 0.1f && pathCounter == 1)
-        {
-            pathCounter++;
-        }
-        else if (Vector2.Distance(Customer.Instance.chairPoint[3].transform.position, transform.position) <= 0.1f)
+        else if (Vector2.Distance(DirectionToChair(3, false), transform.position) <= 0.1f && pathCounter == 1)
         {
             onChair = true;
         }
-
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
-    }*/
+    }
 }
