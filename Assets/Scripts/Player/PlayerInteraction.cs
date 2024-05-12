@@ -5,60 +5,52 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private GameObject heldObject;
-    private ObjectSpawner objectSpawner;
+    private GameObject[] foodSpawners;
 
     private void Start()
     {
-        objectSpawner = FindObjectOfType<ObjectSpawner>(); // Find the ObjectSpawner in the scene
+        //Get all FoodSpawn objects
+        foodSpawners = GameObject.FindGameObjectsWithTag("FoodSpawn");
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Change to the interaction key you prefer
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
+        }
+
+        FoodOnPlayer();
+    }
+
+    void FoodOnPlayer()
+    {
+        if (heldObject != null)
+        {
+            heldObject.transform.position = transform.position;
         }
     }
 
     private void Interact()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.0f); // Adjust the radius as needed
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("FoodSpawn")) // Check if the player is interacting with the object spawner
+            if (collider.CompareTag("FoodSpawn"))
             {
-                GameObject spawnedObject = objectSpawner.SpawnObject(); // Attempt to spawn a new object
-
-                if (spawnedObject != null)
+                //Reference the foodSpawners that the player interacts with if there are multiple foodSpawners
+                for (int i = 0; i < foodSpawners.Length; i++)
                 {
-                    PickUpObject(spawnedObject); // Pick up the spawned object immediately if it's not null
+                    if (collider.gameObject == foodSpawners[i])
+                    {
+                        ObjectSpawner objectSpawner = foodSpawners[i].GetComponent<ObjectSpawner>();
+
+                        heldObject = objectSpawner.SpawnObject();
+                        break;
+                    }
                 }
-
-                break;
             }
-            else if (collider.CompareTag("Customer"))
-            {
-                DropObject();
-            }
-        }
-    }
-
-    private void PickUpObject(GameObject obj)
-    {
-        heldObject = obj;
-        heldObject.transform.SetParent(transform); // Attach the object to the player
-        heldObject.transform.localPosition = Vector3.zero; // Center the object on the player
-        heldObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
-    }
-
-    private void DropObject()
-    {
-        if (heldObject != null)
-        {
-            heldObject.transform.SetParent(null); // Release the object from the player
-            heldObject.GetComponent<Collider2D>().enabled = true; // Enable the object's collider
-            heldObject = null;
         }
     }
 }

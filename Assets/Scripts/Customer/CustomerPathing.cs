@@ -8,53 +8,57 @@ public class CustomerPathing : MonoBehaviour
     Revert null on chairPoint[i] when finish eating
     */
     //private bool enabled = false;
-    private bool onTable = false;
+    private bool onChair = false;
+    private bool chairDecided = false;
+    private int chairNumber;
     private int pathCounter = 0;
     
     Vector3 direction;
 
-    void Start()
-    {
-        // Disable script at start
-        this.enabled = false;
-        // Start coroutine to enable script after 5 seconds
-        StartCoroutine(EnableScriptAfterDelay(5));
-    }
-
-    IEnumerator EnableScriptAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        this.enabled = true;
-    }
-
     void Update()
     {
-        if (!onTable)
+        if (!chairDecided)
+        {
+            DecideChair();
+        }
+
+        if (chairDecided)
         {
             MoveToChair();
         }
     }
 
+    void DecideChair()
+    {
+        for (int i = 0; i < Customer.Instance.chairAvailable.Length; i++)
+        {
+            if (Customer.Instance.chairAvailable[i])
+            {
+                chairDecided = true;
+                Customer.Instance.chairAvailable[i] = false;
+                chairNumber = i + 1;
+                break;
+            }
+        }
+    }
+
     void MoveToChair()
     {
-        if (Customer.instance != null)
+        if (chairNumber == 1)
         {
-            if (Customer.instance.chairPoint[0] != null)
-            {
-                MoveToChair1();
-            }
-            else if (Customer.instance.chairPoint[1] != null)
-            {
-                MoveToChair2();
-            }
-            else if (Customer.instance.chairPoint[2] != null)
-            {
-                MoveToChair3();
-            }
-            else if (Customer.instance.chairPoint[3] != null)
-            {
-                MoveToChair4();
-            }
+            MoveToChair1();
+        }
+        else if (chairNumber == 2)
+        {
+            MoveToChair2();
+        }
+        else if (chairNumber == 3)
+        {
+            MoveToChair3();
+        }
+        else if (chairNumber == 4)
+        {
+            MoveToChair4();
         }
     }
 
@@ -62,97 +66,97 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.instance.pathPoint[0].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
         }
         else if (pathCounter == 1)
         {
-            direction = (Customer.instance.pathPoint[1].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.pathPoint[1].transform.position - transform.position).normalized;
         }
         else
         {
-            direction = (Customer.instance.chairPoint[0].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.chairPoint[0].transform.position - transform.position).normalized;
         }
 
-        if (Vector2.Distance(Customer.instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
+        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.instance.pathPoint[1].transform.position, transform.position) <= 0.1f && pathCounter == 1)
+        else if (Vector2.Distance(Customer.Instance.pathPoint[1].transform.position, transform.position) <= 0.1f && pathCounter == 1)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.instance.chairPoint[0].transform.position, transform.position) <= 0.1f)
+        else if (Vector2.Distance(Customer.Instance.chairPoint[0].transform.position, transform.position) <= 0.1f)
         {
-            Customer.instance.chairPoint[0] = null;
-            onTable = true;
+            Customer.Instance.chairPoint[0] = null;
+            onChair = true;
             this.enabled = false;
         }
 
-        transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToChair2()
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.instance.chairPoint[1].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.chairPoint[1].transform.position - transform.position).normalized;
         }
-        if (Vector2.Distance(Customer.instance.chairPoint[1].transform.position, transform.position) <= 0.1f)
+        if (Vector2.Distance(Customer.Instance.chairPoint[1].transform.position, transform.position) <= 0.1f)
         {
-            Customer.instance.chairPoint[1] = null;
-            onTable = true;
+            Customer.Instance.chairPoint[1] = null;
+            onChair = true;
             this.enabled = false;
         }
 
-        transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToChair3()
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.instance.chairPoint[2].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.chairPoint[2].transform.position - transform.position).normalized;
         }
-        if (Vector2.Distance(Customer.instance.chairPoint[2].transform.position, transform.position) <= 0.1f)
+        if (Vector2.Distance(Customer.Instance.chairPoint[2].transform.position, transform.position) <= 0.1f)
         {
-            Customer.instance.chairPoint[2] = null;
-            onTable = true;
+            Customer.Instance.chairPoint[2] = null;
+            onChair = true;
             this.enabled = false;
         }
 
-        transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToChair4()
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.instance.pathPoint[0].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
         }
         else if (pathCounter == 1)
         {
-            direction = (Customer.instance.pathPoint[2].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.pathPoint[2].transform.position - transform.position).normalized;
         }
         else
         {
-            direction = (Customer.instance.chairPoint[3].transform.position - transform.position).normalized;
+            direction = (Customer.Instance.chairPoint[3].transform.position - transform.position).normalized;
         }
 
-        if (Vector2.Distance(Customer.instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
+        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.instance.pathPoint[2].transform.position, transform.position) <= 0.1f && pathCounter == 1)
+        else if (Vector2.Distance(Customer.Instance.pathPoint[2].transform.position, transform.position) <= 0.1f && pathCounter == 1)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(Customer.instance.chairPoint[3].transform.position, transform.position) <= 0.1f)
+        else if (Vector2.Distance(Customer.Instance.chairPoint[3].transform.position, transform.position) <= 0.1f)
         {
-            Customer.instance.chairPoint[3] = null;
-            onTable = true;
+            Customer.Instance.chairPoint[3] = null;
+            onChair = true;
             this.enabled = false;
         }
 
-        transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 }

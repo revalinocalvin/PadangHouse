@@ -25,11 +25,23 @@ public class Customer : MonoBehaviour
         }
     }
 
-    private void Awake()
+    void Start()
     {
-        instance = this;
+        ChairAvailable();
+    }
+
+    private void ChairAvailable()
+    {
+        chairAvailable = new bool[chairPoint.Length];
+
+        for (int i = 0; i < chairPoint.Length; i++)
+        {
+            chairAvailable[i] = true;
+        }
     }
 
     public GameObject[] pathPoint;
     public GameObject[] chairPoint;
+
+    public bool[] chairAvailable;
 }

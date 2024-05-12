@@ -6,15 +6,33 @@ public class CustomerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject customerPrefab;
 
-    private int customerPerDay = 10;
+    private float customerNextSpawnTime;
+
+    private int customerPerDay = 2;
+    private int mminCustomerInside = 1;
+    private int maxCustomerInside = 8;
 
     void Start()
     {
-        
+        customerNextSpawnTime = Time.time + 2f;
     }
 
     void Update()
     {
-        
+        if (customerPerDay > 0)
+        {
+            SpawnCustomer();
+        }
+    }
+
+    void SpawnCustomer()
+    {
+        if (customerPrefab != null && Time.time >= customerNextSpawnTime)
+        {
+            Instantiate(customerPrefab, transform.position, Quaternion.identity);
+
+            customerNextSpawnTime = Time.time + 2f;
+            customerPerDay--;
+        }
     }
 }
