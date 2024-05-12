@@ -60,25 +60,33 @@ public class CustomerPathing : MonoBehaviour
         transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
-    private Vector3 DirectionToChair(int index, bool checkDistance)
+    private Vector3 DirectionToChair(int index)
     {
-        if (!checkDistance)
-        {
-            return Customer.Instance.chairPoint[index].transform.position;
-        }
-        else
-        {
-            return direction = (Customer.Instance.chairPoint[index].transform.position - transform.position).normalized;
-        }
+        return direction = (Customer.Instance.chairPoint[index].transform.position - transform.position).normalized;
+    }
+
+    private bool ArrivedOnChairPoint(int index)
+    {
+        return Vector2.Distance(Customer.Instance.chairPoint[index].transform.position, transform.position) <= 0.1f;
+    }
+
+    private Vector3 DirectionToPath(int index)
+    {
+        return direction = (Customer.Instance.pathPoint[index].transform.position - transform.position).normalized;
+    }
+
+    private bool ArrivedOnPathPoint(int index)
+    {
+        return Vector2.Distance(Customer.Instance.pathPoint[index].transform.position, transform.position) <= 0.1f;
     }
 
     void MoveToChair1()
     {
         if (pathCounter == 0)
         {
-            DirectionToChair(0, true);
+            DirectionToChair(0);
         }
-        if (Vector2.Distance(DirectionToChair(0, false), transform.position) <= 0.1f)
+        if (ArrivedOnChairPoint(0))
         {
             onChair = true;
         }
@@ -88,9 +96,9 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            DirectionToChair(1, true);
+            DirectionToChair(1);
         }
-        if (Vector2.Distance(DirectionToChair(1, false), transform.position) <= 0.1f)
+        if (ArrivedOnChairPoint(1))
         {
             onChair = true;
         }
@@ -100,18 +108,18 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
+            DirectionToPath(0);
         }
         else if (pathCounter == 1)
         {
-            DirectionToChair(2, true);
+            DirectionToChair(2);
         }
 
-        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(DirectionToChair(2, false), transform.position) <= 0.1f && pathCounter == 1)
+        else if (ArrivedOnChairPoint(2) && pathCounter == 1)
         {
             onChair = true;
         }
@@ -121,18 +129,18 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            direction = (Customer.Instance.pathPoint[0].transform.position - transform.position).normalized;
+            DirectionToPath(0);
         }
         else if (pathCounter == 1)
         {
-            DirectionToChair(3, true);
+            DirectionToChair(3);
         }
 
-        if (Vector2.Distance(Customer.Instance.pathPoint[0].transform.position, transform.position) <= 0.1f && pathCounter == 0)
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (Vector2.Distance(DirectionToChair(3, false), transform.position) <= 0.1f && pathCounter == 1)
+        else if (ArrivedOnChairPoint(3) && pathCounter == 1)
         {
             onChair = true;
         }
