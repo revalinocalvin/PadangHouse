@@ -5,31 +5,59 @@ using UnityEngine;
 public class ItemSubmission : MonoBehaviour
 {
     private string interactKey = "e";
+    private bool receivedFood = false;
+
+    CustomerPathing customerPathing;
+
+    void Start()
+    {
+        customerPathing = this.GetComponent<CustomerPathing>();
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(interactKey))
         {
-            TrySubmitItem();
+            ReceivingFood();
         }
     }
 
-    private void TrySubmitItem()
+    private void ReceivingFood()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
 
         foreach (Collider2D collider in colliders)
         {
-            if (collider.gameObject.CompareTag("Food"))
+            if (collider.gameObject.CompareTag("Food") && customerPathing.onChair == true)
             {
-                SubmitItem(collider.gameObject);
+                FoodReceived(collider.gameObject);
             }
         }
     }
 
-    private void SubmitItem(GameObject item)
+    private void FoodReceived(GameObject item)
     {
-        Debug.Log("Submitting item to NPC.");
+        receivedFood = true;
+        EatingTimer();
+
         Destroy(item);
+    }
+
+    private void EatingTimer()
+    {
+        /*if (customer finish eating after delay)
+        {
+            EatingFinished();
+        }*/
+        EatingFinished();
+    }
+
+    private void EatingFinished()
+    {
+        if (receivedFood)
+        {
+            customerPathing.eatingFinished = true;
+            Customer.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+        }
     }
 }

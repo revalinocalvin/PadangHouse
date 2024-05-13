@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CustomerPathing : MonoBehaviour
 {
-    private bool onChair = false;
+    public bool onChair = false;
     private bool chairDecided = false;
-    private int chairNumber;
+    public int chairNumber;
+
     private int pathCounter = 0;
+
+    public bool eatingFinished = false;
     
     Vector3 direction;
 
     void Update()
     {
-        if (!chairDecided)
+        if (!chairDecided && !eatingFinished)
         {
             DecideChair();
         }
@@ -21,6 +24,13 @@ public class CustomerPathing : MonoBehaviour
         if (chairDecided && !onChair)
         {
             MoveToChair();
+        }
+
+        if (eatingFinished)
+        {
+            onChair = false;
+            chairDecided = false;
+            MoveToExit();
         }
     }
 
@@ -78,6 +88,16 @@ public class CustomerPathing : MonoBehaviour
     private bool ArrivedOnPathPoint(int index)
     {
         return Vector2.Distance(Customer.Instance.pathPoint[index].transform.position, transform.position) <= 0.1f;
+    }
+
+    private Vector3 DirectionToExitPoint()
+    {
+        return direction = (Customer.Instance.exitPoint.transform.position - transform.position).normalized;
+    }
+
+    private bool ArrivedOnExitPoint()
+    {
+        return Vector2.Distance(Customer.Instance.exitPoint.transform.position, transform.position) <= 0.1f;
     }
 
     void MoveToChair1()
@@ -143,6 +163,46 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint(3) && pathCounter == 1)
         {
             onChair = true;
+        }
+    }
+
+    void MoveToExit()
+    {
+        if (chairNumber == 1 || chairNumber == 2 || chairNumber == 5 || chairNumber == 6)
+        {
+            MoveToExit1();
+        }
+        else if (chairNumber == 3 || chairNumber == 4 || chairNumber == 7 || chairNumber == 8)
+        {
+            MoveToExit2();
+        }
+
+        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
+    }
+
+    void MoveToExit1()
+    {
+        DirectionToExitPoint();
+    }
+
+    void MoveToExit2()
+    {
+        if (pathCounter == 1)
+        {
+            DirectionToPath(0);
+        }
+        else if (pathCounter == 0)
+        {
+            DirectionToExitPoint();
+        }
+
+        if (ArrivedOnPathPoint(0) && pathCounter == 1)
+        {
+            pathCounter--;
+        }
+        else if (ArrivedOnExitPoint())
+        {
+            Destroy(this.gameObject);
         }
     }
 }
