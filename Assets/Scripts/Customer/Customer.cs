@@ -25,6 +25,12 @@ public class Customer : MonoBehaviour
         }
     }
 
+    public GameObject[] pathPoint;
+    public GameObject[] chairPoint;
+    public GameObject exitPoint;
+
+    public bool[] chairAvailable;
+
     void Start()
     {
         ChairAvailable();
@@ -39,10 +45,4 @@ public class Customer : MonoBehaviour
             chairAvailable[i] = true;
         }
     }
-
-    public GameObject[] pathPoint;
-    public GameObject[] chairPoint;
-    public GameObject exitPoint;
-
-    public bool[] chairAvailable;
 }
