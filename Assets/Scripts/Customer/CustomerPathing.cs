@@ -12,7 +12,7 @@ public class CustomerPathing : MonoBehaviour
 
     public bool eatingFinished = false;
     
-    Vector3 direction;
+    private Vector3 direction;
 
     void Update()
     {
