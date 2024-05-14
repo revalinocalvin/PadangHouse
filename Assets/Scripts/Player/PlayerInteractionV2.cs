@@ -6,11 +6,13 @@ public class PlayerInteractionV2 : MonoBehaviour
 {
     private GameObject heldObject;
     private ObjectSpawner objectSpawner;
+    private GameObject gp;
     
 
     private void Start()
     {
         objectSpawner = FindObjectOfType<ObjectSpawner>(); // Find the ObjectSpawner in the scene
+        gp = GameObject.Find("Player/GrabPosition");
     }
 
     private void Update()
@@ -52,7 +54,7 @@ public class PlayerInteractionV2 : MonoBehaviour
     private void PickUpObject(GameObject obj)
     {
         heldObject = obj;
-        heldObject.transform.SetParent(transform); // Attach the object to the player
+        heldObject.transform.SetParent(gp.transform); // Attach the object to the player
         heldObject.transform.localPosition = Vector3.zero; // Center the object on the player
         heldObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
     }
