@@ -15,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private float rayDistance;
 
-    private GameObject grabbedObject;
+    public GameObject grabbedObject;
     private bool interact;
     // Start is called before the first frame update
     void Start()
