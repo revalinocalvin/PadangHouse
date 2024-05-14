@@ -327,6 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabPoint: {fileID: 0}
   rayPoint: {fileID: 0}
+  rp: {fileID: 0}
   rayDistance: 0.2
 --- !u!70 &7452350723370386835
 CapsuleCollider2D:

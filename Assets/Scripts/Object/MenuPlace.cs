@@ -17,7 +17,7 @@ public class MenuPlace : MonoBehaviour
     {
         if (Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Interact key pressed.");
+            //Debug.Log("Interact key pressed.");
             TrySubmitItem();
         }
     }
