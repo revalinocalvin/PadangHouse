@@ -60,7 +60,7 @@ public class PlayerInteract : MonoBehaviour
     void OnTriggerStay2D(Collider2D collidedObject)
     {
         // Check if the colliding object is in the Pickupable layer
-        if (collidedObject.gameObject.layer == LayerMask.NameToLayer("Pickupable"))
+        if (collidedObject.CompareTag("Menu Dish"))
         {
             Debug.Log("RayPosition collided with a Pickupable object: " + collidedObject.gameObject.name);
 

@@ -61,9 +61,6 @@ public class MenuPlace : MonoBehaviour
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<PolygonCollider2D>().enabled = true;
 
-        int layerIndex = LayerMask.NameToLayer("Default"); // Change the object's LayerMask
-        item.layer = layerIndex;
-
         enabled = false; // Optionally disable the script if interaction is one-time
 
         // Set the grabbedObject property of PlayerInteract to null
