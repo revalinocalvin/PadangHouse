@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 7516248613981721069}
   - component: {fileID: 8501905112737901515}
   - component: {fileID: 4516080319708479838}
-  - component: {fileID: 3646201830447764244}
+  - component: {fileID: 1696208708850274864}
   m_Layer: 6
   m_Name: Menu Dish (1)
   m_TagString: Menu Dish
@@ -551,7 +551,7 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
---- !u!114 &3646201830447764244
+--- !u!114 &1696208708850274864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

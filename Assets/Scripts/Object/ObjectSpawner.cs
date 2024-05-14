@@ -11,8 +11,6 @@ public class ObjectSpawner : MonoBehaviour
 
     public GameObject SpawnObject()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 1f) // Interaction radius
-        {
             if (interactionCount < maxInteractions)
             {
                 GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
@@ -29,10 +27,5 @@ public class ObjectSpawner : MonoBehaviour
                 Debug.Log("Object spawner has reached its maximum usage.");
                 return null; 
             }
-        }
-
-        else {
-            return null;
-        }
     }
 }

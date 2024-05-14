@@ -128,6 +128,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6625373977011535829, guid: 43420e2880aea9f4a937566c9215b1a4, type: 3}
   m_PrefabInstance: {fileID: 5511932582359361087}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1112044361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8197784629869440533, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+  m_PrefabInstance: {fileID: 2388010826950983057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1112044366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112044361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fb2ce6a6ca59e47a4913970d08b953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 689203908}
+  objectToSpawn: {fileID: 1157607768}
+  maxInteractions: 5
+--- !u!1 &1157607768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 692890411631941035, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+  m_PrefabInstance: {fileID: 2388010826950983057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1467204231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,10 +450,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameObject
       objectReference: {fileID: 0}
-    - target: {fileID: 7451950292311032794, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8502416634577516369, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
       propertyPath: player
       value: 
@@ -436,7 +457,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8197784629869440533, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1112044366}
   m_SourcePrefab: {fileID: 100100000, guid: 01a31178110b7034b98fc89650365cdc, type: 3}
 --- !u!1001 &4667626247891799362
 PrefabInstance:
@@ -620,21 +644,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4477411497064973912, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5574301050427957959, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
       propertyPath: m_Name
       value: Level Design
-      objectReference: {fileID: 0}
-    - target: {fileID: 6214807778009892508, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6595466519642545058, guid: 6e3f55600d2d6cd4c871cc7fe3e0b9ec, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
