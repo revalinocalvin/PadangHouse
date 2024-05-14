@@ -27,12 +27,14 @@ public class ItemSubmission : MonoBehaviour
             // Check if the player is holding an interactable item
             foreach (Transform child in player.transform)
             {
-                Debug.Log("Founded");
-                if (child.gameObject.CompareTag(requiredObjectTag))
+                foreach (Transform grandchild in child)
                 {
-                    Debug.Log("Interactable item found. Submitting item to NPC.");
-                    SubmitItem(child.gameObject); // Submit the item to the NPC
-                    return;
+                    if (grandchild.gameObject.CompareTag(requiredObjectTag))
+                    {
+                        Debug.Log("Interactable item found. Submitting item to MenuPlace.");
+                        SubmitItem(grandchild.gameObject); // Submit the item to the MenuPlace
+                        return;
+                    }
                 }
             }
         }
