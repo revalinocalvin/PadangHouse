@@ -19,6 +19,7 @@ public class PlayerInteract : MonoBehaviour
 
     private ObjectSpawner objectSpawner;
     private CustomerOrder customerOrder;
+    private CustomerExit customerExit;
 
     private bool interact;
     public bool isInteractTaken = false;
@@ -31,6 +32,7 @@ public class PlayerInteract : MonoBehaviour
         Collider2D collider = rp.GetComponent<Collider2D>();
         objectSpawner = FindObjectOfType<ObjectSpawner>();
         customerOrder = FindObjectOfType<CustomerOrder>();
+        customerExit = FindObjectOfType<CustomerExit>();
         
     }
 
@@ -91,12 +93,21 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("Customer") && interact && isInteractTaken == true)
             {
                 ItemSubmission itemSubmission = collidedObject.GetComponent<ItemSubmission>();  // Check if the ItemSubmission script is enabled on the customer GameObject
+
                 if (grabbedObject != null && itemSubmission.enabled)
                 {
                 Debug.Log("RayPosition collided with a Pickupable object: " + collidedObject.gameObject.name);
                 DropObject();
+
                 isInteractTaken = false;
                 Debug.Log("Interact Taken is now = " + isInteractTaken);
+
+                CustomerExit customerExit = collidedObject.GetComponent<CustomerExit>();
+                    if (customerExit != null)
+                    {
+                        customerExit.MoveToExit(collidedObject.gameObject);
+                    }
+
                 }
             }
                 if (interact)
