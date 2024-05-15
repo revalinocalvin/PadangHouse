@@ -6,7 +6,7 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject objectToSpawn; 
     public int maxInteractions = 5; 
-    private int interactionCount = 0; 
+    private int interactionCount = 0;
 
     public GameObject SpawnObject()
     {

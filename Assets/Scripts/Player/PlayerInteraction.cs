@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public Transform holdPoint;
+
     private GameObject heldObject;
     private GameObject[] foodSpawners;
 
+    private bool holdingObject = false;
+
     private void Start()
     {
-        //Get all FoodSpawn objects
         foodSpawners = GameObject.FindGameObjectsWithTag("FoodSpawn");
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !holdingObject)
         {
             Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && holdingObject)
+        {
+            ServeFood();
         }
 
         FoodOnPlayer();
@@ -27,7 +35,19 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (heldObject != null)
         {
-            heldObject.transform.position = transform.position;
+            heldObject.transform.position = holdPoint.position;
+        }
+    }
+
+    void CheckHoldPoint()
+    {
+        if (holdPoint.childCount == 1)
+        {
+            holdingObject = true;
+        }
+        else if (holdPoint.childCount == 0)
+        {
+            holdingObject = false;
         }
     }
 
@@ -39,17 +59,31 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (collider.CompareTag("FoodSpawn"))
             {
-                //Reference the foodSpawners that the player interacts with if there are multiple foodSpawners
                 for (int i = 0; i < foodSpawners.Length; i++)
                 {
                     if (collider.gameObject == foodSpawners[i])
                     {
+
                         ObjectSpawner objectSpawner = foodSpawners[i].GetComponent<ObjectSpawner>();
 
                         heldObject = objectSpawner.SpawnObject();
+                        heldObject.transform.SetParent(holdPoint);
                         break;
                     }
                 }
+            }
+        }
+    }
+
+    private void ServeFood()
+    {
+        if (heldObject != null)
+        {
+            Collider2D col = heldObject.GetComponent<Collider2D>();
+
+            if (col.CompareTag("Customer"))
+            {
+                Destroy(heldObject.gameObject);
             }
         }
     }

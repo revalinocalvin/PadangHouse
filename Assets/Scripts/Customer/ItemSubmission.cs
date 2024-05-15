@@ -24,7 +24,7 @@ public class ItemSubmission : MonoBehaviour
 
     private void ReceivingFood()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 
         foreach (Collider2D collider in colliders)
         {
@@ -35,29 +35,27 @@ public class ItemSubmission : MonoBehaviour
         }
     }
 
-    private void FoodReceived(GameObject item)
+    private void FoodReceived(GameObject food)
     {
         receivedFood = true;
-        EatingTimer();
-
-        Destroy(item);
+        EatingTimer(food);
     }
 
-    private void EatingTimer()
+    private void EatingTimer(GameObject food)
     {
         /*if (customer finish eating after delay)
         {
-            EatingFinished();
+            EatingFinished(food);
         }*/
-        EatingFinished();
     }
 
-    private void EatingFinished()
+    private void EatingFinished(GameObject food)
     {
         if (receivedFood)
         {
             customerPathing.eatingFinished = true;
             Customer.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+            Destroy(food);
         }
     }
 }
