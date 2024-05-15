@@ -9,8 +9,8 @@ public class CustomerSpawner : MonoBehaviour
     private float customerNextSpawnTime;
 
     private int customerPerDay = 4;
-    private int mminCustomerInside = 1;
-    private int maxCustomerInside = 8;
+    //private int minCustomerInside = 1;
+    //private int maxCustomerInside = 8;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class CustomerSpawner : MonoBehaviour
         {
             Instantiate(customerPrefab, transform.position, Quaternion.identity);
 
-            customerNextSpawnTime = Time.time + 2f;
+            customerNextSpawnTime = Time.time + 3f;
             customerPerDay--;
         }
     }
