@@ -37,18 +37,22 @@ public class PlayerMovement : MonoBehaviour
         if (moveVector.x > 0)
         {
             PI.holdPoint.localPosition = new Vector3(1, 0, 0);
+            PI.rayDirection = Vector2.right;
         }
         else if (moveVector.x < 0)
         {
             PI.holdPoint.localPosition = new Vector3(-1, 0, 0);
+            PI.rayDirection = Vector2.left;
         }
         else if (moveVector.y < 0)
         {
             PI.holdPoint.localPosition = new Vector3(0, -1, 0);
+            PI.rayDirection = Vector2.down;
         }
         else if (moveVector.y > 0)
         {
             PI.holdPoint.localPosition = new Vector3(0, 1, 0);
+            PI.rayDirection = Vector2.up;
         }
     }
 }

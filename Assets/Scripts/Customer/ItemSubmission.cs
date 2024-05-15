@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ItemSubmission : MonoBehaviour
 {
-    private string interactKey = "e";
-    private bool receivedFood = false;
-
     CustomerPathing customerPathing;
+
+    public bool receivedFood = false;
 
     void Start()
     {
@@ -16,7 +15,7 @@ public class ItemSubmission : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             ReceivingFood();
         }
@@ -24,13 +23,13 @@ public class ItemSubmission : MonoBehaviour
 
     private void ReceivingFood()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.5f);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 0.5f);
 
-        foreach (Collider2D collider in colliders)
+        foreach (Collider2D col in cols)
         {
-            if (collider.gameObject.CompareTag("Food") && customerPathing.onChair == true)
+            if (col.gameObject.CompareTag("Food") && customerPathing.onChair == true)
             {
-                FoodReceived(collider.gameObject);
+                FoodReceived(col.gameObject);
             }
         }
     }
@@ -38,15 +37,16 @@ public class ItemSubmission : MonoBehaviour
     private void FoodReceived(GameObject food)
     {
         receivedFood = true;
-        EatingTimer(food);
+        StartCoroutine(WaitEatingTime(food));
     }
 
-    private void EatingTimer(GameObject food)
+    private IEnumerator WaitEatingTime(GameObject food)
     {
-        /*if (customer finish eating after delay)
-        {
-            EatingFinished(food);
-        }*/
+        float eatingTime = 5f;
+
+        yield return new WaitForSeconds(eatingTime);
+
+        EatingFinished(food);
     }
 
     private void EatingFinished(GameObject food)
