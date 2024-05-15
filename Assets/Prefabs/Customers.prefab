@@ -54,6 +54,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  exitPoint:
+  - {fileID: 0}
 --- !u!1 &622742406442296991
 GameObject:
   m_ObjectHideFlags: 0
