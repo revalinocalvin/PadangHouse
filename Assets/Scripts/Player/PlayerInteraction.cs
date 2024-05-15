@@ -43,7 +43,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         ObjectOnPlayer();
-        CheckHoldPoint();
+        CheckHoldPointChild();
     }
 
     void ObjectOnPlayer()
@@ -54,7 +54,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    void CheckHoldPoint()
+    void CheckHoldPointChild()
     {
         if (holdPoint.childCount == 1)
         {
@@ -70,12 +70,25 @@ public class PlayerInteraction : MonoBehaviour
     private void Interact()
     {
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.5f);
-        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, rayDirection, 1.5f, displayTableLayerMask);
-        RaycastHit2D hit2 = Physics2D.Raycast(transform.position, rayDirection, 1.5f, pickupTableLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1.5f, displayTableLayerMask);
 
         foreach (Collider2D col in cols)
         {
-            if (col.CompareTag("FoodSpawn") && hit1.collider.gameObject.layer == displayTableLayerNumber)
+            if (col.CompareTag("FoodTray"))
+            {
+                /*for (int i = 0; i < foodSpawners.Length; i++)
+                {
+                    if (col.gameObject == foodSpawners[i])
+                    {
+                        ObjectSpawner objectSpawner = foodSpawners[i].GetComponent<ObjectSpawner>();
+
+                        heldObject = objectSpawner.SpawnObject();
+                        heldObject.transform.SetParent(holdPoint);
+                        break;
+                    }
+                }*/
+            }
+            else if (col.CompareTag("FoodSpawn"))
             {
                 for (int i = 0; i < foodSpawners.Length; i++)
                 {
@@ -117,5 +130,10 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void GrabFoodTray()
+    {
+
     }
 }
