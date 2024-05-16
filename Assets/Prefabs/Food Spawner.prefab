@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.45, y: 0, z: 0}
-  m_LocalScale: {x: 0.06666667, y: 0.6666667, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,5 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fb2ce6a6ca59e47a4913970d08b953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 7447941085043148517, guid: 2eec161c663bbaa47a158e9d312a882a, type: 3}
+  spawnFoodTray: {fileID: 6429211429017601056, guid: f1688ef0a54fcaf4e946a4c5f07b8004, type: 3}
+  spawnFoodObject: {fileID: 7447941085043148517, guid: 2eec161c663bbaa47a158e9d312a882a, type: 3}
   maxInteractions: 5

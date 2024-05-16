@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private string displayTableLayer = "DisplayTable";
-    private string pickupTableLayer = "PickupTable";
-    private int displayTableLayerNumber;
-    private int pickupTableLayerNumber;
-    private int displayTableLayerMask;
-    private int pickupTableLayerMask;
-
     public Transform holdPoint;
     public Vector2 rayDirection;
 
     private GameObject heldObject;
     private GameObject[] foodSpawners;
+    private GameObject[] foodTrays;
 
     private bool isHolding = false;
 
     private void Start()
     {
-        displayTableLayerNumber = LayerMask.NameToLayer(displayTableLayer);
-        displayTableLayerMask = LayerMask.GetMask(displayTableLayer);
-
-        pickupTableLayerNumber = LayerMask.NameToLayer(pickupTableLayer);
-        pickupTableLayerMask = LayerMask.GetMask(pickupTableLayer);
-
         foodSpawners = GameObject.FindGameObjectsWithTag("FoodSpawn");
+        foodTrays = GameObject.FindGameObjectsWithTag("FoodTray");
     }
 
     private void Update()
@@ -70,25 +59,10 @@ public class PlayerInteraction : MonoBehaviour
     private void Interact()
     {
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.5f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, rayDirection, 1.5f, displayTableLayerMask);
 
         foreach (Collider2D col in cols)
         {
-            if (col.CompareTag("FoodTray"))
-            {
-                /*for (int i = 0; i < foodSpawners.Length; i++)
-                {
-                    if (col.gameObject == foodSpawners[i])
-                    {
-                        ObjectSpawner objectSpawner = foodSpawners[i].GetComponent<ObjectSpawner>();
-
-                        heldObject = objectSpawner.SpawnObject();
-                        heldObject.transform.SetParent(holdPoint);
-                        break;
-                    }
-                }*/
-            }
-            else if (col.CompareTag("FoodSpawn"))
+            if (col.CompareTag("FoodSpawn"))
             {
                 for (int i = 0; i < foodSpawners.Length; i++)
                 {
@@ -96,8 +70,23 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         ObjectSpawner objectSpawner = foodSpawners[i].GetComponent<ObjectSpawner>();
 
-                        heldObject = objectSpawner.SpawnObject();
+                        heldObject = objectSpawner.SpawnFoodObject();
                         heldObject.transform.SetParent(holdPoint);
+                        break;
+                    }
+                }
+            }
+            else if (col.CompareTag("FoodTray"))
+            {
+                for (int i = 0; i < foodTrays.Length; i++)
+                {
+                    if (col.gameObject == foodTrays[i])
+                    {
+                        ObjectSpawner objectSpawner = foodTrays[i].GetComponent<ObjectSpawner>();
+
+                        heldObject = objectSpawner.SpawnFoodTray();
+                        heldObject.transform.SetParent(holdPoint);
+                        Destroy(col.gameObject);
                         break;
                     }
                 }
@@ -107,7 +96,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void ServeFood()
     {
-        if (holdPoint != null && heldObject != null)
+        if (holdPoint != null && heldObject != null && heldObject.CompareTag("Food"))
         {
             Collider2D[] cols = Physics2D.OverlapCircleAll(heldObject.transform.position, 0.5f);
 

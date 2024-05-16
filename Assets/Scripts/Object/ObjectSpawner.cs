@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject objectToSpawn; 
+    public GameObject spawnFoodTray;
+    public GameObject spawnFoodObject; 
+
     public int maxInteractions = 5; 
     private int interactionCount = 0;
 
-    public GameObject SpawnObject()
+    public GameObject SpawnFoodTray()
     {
-        if (interactionCount < maxInteractions)
+        GameObject spawnedObject = Instantiate(spawnFoodTray, transform.position, Quaternion.identity);
+
+        return spawnedObject;
+    }
+
+    public GameObject SpawnFoodObject()
+    {
+        GameObject spawnedObject = Instantiate(spawnFoodObject, transform.position, Quaternion.identity);
+
+        interactionCount++;
+
+        if (interactionCount >= maxInteractions)
         {
-            GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
-
-            interactionCount++; 
-
-            if (interactionCount >= maxInteractions)
-            {
-                Destroy(gameObject); 
-            }
-
-            return spawnedObject;
+            Destroy(gameObject);
         }
 
-        return null;
+        return spawnedObject;
     }
 }
