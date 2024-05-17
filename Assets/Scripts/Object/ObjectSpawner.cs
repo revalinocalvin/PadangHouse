@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     public GameObject spawnFoodTray;
+    public GameObject spawnFoodSpawn;
     public GameObject spawnFoodObject; 
 
     public int maxInteractions = 5; 
@@ -13,6 +14,13 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject SpawnFoodTray()
     {
         GameObject spawnedObject = Instantiate(spawnFoodTray, transform.position, Quaternion.identity);
+
+        return spawnedObject;
+    }
+
+    public GameObject SpawnFoodSpawn()
+    {
+        GameObject spawnedObject = Instantiate(spawnFoodSpawn, transform.position, Quaternion.identity);
 
         return spawnedObject;
     }

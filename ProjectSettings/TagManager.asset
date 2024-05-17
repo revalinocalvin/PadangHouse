@@ -9,6 +9,7 @@ TagManager:
   - FoodSpawn
   - Food
   - FoodTray
+  - FoodDisplay
   layers:
   - Default
   - TransparentFX

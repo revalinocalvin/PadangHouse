@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public Transform holdPoint;
+    private GameObject heldObject;
     public Vector2 rayDirection;
 
-    private GameObject heldObject;
     private GameObject[] foodSpawners;
     private GameObject[] foodTrays;
 
@@ -29,6 +29,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isHolding)
         {
             ServeFood();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && isHolding)
+        {
+            DropFoodTray();
         }
 
         ObjectOnPlayer();
@@ -64,6 +69,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (col.CompareTag("FoodSpawn"))
             {
+                foodSpawners = GameObject.FindGameObjectsWithTag("FoodSpawn");
+
                 for (int i = 0; i < foodSpawners.Length; i++)
                 {
                     if (col.gameObject == foodSpawners[i])
@@ -102,27 +109,45 @@ public class PlayerInteraction : MonoBehaviour
 
             foreach (Collider2D col in cols)
             {
-                ItemSubmission colItemSubmission = col.GetComponent<ItemSubmission>();
-                CustomerPathing colPathing = col.GetComponent<CustomerPathing>();
+                CustomerFood customerFood = col.GetComponent<CustomerFood>();
+                CustomerPathing customerPathing = col.GetComponent<CustomerPathing>();
 
-                if (col.CompareTag("Customer") && colItemSubmission.receivedFood == false && colPathing.onChair == true)
+                if (col.CompareTag("Customer") && customerFood.receivedFood == false && customerPathing.onChair == true)
                 {
                     GameObject food = heldObject;
                     heldObject = null;
 
                     food.transform.SetParent(null);
-                    food.transform.SetParent(col.gameObject.transform);
-
-                    //Later change to customer's holdPoint instead
-                    Vector3 foodOffset = new Vector3(0f, -1f, 0f);
-                    food.transform.localPosition = foodOffset;
+                    food.transform.SetParent(customerFood.customerFoodPoint);
+                    food.transform.localPosition = new Vector3(0f, 0f, 0f);
                 }
             }
         }
     }
 
-    private void GrabFoodTray()
+    private void DropFoodTray()
     {
+        if (holdPoint != null && heldObject != null && heldObject.CompareTag("FoodTray"))
+        {
+            Collider2D[] cols = Physics2D.OverlapCircleAll(heldObject.transform.position, 0.5f);
 
+            foreach (Collider2D col in cols)
+            {
+                FoodDisplay foodDisplay = col.GetComponent<FoodDisplay>();
+
+                if (col.CompareTag("FoodDisplay") && foodDisplay.foodOnDisplay == false)
+                {
+                    Destroy(heldObject);
+                    heldObject = null;
+
+                    ObjectSpawner objectSpawner = col.GetComponent<ObjectSpawner>();
+
+                    GameObject foodSpawn = objectSpawner.SpawnFoodSpawn();
+                    foodSpawn.transform.SetParent(col.gameObject.transform);
+                    foodSpawn.transform.localPosition = new Vector3(0, 0, 0);
+                    break;
+                }
+            }
+        }
     }
 }

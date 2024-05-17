@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSubmission : MonoBehaviour
+public class CustomerFood : MonoBehaviour
 {
     CustomerPathing customerPathing;
+
+    public Transform customerFoodPoint;
 
     public bool receivedFood = false;
 
@@ -18,6 +20,23 @@ public class ItemSubmission : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             ReceivingFood();
+        }
+
+        if (customerPathing.onChair == true)
+        {
+            FoodDirection();
+        }
+    }
+
+    void FoodDirection()
+    {
+        if (customerPathing.chairNumber == 1 || customerPathing.chairNumber == 2 || customerPathing.chairNumber == 5 || customerPathing.chairNumber == 6)
+        {
+            customerFoodPoint.transform.localPosition = new Vector3(0, -1, 0);
+        }
+        else
+        {
+            customerFoodPoint.transform.localPosition = new Vector3(0, 1, 0);
         }
     }
 
