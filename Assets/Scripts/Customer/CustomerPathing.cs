@@ -183,6 +183,11 @@ public class CustomerPathing : MonoBehaviour
     void MoveToExit1()
     {
         DirectionToExitPoint();
+
+        if (ArrivedOnExitPoint())
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void MoveToExit2()

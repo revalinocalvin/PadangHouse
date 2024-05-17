@@ -7,10 +7,19 @@ public class Customer : MonoBehaviour
     CustomerPathing customerPathing;
     CustomerFood customerFood;
 
+    private float customerPatience = 10f;
+    private float patienceTimer;
+    private bool stillPatient;
+    private bool patienceTimerSet;
+
     public GameObject customerOrder;
 
     void Start()
     {
+        stillPatient = true;
+        patienceTimerSet = false;
+        patienceTimer = Time.time;
+
         customerPathing = GetComponent<CustomerPathing>();
         customerFood = GetComponent<CustomerFood>();
         customerOrder.SetActive(false);
@@ -18,6 +27,17 @@ public class Customer : MonoBehaviour
 
     void Update()
     {
+        if (customerPathing.onChair == true && patienceTimerSet == false)
+        {
+            patienceTimerSet = true;
+            patienceTimer = Time.time + customerPatience;
+        }
+
+        if (customerFood.receivedFood == false)
+        {
+            Patience();
+        }
+
         OrderSign();
     }
 
@@ -30,6 +50,22 @@ public class Customer : MonoBehaviour
         else
         {
             customerOrder.SetActive(false);
+        }
+    }
+
+    void Patience()
+    {
+        if (!stillPatient)
+        {
+            customerPathing.eatingFinished = true;
+        }
+        else
+        {
+            if (Time.time >= patienceTimer && patienceTimerSet == true)
+            {
+                stillPatient = false;
+                GameManager.Instance.AddSatisfaction(-10);
+            }
         }
     }
 }

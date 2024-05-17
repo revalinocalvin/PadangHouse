@@ -76,6 +76,7 @@ public class CustomerFood : MonoBehaviour
             customerPathing.eatingFinished = true;
             CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
             Destroy(food);
+            GameManager.Instance.AddSatisfaction(10);
         }
     }
 }
