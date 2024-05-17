@@ -57,26 +57,17 @@ public class GameManager : MonoBehaviour
             gameResultBackground.SetActive(true);
             gameResultText.text = "You lose!";
             Time.timeScale = 0;
-            StartCoroutine(DefaultTimeScale());
         }
         else if (satisfactionValue >= winValue)
         {
             gameResultBackground.SetActive(true);
             gameResultText.text = "You win!";
             Time.timeScale = 0;
-            StartCoroutine(DefaultTimeScale());
         }
     }
 
     public void AddSatisfaction(int value)
     {
         satisfactionValue += value;
-    }
-
-    private IEnumerator DefaultTimeScale()
-    {
-        yield return new WaitForSeconds(5);
-        gameResultBackground.SetActive(false);
-        Time.timeScale = 1;
     }
 }

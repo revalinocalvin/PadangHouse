@@ -17,8 +17,8 @@ public class Customer : MonoBehaviour
     void Start()
     {
         stillPatient = true;
-        patienceTimerSet = false;
         patienceTimer = Time.time;
+        patienceTimerSet = false;
 
         customerPathing = GetComponent<CustomerPathing>();
         customerFood = GetComponent<CustomerFood>();
@@ -58,6 +58,9 @@ public class Customer : MonoBehaviour
         if (!stillPatient)
         {
             customerPathing.eatingFinished = true;
+
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.color = Color.red;
         }
         else
         {
