@@ -8,6 +8,7 @@ public class CustomerFood : MonoBehaviour
 
     public Transform customerFoodPoint;
 
+    public bool orderReceived = false;
     public bool receivedFood = false;
 
     void Start()
@@ -17,7 +18,7 @@ public class CustomerFood : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && orderReceived)
         {
             ReceivingFood();
         }
@@ -73,7 +74,7 @@ public class CustomerFood : MonoBehaviour
         if (receivedFood)
         {
             customerPathing.eatingFinished = true;
-            Customer.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+            CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
             Destroy(food);
         }
     }

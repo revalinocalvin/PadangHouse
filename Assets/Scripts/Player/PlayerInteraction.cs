@@ -29,11 +29,8 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isHolding)
         {
             ServeFood();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && isHolding)
-        {
             DropFoodTray();
+            ThrowTrash();
         }
 
         ObjectOnPlayer();
@@ -63,7 +60,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Interact()
     {
-        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        Collider2D[] cols = Physics2D.OverlapCircleAll(holdPoint.transform.position, 0.5f);
 
         foreach (Collider2D col in cols)
         {
@@ -98,12 +95,22 @@ public class PlayerInteraction : MonoBehaviour
                     }
                 }
             }
+            else if (col.CompareTag("Customer"))
+            {
+                CustomerPathing customerPathing = col.GetComponent<CustomerPathing>();
+                CustomerFood customerFood = col.GetComponent<CustomerFood>();
+
+                if (customerFood.orderReceived == false && customerPathing.onChair == true)
+                {
+                    customerFood.orderReceived = true;
+                }
+            }
         }
     }
 
     private void ServeFood()
     {
-        if (holdPoint != null && heldObject != null && heldObject.CompareTag("Food"))
+        if (heldObject != null && heldObject.CompareTag("Food"))
         {
             Collider2D[] cols = Physics2D.OverlapCircleAll(heldObject.transform.position, 0.5f);
 
@@ -112,7 +119,7 @@ public class PlayerInteraction : MonoBehaviour
                 CustomerFood customerFood = col.GetComponent<CustomerFood>();
                 CustomerPathing customerPathing = col.GetComponent<CustomerPathing>();
 
-                if (col.CompareTag("Customer") && customerFood.receivedFood == false && customerPathing.onChair == true)
+                if (col.CompareTag("Customer") && customerFood.receivedFood == false && customerPathing.onChair == true && customerFood.orderReceived == true)
                 {
                     GameObject food = heldObject;
                     heldObject = null;
@@ -127,7 +134,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void DropFoodTray()
     {
-        if (holdPoint != null && heldObject != null && heldObject.CompareTag("FoodTray"))
+        if (heldObject != null && heldObject.CompareTag("FoodTray"))
         {
             Collider2D[] cols = Physics2D.OverlapCircleAll(heldObject.transform.position, 0.5f);
 
@@ -147,6 +154,20 @@ public class PlayerInteraction : MonoBehaviour
                     foodSpawn.transform.localPosition = new Vector3(0, 0, 0);
                     break;
                 }
+            }
+        }
+    }
+
+    private void ThrowTrash()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(holdPoint.transform.position, 0.5f);
+
+        foreach (Collider2D col in cols)
+        {
+            if (col.CompareTag("Trashbin") && heldObject != null)
+            {
+                Destroy(heldObject);
+                heldObject = null;
             }
         }
     }

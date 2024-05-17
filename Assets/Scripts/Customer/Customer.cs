@@ -4,45 +4,32 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    public float customerMoveSpeed = 5f;
+    CustomerPathing customerPathing;
+    CustomerFood customerFood;
 
-    public static Customer instance;
-    public static Customer Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<Customer>();
-                if (instance == null)
-                {
-                    GameObject obj = new GameObject();
-                    obj.name = typeof(Customer).Name;
-                    instance = obj.AddComponent<Customer>();
-                }
-            }
-            return instance;
-        }
-    }
-
-    public GameObject[] pathPoint;
-    public GameObject[] chairPoint;
-    public GameObject exitPoint;
-
-    public bool[] chairAvailable;
+    public GameObject customerOrder;
 
     void Start()
     {
-        ChairAvailable();
+        customerPathing = GetComponent<CustomerPathing>();
+        customerFood = GetComponent<CustomerFood>();
+        customerOrder.SetActive(false);
     }
 
-    private void ChairAvailable()
+    void Update()
     {
-        chairAvailable = new bool[chairPoint.Length];
+        OrderSign();
+    }
 
-        for (int i = 0; i < chairPoint.Length; i++)
+    void OrderSign()
+    {
+        if (customerFood.orderReceived == false && customerPathing.onChair == true)
         {
-            chairAvailable[i] = true;
+            customerOrder.SetActive(true);
+        }
+        else
+        {
+            customerOrder.SetActive(false);
         }
     }
 }

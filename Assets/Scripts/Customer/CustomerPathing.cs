@@ -36,12 +36,12 @@ public class CustomerPathing : MonoBehaviour
 
     void DecideChair()
     {
-        for (int i = 0; i < Customer.Instance.chairAvailable.Length; i++)
+        for (int i = 0; i < CustomerManager.Instance.chairAvailable.Length; i++)
         {
-            if (Customer.Instance.chairAvailable[i])
+            if (CustomerManager.Instance.chairAvailable[i])
             {
                 chairDecided = true;
-                Customer.Instance.chairAvailable[i] = false;
+                CustomerManager.Instance.chairAvailable[i] = false;
                 chairNumber = i + 1;
                 break;
             }
@@ -67,37 +67,37 @@ public class CustomerPathing : MonoBehaviour
             MoveToChair4();
         }
 
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * CustomerManager.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     private Vector3 DirectionToChair(int index)
     {
-        return direction = (Customer.Instance.chairPoint[index].transform.position - transform.position).normalized;
+        return direction = (CustomerManager.Instance.chairPoint[index].transform.position - transform.position).normalized;
     }
 
     private bool ArrivedOnChairPoint(int index)
     {
-        return Vector2.Distance(Customer.Instance.chairPoint[index].transform.position, transform.position) <= 0.1f;
+        return Vector2.Distance(CustomerManager.Instance.chairPoint[index].transform.position, transform.position) <= 0.1f;
     }
 
     private Vector3 DirectionToPath(int index)
     {
-        return direction = (Customer.Instance.pathPoint[index].transform.position - transform.position).normalized;
+        return direction = (CustomerManager.Instance.pathPoint[index].transform.position - transform.position).normalized;
     }
 
     private bool ArrivedOnPathPoint(int index)
     {
-        return Vector2.Distance(Customer.Instance.pathPoint[index].transform.position, transform.position) <= 0.1f;
+        return Vector2.Distance(CustomerManager.Instance.pathPoint[index].transform.position, transform.position) <= 0.1f;
     }
 
     private Vector3 DirectionToExitPoint()
     {
-        return direction = (Customer.Instance.exitPoint.transform.position - transform.position).normalized;
+        return direction = (CustomerManager.Instance.exitPoint.transform.position - transform.position).normalized;
     }
 
     private bool ArrivedOnExitPoint()
     {
-        return Vector2.Distance(Customer.Instance.exitPoint.transform.position, transform.position) <= 0.1f;
+        return Vector2.Distance(CustomerManager.Instance.exitPoint.transform.position, transform.position) <= 0.1f;
     }
 
     void MoveToChair1()
@@ -177,7 +177,7 @@ public class CustomerPathing : MonoBehaviour
             MoveToExit2();
         }
 
-        transform.position += direction * Customer.Instance.customerMoveSpeed * Time.deltaTime;
+        transform.position += direction * CustomerManager.Instance.customerMoveSpeed * Time.deltaTime;
     }
 
     void MoveToExit1()
