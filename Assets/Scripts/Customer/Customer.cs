@@ -64,7 +64,7 @@ public class Customer : MonoBehaviour
         }
         else
         {
-            if (Time.time >= patienceTimer && patienceTimerSet == true)
+            if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
             {
                 stillPatient = false;
                 GameManager.Instance.AddSatisfaction(-10);
