@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemSubmission : MonoBehaviour
@@ -7,6 +8,15 @@ public class ItemSubmission : MonoBehaviour
     public GameObject player; // Reference to the player GameObject
     public string interactKey = "e"; // The key used to interact
     public string requiredObjectTag = "Food";
+    private CustomerExit Exit;
+    private PlayerInteract playerInteract;
+
+    public void SetCustomerExit(CustomerExit customerExit)
+    {
+        
+        Exit = customerExit;
+   
+    }
 
     private void Update()
     {
@@ -44,12 +54,15 @@ public class ItemSubmission : MonoBehaviour
     {
         Debug.Log("Submitting item to NPC.");
         
-        // Disable or destroy the interactable item
-        item.SetActive(false); // Hide the item instead of destroying it
+        Destroy(item);
+
+        Exit.MoveToExit(gameObject);
 
         // Make the NPC leave after item submission
         //npc.ExitScreen(exitPosition);
 
         //npc.ReenableMovementAfterSubmission();
+
+
     }
 }
