@@ -31,9 +31,17 @@ public class CustomerManager : MonoBehaviour
 
     public bool[] chairAvailable;
 
+    public GameObject[] customersInside;
+
     void Start()
     {
         ChairAvailable();
+        CheckCustomersInside();
+    }
+
+    void Update()
+    {
+        CheckCustomersInside();
     }
 
     private void ChairAvailable()
@@ -44,5 +52,10 @@ public class CustomerManager : MonoBehaviour
         {
             chairAvailable[i] = true;
         }
+    }
+
+    void CheckCustomersInside()
+    {
+        customersInside = GameObject.FindGameObjectsWithTag("Customer");
     }
 }

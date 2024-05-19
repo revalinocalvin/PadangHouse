@@ -50,21 +50,34 @@ public class CustomerPathing : MonoBehaviour
 
     void MoveToChair()
     {
-        if (chairNumber == 1)
+        switch (chairNumber)
         {
-            MoveToChair1();
-        }
-        else if (chairNumber == 2)
-        {
-            MoveToChair2();
-        }
-        else if (chairNumber == 3)
-        {
-            MoveToChair3();
-        }
-        else if (chairNumber == 4)
-        {
-            MoveToChair4();
+            case 1:
+                MoveToChair1();
+                break;
+            case 2:
+                MoveToChair2();
+                break;
+            case 3:
+                MoveToChair3();
+                break;
+            case 4:
+                MoveToChair4();
+                break;
+            case 5:
+                MoveToChair5();
+                break;
+            case 6:
+                MoveToChair6();
+                break;
+            case 7:
+                MoveToChair7();
+                break;
+            case 8:
+                MoveToChair8();
+                break;
+            default:
+                break;
         }
 
         transform.position += direction * CustomerManager.Instance.customerMoveSpeed * Time.deltaTime;
@@ -161,6 +174,72 @@ public class CustomerPathing : MonoBehaviour
             pathCounter++;
         }
         else if (ArrivedOnChairPoint(3) && pathCounter == 1)
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair5()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair(4);
+        }
+        if (ArrivedOnChairPoint(4))
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair6()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair(5);
+        }
+        if (ArrivedOnChairPoint(5))
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair7()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToPath(0);
+        }
+        else if (pathCounter == 1)
+        {
+            DirectionToChair(6);
+        }
+
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        {
+            pathCounter++;
+        }
+        else if (ArrivedOnChairPoint(6) && pathCounter == 1)
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair8()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToPath(0);
+        }
+        else if (pathCounter == 1)
+        {
+            DirectionToChair(7);
+        }
+
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        {
+            pathCounter++;
+        }
+        else if (ArrivedOnChairPoint(7) && pathCounter == 1)
         {
             onChair = true;
         }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2061060135247697329}
   - component: {fileID: 2762223723858344634}
   m_Layer: 0
-  m_Name: Food Spawner
+  m_Name: Food Spawner Spawn Prefab
   m_TagString: FoodSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

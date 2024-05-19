@@ -51,15 +51,10 @@ public class CustomerFood : MonoBehaviour
         {
             if (col.gameObject.CompareTag("Food") && customerPathing.onChair == true)
             {
-                FoodReceived(col.gameObject);
+                receivedFood = true;
+                StartCoroutine(WaitEatingTime(col.gameObject));
             }
         }
-    }
-
-    private void FoodReceived(GameObject food)
-    {
-        receivedFood = true;
-        StartCoroutine(WaitEatingTime(food));
     }
 
     private IEnumerator WaitEatingTime(GameObject food)
@@ -73,12 +68,9 @@ public class CustomerFood : MonoBehaviour
 
     private void EatingFinished(GameObject food)
     {
-        if (receivedFood)
-        {
-            customerPathing.eatingFinished = true;
-            CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
-            Destroy(food);
-            GameManager.Instance.AddStars(customer.customerStarsAmount);
-        }
+        customerPathing.eatingFinished = true;
+        CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+        Destroy(food);
+        GameManager.Instance.AddStars(customer.customerStarsAmount);
     }
 }

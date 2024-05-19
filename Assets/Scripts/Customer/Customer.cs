@@ -64,19 +64,17 @@ public class Customer : MonoBehaviour
             SpriteRenderer sprite = GetComponent<SpriteRenderer>();
             sprite.color = Color.red;
         }
-        else
+        else if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
         {
-            if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
-            {
-                patienceTimer = Time.time + customerPatience;
-                customerStars[customerStarsAmount - 1].SetActive(false);
-                customerStars[customerStarsAmount - 1] = null;
-                customerStarsAmount -= 1;
+            patienceTimer = Time.time + customerPatience;
+            customerStars[customerStarsAmount - 1].SetActive(false);
+            customerStars[customerStarsAmount - 1] = null;
+            customerStarsAmount -= 1;
 
-                if (customerStarsAmount == 0)
-                {
-                    stillPatient = false;
-                }
+            if (customerStarsAmount == 0)
+            {
+                stillPatient = false;
+                CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
             }
         }
     }
