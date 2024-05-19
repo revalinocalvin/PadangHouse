@@ -7,12 +7,14 @@ public class Customer : MonoBehaviour
     CustomerPathing customerPathing;
     CustomerFood customerFood;
 
-    private float customerPatience = 10f;
+    public int customerStarsAmount = 3;
+    [SerializeField] private float customerPatience = 10f;
     private float patienceTimer;
     private bool stillPatient;
     private bool patienceTimerSet;
 
     public GameObject customerOrder;
+    public GameObject[] customerStars;
 
     void Start()
     {
@@ -66,8 +68,15 @@ public class Customer : MonoBehaviour
         {
             if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
             {
-                stillPatient = false;
-                GameManager.Instance.AddSatisfaction(-10);
+                patienceTimer = Time.time + customerPatience;
+                customerStars[customerStarsAmount - 1].SetActive(false);
+                customerStars[customerStarsAmount - 1] = null;
+                customerStarsAmount -= 1;
+
+                if (customerStarsAmount == 0)
+                {
+                    stillPatient = false;
+                }
             }
         }
     }

@@ -307,11 +307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0bb459cae79984b8af063389b7b68e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  satisfactionText: {fileID: 1609334935}
+  starsText: {fileID: 1609334935}
   gameResultBackground: {fileID: 1820373877}
   gameResultText: {fileID: 594567506}
-  gameOverValue: -20
-  winValue: 100
 --- !u!4 &258476867
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,7 +1166,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.5235849, b: 0.5235849, a: 1}
+  m_Color: {r: 0.25052568, g: 0.3584906, b: 0.21475615, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1574,7 +1572,7 @@ GameObject:
   - component: {fileID: 1609334936}
   - component: {fileID: 1609334935}
   m_Layer: 5
-  m_Name: Satisfaction Text
+  m_Name: Stars Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,7 +1617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 Satisfaction
+  m_text: 0/12 Stars
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

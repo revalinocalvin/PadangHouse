@@ -5,6 +5,7 @@ using UnityEngine;
 public class CustomerFood : MonoBehaviour
 {
     CustomerPathing customerPathing;
+    Customer customer;
 
     public Transform customerFoodPoint;
 
@@ -14,6 +15,7 @@ public class CustomerFood : MonoBehaviour
     void Start()
     {
         customerPathing = this.GetComponent<CustomerPathing>();
+        customer = this.GetComponent<Customer>();
     }
 
     void Update()
@@ -76,7 +78,7 @@ public class CustomerFood : MonoBehaviour
             customerPathing.eatingFinished = true;
             CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
             Destroy(food);
-            GameManager.Instance.AddSatisfaction(10);
+            GameManager.Instance.AddStars(customer.customerStarsAmount);
         }
     }
 }

@@ -9,12 +9,13 @@ public class CustomerSpawner : MonoBehaviour
     private float customerNextSpawnTime;
 
     private int customerPerDay = 4;
-    //private int minCustomerInside = 1;
     //private int maxCustomerInside = 8;
 
     void Start()
     {
         customerNextSpawnTime = Time.time + 1f;
+        GameManager.Instance.minStars = (customerPerDay * 3) / 2;
+        GameManager.Instance.maxStars = (customerPerDay * 3);
     }
 
     void Update()

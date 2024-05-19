@@ -24,41 +24,55 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public TMP_Text satisfactionText;
-    private int satisfactionValue;
+    public TMP_Text starsText;
 
     public GameObject gameResultBackground;
     public TMP_Text gameResultText;
 
-    [SerializeField] private int gameOverValue = -20;
-    [SerializeField] private int winValue = 100;
+    private int currentStars;
+    public int minStars;
+    public int maxStars;
+
+    private GameObject[] customersInside;
+    private float winConDelay;
 
     void Start()
     {
         Time.timeScale = 1;
-        satisfactionValue = 0;
+        currentStars = 0;
+        winConDelay = Time.time + 30f;
     }
 
     void Update()
     {
-        UpdateSatisfactionText();
-        WinLose();
+        UpdateStarsText();
+        CheckCustomersInside();
+
+        if (customersInside.Length == 0 && Time.time >= winConDelay)
+        {
+            WinLose();
+        }
     }
 
-    void UpdateSatisfactionText()
+    void UpdateStarsText()
     {
-        satisfactionText.text = satisfactionValue.ToString() + " Satisfaction";
+        starsText.text = currentStars.ToString() + "/" + maxStars.ToString() + " Stars";
+    }
+
+    void CheckCustomersInside()
+    {
+        customersInside = GameObject.FindGameObjectsWithTag("Customer");
     }
 
     void WinLose()
     {
-        if (satisfactionValue <= gameOverValue)
+        if (currentStars < minStars)
         {
             gameResultBackground.SetActive(true);
             gameResultText.text = "You lose!";
             Time.timeScale = 0;
         }
-        else if (satisfactionValue >= winValue)
+        else if (currentStars >= maxStars)
         {
             gameResultBackground.SetActive(true);
             gameResultText.text = "You win!";
@@ -66,8 +80,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddSatisfaction(int value)
+    public void AddStars(int value)
     {
-        satisfactionValue += value;
+        currentStars += value;
     }
 }
