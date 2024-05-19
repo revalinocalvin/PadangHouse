@@ -79,6 +79,8 @@ public class PlayerInteraction : MonoBehaviour
                         break;
                     }
                 }
+
+                break;
             }
             else if (col.CompareTag("FoodTray"))
             {
@@ -94,6 +96,8 @@ public class PlayerInteraction : MonoBehaviour
                         break;
                     }
                 }
+
+                break;
             }
             else if (col.CompareTag("Customer"))
             {
