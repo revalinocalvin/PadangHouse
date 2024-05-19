@@ -11,11 +11,13 @@ public class ItemSubmission : MonoBehaviour
     private CustomerExit Exit;
     private PlayerInteract playerInteract;
 
+    private void Start()
+    {
+        playerInteract = player.GetComponent<PlayerInteract>();
+    }
     public void SetCustomerExit(CustomerExit customerExit)
     {
-        
         Exit = customerExit;
-   
     }
 
     private void Update()
@@ -54,7 +56,12 @@ public class ItemSubmission : MonoBehaviour
     {
         Debug.Log("Submitting item to NPC.");
         
-        Destroy(item);
+        item.transform.SetParent(this.transform);
+        item.transform.localPosition = Vector2.zero;
+        playerInteract.grabbedObject = null;
+
+
+        //Destroy(item);
 
         Exit.MoveToExit(gameObject);
 
