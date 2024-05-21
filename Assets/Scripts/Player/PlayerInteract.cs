@@ -13,10 +13,8 @@ public class PlayerInteract : MonoBehaviour
     private CustomerOrder customerOrder;
     private CustomerExit customerExit;
     private GameObject objectToGrab;
-    private bool interact;
-    public bool isInteractTaken = false;
-    public bool InArea = false;
-    private bool CustomerInteract = false;
+    public bool CustomerInteract = false;
+    // bool InArea = false;
     private bool foodReady = false;
 
     void Start()
@@ -34,38 +32,35 @@ public class PlayerInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
-            interact = true;
-            Debug.Log("Interact key pressed." + interact);
+            Debug.Log("Interact key pressed.");
         }
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            interact = false;
-            Debug.Log("Interact key released." + interact);
+            Debug.Log("Interact key released.");
         }
     }
 
     void Interact()
     {
-        Debug.Log("Interact Value " + isInteractTaken);
-
         if (CustomerInteract == true)
         {
             customerOrder.Order(objectToGrab);
         }
 
+        // Grabbing object method
         if (grabbedObject == null)
         {
             Debug.Log("Not Full");
 
-            if (InArea == true)
-            {
+            //if (InArea == true)
+            //{
                 if (foodReady)
                 {
                     objectToGrab = objectSpawner.SpawnObject();
                 }
                 Grab(objectToGrab);
-            }
+            //}
         }
 
         else
@@ -80,7 +75,7 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("Menu Dish"))
         {
             Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
-            InArea = true;
+            //InArea = true;
             objectToGrab = collidedObject.gameObject;
 
         }
@@ -88,7 +83,7 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("FoodSpawn"))
         {
             Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
-            InArea = true;
+            //InArea = true;
             objectSpawner = collidedObject.GetComponent<ObjectSpawner>();
             foodReady = true;
         }
@@ -112,14 +107,14 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("Menu Dish"))
         {
             Debug.Log("RayPosition not collided with a Menu Dish object");
-            InArea = false;
+            //InArea = false;
             objectToGrab = null;
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
             Debug.Log("RayPosition not collided with a Menu Dish object");
-            InArea = false;
+            //InArea = false;
             objectToGrab = null;
             foodReady = false;
         }
@@ -130,7 +125,6 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-
     void Grab(GameObject collidedObject)
     {
         Debug.Log("Grab Called");
@@ -140,7 +134,6 @@ public class PlayerInteract : MonoBehaviour
             grabbedObject.transform.SetParent(grabPoint); // Attach the object to the player
             grabbedObject.transform.localPosition = Vector3.zero; // Center the object on the player
             grabbedObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
-                                                                      //StartCoroutine(ResetInteractTaken()); // Delay Interact bool
         }
     }
 
@@ -152,18 +145,5 @@ public class PlayerInteract : MonoBehaviour
             grabbedObject.GetComponent<Collider2D>().enabled = true; // Enable the object's collider
             grabbedObject = null;
         }
-    }
-
-    IEnumerator ResetInteractTaken()
-    {
-        // Wait for 60 frames
-        for (int i = 0; i < 60; i++)
-        {
-            yield return null; // Waits one frame
-        }
-
-        // After 30 frames, reset the flag
-        isInteractTaken = false;
-        Debug.Log("isInteractTaken reset to false after 30 frames");
     }
 }

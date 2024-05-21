@@ -73,20 +73,5 @@ public class MenuPlace : MonoBehaviour
         {
             Debug.LogError("PlayerInteract reference is null.");
         }
-
-        StartCoroutine(ResetInteractTaken()); // Delay Interact bool
-    }
-
-        IEnumerator ResetInteractTaken()
-    {
-        // Wait for 60 frames
-        for (int i = 0; i < 60; i++)
-        {
-            yield return null; // Waits one frame
-        }
-
-        // After 30 frames, reset the flag
-        playerInteract.isInteractTaken = false;
-        Debug.Log("isInteractTaken reset to false after 30 frames");
     }
 }

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        //Initialize Automatically
         rb = GetComponent<Rigidbody2D>();
         gp = GameObject.Find("Player/GrabPosition");
         rp = GameObject.Find("Player/RayPosition");
