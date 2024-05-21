@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gp;
     public GameObject rp;
     public GameObject eye;
+    public Animator animator;
     private Vector2 moveDirection;
 
     void Start()
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
+        Animation();
     }
 
     private void FixedUpdate()
@@ -30,11 +32,19 @@ public class PlayerMovement : MonoBehaviour
         Direction();
     }
 
+
     void ProcessInputs()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveDirection = new Vector2(moveX, moveY).normalized;
+    }
+
+    void Animation()
+    {
+        animator.SetFloat("Horizontal", moveDirection.x);
+        animator.SetFloat("Vertical", moveDirection.y);
+        animator.SetFloat("Speed", moveDirection.sqrMagnitude);
     }
 
     void Move()
