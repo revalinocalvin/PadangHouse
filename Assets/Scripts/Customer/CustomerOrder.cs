@@ -17,7 +17,7 @@ public class CustomerOrder : MonoBehaviour
         // Optional: Your update logic here
     }
 
-    public void Order(GameObject customer)
+    public void TakeOrder(GameObject customer)
     {
         Debug.Log("Customer Ordered A");
         ItemSubmission itemSubmission = customer.GetComponent<ItemSubmission>();

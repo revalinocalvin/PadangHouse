@@ -1,33 +1,29 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class ItemSubmission : MonoBehaviour
+public class CustomerRoutine : MonoBehaviour
 {
     public GameObject player; // Reference to the player GameObject
-    public string interactKey = "e"; // The key used to interact
-    public string requiredObjectTag = "Food";
-    private CustomerExit Exit;
     private PlayerInteract playerInteract;
+    public string requiredObjectTag = "Food";
+    public bool order = false;
+    private int pathCounter = 0; // Added this to avoid compile errors. Adjust as needed.
+    Vector3 direction;
 
-    private void Start()
+    void Start()
     {
         playerInteract = player.GetComponent<PlayerInteract>();
     }
-    public void SetCustomerExit(CustomerExit customerExit)
+
+    public void TakeOrder() //Change to Random Food Tag
     {
-        Exit = customerExit;
+        Debug.Log("Customer Ordered A");
+        order = true;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(interactKey))
-        {
-            Debug.Log("Interact key pressed.");
-            TrySubmitItem();
-        }
-    }
-
-    private void TrySubmitItem()
+    public void TrySubmitItem()
     {
         // Determine if the player is close enough to the NPC to interact
         if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) // Interaction radius
@@ -53,12 +49,37 @@ public class ItemSubmission : MonoBehaviour
     private void SubmitItem(GameObject item)
     {
         Debug.Log("Submitting item to NPC.");
-        
+
         item.transform.SetParent(this.transform);
         item.transform.localPosition = Vector2.zero;
         playerInteract.grabbedObject = null;
 
-        Exit.MoveToExit(gameObject);
+        StartCoroutine(DelayedMove(item));
 
+    }
+
+    private IEnumerator DelayedMove(GameObject item)
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(item);
+        yield return Move();
+    }
+
+    private IEnumerator Move()
+    {
+        if (pathCounter == 0)
+        {
+            direction = (Customer.instance.exitPoint[0].transform.position - transform.position).normalized;
+        }
+
+        while (Vector2.Distance(Customer.instance.exitPoint[0].transform.position, transform.position) > 0.1f)
+        {
+            transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
+            yield return null; // Wait for the next frame
+        }
+
+        // Movement finished
+        // onTable = false; // Uncomment if necessary
+        this.enabled = false;
     }
 }

@@ -128,6 +128,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4640444303223945957, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
   m_PrefabInstance: {fileID: 2099918362}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &404659926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2301302933399739767, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+  m_PrefabInstance: {fileID: 8205065706090895149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &404659935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404659926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023f59004919eba42b2c1bfb2dfc7032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 689203908}
+  requiredObjectTag: Food
+  order: 0
 --- !u!1 &490467155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,6 +1042,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 689203908}
+    - target: {fileID: 7613735303696863192, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7675849599131002999, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
       propertyPath: m_Name
       value: Customers
@@ -1062,10 +1086,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 689203908}
+    - target: {fileID: 8714489118410153495, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2301302933399739767, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 404659935}
   m_SourcePrefab: {fileID: 100100000, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

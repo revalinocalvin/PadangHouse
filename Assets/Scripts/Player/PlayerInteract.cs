@@ -10,11 +10,10 @@ public class PlayerInteract : MonoBehaviour
     public GameObject rp;
     public GameObject grabbedObject;
     private ObjectSpawner objectSpawner;
-    private CustomerOrder customerOrder;
-    private CustomerExit customerExit;
+    private CustomerRoutine customerRoutine;
     private GameObject objectToGrab;
     public bool CustomerInteract = false;
-    // bool InArea = false;
+    bool InArea = false; //prevent grab function error log
     private bool foodReady = false;
 
     void Start()
@@ -22,9 +21,7 @@ public class PlayerInteract : MonoBehaviour
         grabPoint = GameObject.Find("Player/GrabPosition").transform;
         rayPoint = GameObject.Find("Player/RayPosition").transform;
         rp = GameObject.Find("Player/RayPosition");
-
         Collider2D collider = rp.GetComponent<Collider2D>();
-        customerExit = FindObjectOfType<CustomerExit>();
     }
 
     void Update()
@@ -34,18 +31,21 @@ public class PlayerInteract : MonoBehaviour
             Interact();
             Debug.Log("Interact key pressed.");
         }
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            Debug.Log("Interact key released.");
-        }
     }
 
     void Interact()
     {
         if (CustomerInteract == true)
         {
-            customerOrder.Order(objectToGrab);
+            if (customerRoutine.order == true)
+            {
+                customerRoutine.TrySubmitItem();
+            }
+
+            else
+            {
+                customerRoutine.TakeOrder();
+            }
         }
 
         // Grabbing object method
@@ -53,14 +53,14 @@ public class PlayerInteract : MonoBehaviour
         {
             Debug.Log("Not Full");
 
-            //if (InArea == true)
-            //{
+            if (InArea == true)
+            {
                 if (foodReady)
                 {
                     objectToGrab = objectSpawner.SpawnObject();
                 }
                 Grab(objectToGrab);
-            //}
+            }
         }
 
         else
@@ -75,30 +75,26 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("Menu Dish"))
         {
             Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
-            //InArea = true;
-            objectToGrab = collidedObject.gameObject;
 
+            InArea = true;
+            objectToGrab = collidedObject.gameObject;
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
-            //InArea = true;
+            Debug.Log("RayPosition collided with a Food Spawn object: " + collidedObject.gameObject.name);
+
+            InArea = true;
             objectSpawner = collidedObject.GetComponent<ObjectSpawner>();
             foodReady = true;
         }
 
         if (collidedObject.CompareTag("Customer"))
         {
-            customerExit = collidedObject.GetComponent<CustomerExit>();
-            ItemSubmission itemSubmission = collidedObject.GetComponent<ItemSubmission>();  // Check if the ItemSubmission script is enabled on the customer GameObject
-            itemSubmission.SetCustomerExit(customerExit);
+            Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
+
+            customerRoutine = collidedObject.GetComponent<CustomerRoutine>();
             CustomerInteract = true;
-
-            Debug.Log("RayPosition collided with a Pickupable object: " + collidedObject.gameObject.name);
-            customerOrder = collidedObject.GetComponent<CustomerOrder>();
-            objectToGrab = collidedObject.gameObject;
-
         }
     }
 
@@ -107,14 +103,14 @@ public class PlayerInteract : MonoBehaviour
         if (collidedObject.CompareTag("Menu Dish"))
         {
             Debug.Log("RayPosition not collided with a Menu Dish object");
-            //InArea = false;
+            InArea = false;
             objectToGrab = null;
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition not collided with a Menu Dish object");
-            //InArea = false;
+            Debug.Log("RayPosition not collided with a Food Spawn object");
+            InArea = false;
             objectToGrab = null;
             foodReady = false;
         }
