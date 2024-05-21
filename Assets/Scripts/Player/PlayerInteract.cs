@@ -49,11 +49,14 @@ public class PlayerInteract : MonoBehaviour
     {
         Debug.Log("Interact Value " + isInteractTaken);
 
+        if (CustomerInteract == true)
+        {
+            customerOrder.Order(objectToGrab);
+        }
+
         if (grabbedObject == null)
         {
             Debug.Log("Not Full");
-
-            Debug.Log("Customer Interact at Interact() = " + CustomerInteract);
 
             if (InArea == true)
             {
@@ -63,17 +66,6 @@ public class PlayerInteract : MonoBehaviour
                 }
                 Grab(objectToGrab);
             }
-
-            if (CustomerInteract == true)
-            {
-                customerOrder.Order(objectToGrab);
-
-                if (grabbedObject != null)
-                { 
-                    DropObject();
-                }
-            }
-
         }
 
         else
@@ -111,17 +103,6 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition collided with a Pickupable object: " + collidedObject.gameObject.name);
             customerOrder = collidedObject.GetComponent<CustomerOrder>();
             objectToGrab = collidedObject.gameObject;
-
-            /*if (grabbedObject != null && itemSubmission.enabled)
-            {
-                Debug.Log("RayPosition collided with a Pickupable object: " + collidedObject.gameObject.name);
-
-                customerExit = collidedObject.GetComponent<CustomerExit>();
-                *//*if (customerExit != null)
-                {
-                    customerExit.MoveToExit(collidedObject.gameObject);
-                }*//*
-            }*/
 
         }
     }
