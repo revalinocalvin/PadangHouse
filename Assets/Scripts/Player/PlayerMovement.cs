@@ -6,9 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public Rigidbody2D rb;
-    public GameObject gp;
-    public GameObject rp;
-    public GameObject eye;
+    public GameObject gp, rp, eye;
     public Animator animator;
     private Vector2 moveDirection;
 
