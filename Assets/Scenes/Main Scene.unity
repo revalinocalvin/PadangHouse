@@ -123,6 +123,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2792014 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 622742406442296991, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+  m_PrefabInstance: {fileID: 8205065706090895149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2792023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023f59004919eba42b2c1bfb2dfc7032, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 689203908}
+  requiredObjectTag: Food
+  order: 0
 --- !u!1 &93077721 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4640444303223945957, guid: 72c19fac124c24d499f7576a6cc4540a, type: 3}
@@ -1244,10 +1264,19 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 689203908}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3291768129517385928, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+    - {fileID: 7613735303696863192, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+    - {fileID: 8714489118410153495, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+    - {fileID: 2037297886151858943, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+    - {fileID: 7100681500222692432, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+    - {fileID: 7453144171366019454, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 622742406442296991, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 2792023}
   m_SourcePrefab: {fileID: 100100000, guid: 8c97eabaa0cbf1a498f3b9a9fbbb6c20, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
