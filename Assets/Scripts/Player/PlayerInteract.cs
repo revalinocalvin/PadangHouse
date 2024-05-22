@@ -7,11 +7,14 @@ public class PlayerInteract : MonoBehaviour
 
     private Transform grabPoint;
     private Transform rayPoint;
+
     public GameObject rp;
     public GameObject grabbedObject;
+    private GameObject objectToGrab;
+    private HashSet<Collider2D> _objectsInTrigger = new HashSet<Collider2D>();
     private ObjectSpawner objectSpawner;
     private CustomerRoutine customerRoutine;
-    private GameObject objectToGrab;
+    
     public bool CustomerInteract = false;
     bool InArea = false; //prevent grab function error log
     private bool foodReady = false;
@@ -30,6 +33,16 @@ public class PlayerInteract : MonoBehaviour
         {
             Interact();
             Debug.Log("Interact key pressed.");
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            foreach (Collider2D collider in _objectsInTrigger)
+            {
+                Debug.Log("Current GameObject" + collider.name);
+            }
+
+            
         }
     }
 
@@ -55,8 +68,13 @@ public class PlayerInteract : MonoBehaviour
 
             if (InArea == true)
             {
+                if (_objectsInTrigger.Count != 0)
+                {
+                    objectToGrab = findClosest(_objectsInTrigger).gameObject;
+                }
                 if (foodReady)
                 {
+                    objectSpawner = findClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
                     objectToGrab = objectSpawner.SpawnObject();
                 }
                 Grab(objectToGrab);
@@ -69,6 +87,22 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
+    Collider2D findClosest(HashSet<Collider2D> cols)
+    {
+        Collider2D[] objs = new Collider2D[cols.Count];
+        cols.CopyTo(objs);
+        int length = objs.Length;
+        int index = 0;
+        float[] distance = new float[length];
+        for (int i = 0; i < length; i++)
+        {
+            distance[i] = Vector3.Distance(objs[i].transform.position, transform.position);
+            if (distance[i] < distance[index])
+                index = i;
+        }
+        return objs[index];
+    }
+
     void OnTriggerEnter2D(Collider2D collidedObject)
     {
 
@@ -77,7 +111,8 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
 
             InArea = true;
-            objectToGrab = collidedObject.gameObject;
+            //objectToGrab = collidedObject.gameObject;
+            _objectsInTrigger.Add(collidedObject);
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
@@ -85,14 +120,14 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition collided with a Food Spawn object: " + collidedObject.gameObject.name);
 
             InArea = true;
-            objectSpawner = collidedObject.GetComponent<ObjectSpawner>();
+            _objectsInTrigger.Add(collidedObject);
+            /*objectSpawner = collidedObject.GetComponent<ObjectSpawner>();*/
             foodReady = true;
         }
 
         if (collidedObject.CompareTag("Customer"))
         {
             Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
-
             customerRoutine = collidedObject.GetComponent<CustomerRoutine>();
             CustomerInteract = true;
         }
@@ -105,12 +140,14 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition not collided with a Menu Dish object");
             InArea = false;
             objectToGrab = null;
+            _objectsInTrigger.Remove(collidedObject);
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
             Debug.Log("RayPosition not collided with a Food Spawn object");
             InArea = false;
+            _objectsInTrigger.Remove(collidedObject);
             objectToGrab = null;
             foodReady = false;
         }

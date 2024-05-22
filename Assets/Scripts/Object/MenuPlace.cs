@@ -56,7 +56,7 @@ public class MenuPlace : MonoBehaviour
         Debug.Log("Submitting item to Menu Shelf.");
         item.transform.position = transform.position; // Set the position of the submitted item to the MenuPlace's position
         
-        item.transform.SetParent(null); // Detach the submitted item from the player
+        item.transform.SetParent(this.gameObject.transform); // Detach the submitted item from the player
        
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<PolygonCollider2D>().enabled = true;
