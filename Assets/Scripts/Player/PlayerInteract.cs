@@ -70,11 +70,11 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (_objectsInTrigger.Count != 0)
                 {
-                    objectToGrab = findClosest(_objectsInTrigger).gameObject;
+                    objectToGrab = FindClosest(_objectsInTrigger).gameObject;
                 }
                 if (foodReady)
                 {
-                    objectSpawner = findClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
+                    objectSpawner = FindClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
                     objectToGrab = objectSpawner.SpawnObject();
                 }
                 Grab(objectToGrab);
@@ -87,7 +87,7 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
-    Collider2D findClosest(HashSet<Collider2D> cols)
+    Collider2D FindClosest(HashSet<Collider2D> cols)
     {
         Collider2D[] objs = new Collider2D[cols.Count];
         cols.CopyTo(objs);

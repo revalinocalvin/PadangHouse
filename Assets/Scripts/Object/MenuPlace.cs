@@ -40,7 +40,7 @@ public class MenuPlace : MonoBehaviour
             {
                 foreach (Transform grandchild in child)
                 {
-                    if (grandchild.gameObject.CompareTag(requiredObjectTag))
+                    if (grandchild.gameObject.CompareTag(requiredObjectTag) && transform.childCount == 0)
                     {
                         Debug.Log("Interactable item found. Submitting item to MenuPlace.");
                         SubmitItem(grandchild.gameObject); // Submit the item to the MenuPlace
@@ -53,15 +53,14 @@ public class MenuPlace : MonoBehaviour
 
     private void SubmitItem(GameObject item)
     {
+
         Debug.Log("Submitting item to Menu Shelf.");
         item.transform.position = transform.position; // Set the position of the submitted item to the MenuPlace's position
         
         item.transform.SetParent(this.gameObject.transform); // Detach the submitted item from the player
-       
+
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<PolygonCollider2D>().enabled = true;
-
-        enabled = false; // Optionally disable the script if interaction is one-time
 
         // Set the grabbedObject property of PlayerInteract to null
         if (playerInteract != null)
