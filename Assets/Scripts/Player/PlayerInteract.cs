@@ -34,15 +34,24 @@ public class PlayerInteract : MonoBehaviour
             Interact();
             Debug.Log("Interact key pressed.");
         }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            CheckGrabPointChild();
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             foreach (Collider2D collider in _objectsInTrigger)
             {
                 Debug.Log("Current GameObject" + collider.name);
-            }
-
-            
+            }    
+        }
+    }
+    void CheckGrabPointChild()
+    {
+        if (grabPoint.childCount == 0)
+        {
+            grabbedObject = null;
         }
     }
 

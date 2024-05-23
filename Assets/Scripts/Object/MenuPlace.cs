@@ -65,7 +65,7 @@ public class MenuPlace : MonoBehaviour
         // Set the grabbedObject property of PlayerInteract to null
         if (playerInteract != null)
         {
-            playerInteract.grabbedObject = null;
+            //playerInteract.grabbedObject = null;
             Debug.Log("PlayerInteract reference is now null.");
         }
         else
