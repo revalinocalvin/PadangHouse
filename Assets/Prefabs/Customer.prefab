@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 5701089142741182289}
   - component: {fileID: 3065367507560085700}
   - component: {fileID: 5626373545274205286}
-  - component: {fileID: 3434601506537593285}
+  - component: {fileID: 7840773578362805180}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -477,7 +477,7 @@ MonoBehaviour:
   onChair: 0
   chairNumber: 0
   eatingFinished: 0
---- !u!114 &3434601506537593285
+--- !u!114 &7840773578362805180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -486,11 +486,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7641059811202406160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1fb335c49236f46a35f8d3229abfe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0396a025b15c8074b8368f3c138d0c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   customerFoodPoint: {fileID: 3136665256917315442}
-  orderReceived: 0
+  player: {fileID: 0}
+  requiredObjectTag: Food
+  order: 0
   receivedFood: 0
 --- !u!1 &9112500668843590432
 GameObject:

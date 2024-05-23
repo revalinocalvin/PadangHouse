@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerInteraction PI;
+    PlayerInteract PI;
+    GameObject rp;
 
     [SerializeField] private float playerMoveSpeed;
     Rigidbody2D body;
 
     void Start()
     {
-        PI = GetComponent<PlayerInteraction>();
+        PI = GetComponent<PlayerInteract>();
         body = GetComponent<Rigidbody2D>();
+        rp = GameObject.Find("Player/RayPosition");
     }
 
     void FixedUpdate()
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveVector = new Vector3(xInput, yInput, 0);
+        Vector3 moveVector = new Vector3(xInput, yInput, 0).normalized;
 
         FaceDirection(moveVector);
 
@@ -36,23 +38,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (moveVector.x > 0)
         {
-            PI.holdPoint.localPosition = new Vector3(1, 0, 0);
-            PI.rayDirection = Vector2.right;
+            PI.grabPoint.localPosition = new Vector3(1, 0, 0);
+            rp.transform.localPosition = new Vector2(1.0f, 0.0f);
         }
         else if (moveVector.x < 0)
         {
-            PI.holdPoint.localPosition = new Vector3(-1, 0, 0);
-            PI.rayDirection = Vector2.left;
+            PI.grabPoint.localPosition = new Vector3(-1, 0, 0);
+            rp.transform.localPosition = new Vector2(-1.0f, 0.0f);
         }
         else if (moveVector.y < 0)
         {
-            PI.holdPoint.localPosition = new Vector3(0, -1, 0);
-            PI.rayDirection = Vector2.down;
+            PI.grabPoint.localPosition = new Vector3(0, -1, 0);
+            rp.transform.localPosition = new Vector2(0.0f, -1.3f);
         }
         else if (moveVector.y > 0)
         {
-            PI.holdPoint.localPosition = new Vector3(0, 1, 0);
-            PI.rayDirection = Vector2.up;
+            PI.grabPoint.localPosition = new Vector3(0, 1, 0);
+            rp.transform.localPosition = new Vector2(0.0f, 1.3f);
         }
     }
 }

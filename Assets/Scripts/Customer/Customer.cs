@@ -5,7 +5,7 @@ using UnityEngine;
 public class Customer : MonoBehaviour
 {
     CustomerPathing customerPathing;
-    CustomerFood customerFood;
+    CustomerFoodMerged customerFood;
 
     public int customerStarsAmount = 3;
     [SerializeField] private float customerPatience = 10f;
@@ -23,7 +23,7 @@ public class Customer : MonoBehaviour
         patienceTimerSet = false;
 
         customerPathing = GetComponent<CustomerPathing>();
-        customerFood = GetComponent<CustomerFood>();
+        customerFood = GetComponent<CustomerFoodMerged>();
         customerOrder.SetActive(false);
     }
 
@@ -45,7 +45,7 @@ public class Customer : MonoBehaviour
 
     void OrderSign()
     {
-        if (customerFood.orderReceived == false && customerPathing.onChair == true)
+        if (customerFood.order == false && customerPathing.onChair == true)
         {
             customerOrder.SetActive(true);
         }

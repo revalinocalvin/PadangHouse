@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7225000121024267457}
   - component: {fileID: 772610883172018791}
   - component: {fileID: 7088244280882248164}
-  - component: {fileID: 6214946048693906579}
   m_Layer: 0
   m_Name: Food Display
   m_TagString: FoodDisplay
@@ -145,19 +144,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodOnDisplay: 0
---- !u!114 &6214946048693906579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080314340181580776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21fb2ce6a6ca59e47a4913970d08b953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnFoodTray: {fileID: 6429211429017601056, guid: f1688ef0a54fcaf4e946a4c5f07b8004, type: 3}
-  spawnFoodSpawn: {fileID: 3825104109390989025, guid: b62e70b31f2ad0446be943e24f69a9e5, type: 3}
-  spawnFoodObject: {fileID: 7447941085043148517, guid: 2eec161c663bbaa47a158e9d312a882a, type: 3}
-  maxInteractions: 5
