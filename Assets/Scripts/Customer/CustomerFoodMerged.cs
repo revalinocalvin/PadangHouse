@@ -48,8 +48,9 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public void TakeOrder() //Change to Random Food Tag
     {
-        Debug.Log("Customer Ordered A");
         order = true;
+        string orderedFood = FoodList.Instance.GetRandomFood();
+        Debug.Log(orderedFood);
     }
 
     public void TrySubmitItem()

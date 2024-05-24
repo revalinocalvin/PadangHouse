@@ -58,7 +58,6 @@ public class PlayerInteract : MonoBehaviour
         {
             if (customerRoutine.order == true)
             {
-                Debug.Log("trying submit item");
                 customerRoutine.TrySubmitItem();
             }
 
@@ -71,8 +70,6 @@ public class PlayerInteract : MonoBehaviour
         // Grabbing object method
         if (grabbedObject == null)
         {
-            Debug.Log("Not Full");
-
             if (InArea == true)
             {
                 if (_objectsInTrigger.Count != 0)
@@ -91,8 +88,6 @@ public class PlayerInteract : MonoBehaviour
 
         else
         {
-            Debug.Log("Full");
-
             if (trashbin)
             {
                 Destroy(grabbedObject);
