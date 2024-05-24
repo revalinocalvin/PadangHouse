@@ -2064,6 +2064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabPoint: {fileID: 0}
+  rp: {fileID: 0}
   grabbedObject: {fileID: 0}
   CustomerInteract: 0
 --- !u!1001 &1300582726
@@ -3368,6 +3369,10 @@ PrefabInstance:
     - target: {fileID: 6192074992376016350, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6829041470143314523, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8443448384768286519, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: m_SortingOrder

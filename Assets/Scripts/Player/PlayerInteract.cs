@@ -60,7 +60,7 @@ public class PlayerInteract : MonoBehaviour
 
     void Interact()
     {
-        if (CustomerInteract == true)
+        if (CustomerInteract == true && customerPathing.onChair == true)
         {
             if (customerRoutine.order == true)
             {
