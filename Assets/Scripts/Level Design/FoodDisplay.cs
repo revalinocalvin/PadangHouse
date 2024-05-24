@@ -57,13 +57,5 @@ public class FoodDisplay : MonoBehaviour
         item.GetComponent<Collider2D>().enabled = true;
 
         // Set the grabbedObject property of PlayerInteract to null
-        if (playerInteract != null)
-        {
-            Debug.Log("PlayerInteract reference is now null.");
-        }
-        else
-        {
-            Debug.LogError("PlayerInteract reference is null.");
-        }
     }
 }
