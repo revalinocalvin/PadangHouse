@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
@@ -45,8 +46,6 @@ public class PlayerInteract : MonoBehaviour
             {
                 Debug.Log("Current GameObject" + collider.name);
             }
-
-
         }
     }
 
@@ -60,17 +59,24 @@ public class PlayerInteract : MonoBehaviour
 
     void Interact()
     {
-        if (CustomerInteract == true && customerPathing.onChair == true)
+        Collider2D[] tempObjs = new Collider2D[_objectsInTrigger.Count];
+        _objectsInTrigger.CopyTo(tempObjs);
+        if (tempObjs.Any(obj => obj.gameObject.CompareTag("Customer")))
         {
-            if (customerRoutine.order == true)
+            customerPathing = FindClosest(_objectsInTrigger).GetComponent<CustomerPathing>();
+            customerRoutine = FindClosest(_objectsInTrigger).GetComponent<CustomerFoodMerged>();
+            if (customerPathing.onChair == true)
             {
-                Debug.Log("trying submit item");
-                customerRoutine.TrySubmitItem();
-            }
+                if (customerRoutine.order == true)
+                {
+                    Debug.Log("trying submit item");
+                    customerRoutine.TrySubmitItem();
+                }
 
-            else
-            {
-                customerRoutine.TakeOrder();
+                else
+                {
+                    customerRoutine.TakeOrder();
+                }
             }
         }
 
@@ -98,7 +104,6 @@ public class PlayerInteract : MonoBehaviour
         else
         {
             Debug.Log("Full");
-
             if (trashbin)
             {
                 Destroy(grabbedObject);
@@ -131,7 +136,6 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
 
             InArea = true;
-            //objectToGrab = collidedObject.gameObject;
             _objectsInTrigger.Add(collidedObject);
         }
 
@@ -141,16 +145,13 @@ public class PlayerInteract : MonoBehaviour
 
             InArea = true;
             _objectsInTrigger.Add(collidedObject);
-            /*objectSpawner = collidedObject.GetComponent<ObjectSpawner>();*/
             foodReady = true;
         }
 
         if (collidedObject.CompareTag("Customer"))
         {
             Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
-            customerRoutine = collidedObject.GetComponent<CustomerFoodMerged>(); //ganti customer food
-            customerPathing = collidedObject.GetComponent<CustomerPathing>();
-            CustomerInteract = true;
+            _objectsInTrigger.Add(collidedObject);
         }
 
         if (collidedObject.CompareTag("Trashbin"))
@@ -159,8 +160,6 @@ public class PlayerInteract : MonoBehaviour
 
             InArea = false;
             trashbin = true;
-            //objectToGrab = collidedObject.gameObject;
-            //_objectsInTrigger.Add(collidedObject);
         }
     }
 
@@ -185,7 +184,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Customer"))
         {
-            CustomerInteract = false;
+            _objectsInTrigger.Remove(collidedObject);
         }
 
         if (collidedObject.CompareTag("Trashbin"))
