@@ -26,7 +26,8 @@ public class CustomerSpawner : MonoBehaviour
         }
         else
         {
-            customerNextSpawnTime = Time.time + 3f;
+            float randomNumber = Random.Range(4.0f, 11.0f);
+            customerNextSpawnTime = Time.time + randomNumber;
         }
     }
 
@@ -34,7 +35,8 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (customerPrefab != null && Time.time >= customerNextSpawnTime)
         {
-            customerNextSpawnTime = Time.time + 3f;
+            float randomNumber = Random.Range(4.0f, 11.0f);
+            customerNextSpawnTime = Time.time + randomNumber;
             customerPerDay--;
 
             Instantiate(customerPrefab, transform.position, Quaternion.identity);

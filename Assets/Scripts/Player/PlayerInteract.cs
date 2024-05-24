@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-
     public Transform grabPoint;
-    private Transform rayPoint;
-
-    public GameObject rp;
     public GameObject grabbedObject;
     private GameObject objectToGrab;
 
@@ -25,9 +21,6 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         grabPoint = GameObject.Find("Player/GrabPosition").transform;
-        rayPoint = GameObject.Find("Player/RayPosition").transform;
-        rp = GameObject.Find("Player/RayPosition");
-        Collider2D collider = rp.GetComponent<Collider2D>();
     }
 
     void Update()
@@ -35,7 +28,6 @@ public class PlayerInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
-            Debug.Log("Interact key pressed.");
         }
 
         if (Input.GetKeyUp(KeyCode.E))
@@ -49,8 +41,6 @@ public class PlayerInteract : MonoBehaviour
             {
                 Debug.Log("Current GameObject" + collider.name);
             }
-
-
         }
     }
 
@@ -129,29 +119,21 @@ public class PlayerInteract : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collidedObject)
     {
-
         if (collidedObject.CompareTag("FoodTray"))
         {
-            Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
-
             InArea = true;
-            //objectToGrab = collidedObject.gameObject;
             _objectsInTrigger.Add(collidedObject);
         }
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition collided with a Food Spawn object: " + collidedObject.gameObject.name);
-
             InArea = true;
             _objectsInTrigger.Add(collidedObject);
-            /*objectSpawner = collidedObject.GetComponent<ObjectSpawner>();*/
             foodReady = true;
         }
 
         if (collidedObject.CompareTag("Customer"))
         {
-            Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
             customerRoutine = collidedObject.GetComponent<CustomerFoodMerged>(); //ganti customer food
             customerPathing = collidedObject.GetComponent<CustomerPathing>();
             CustomerInteract = true;
@@ -159,12 +141,8 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Trashbin"))
         {
-            Debug.Log("RayPosition collided with a Trashbin object: " + collidedObject.gameObject.name);
-
             InArea = false;
             trashbin = true;
-            //objectToGrab = collidedObject.gameObject;
-            //_objectsInTrigger.Add(collidedObject);
         }
     }
 
@@ -172,7 +150,6 @@ public class PlayerInteract : MonoBehaviour
     {
         if (collidedObject.CompareTag("FoodTray"))
         {
-            Debug.Log("RayPosition not collided with a Menu Dish object");
             InArea = false;
             objectToGrab = null;
             _objectsInTrigger.Remove(collidedObject);
@@ -180,7 +157,6 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition not collided with a Food Spawn object");
             InArea = false;
             _objectsInTrigger.Remove(collidedObject);
             objectToGrab = null;
@@ -194,7 +170,6 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Trashbin"))
         {
-            Debug.Log("RayPosition not collided with a Trashbin object");
             InArea = false;
             objectToGrab = null;
             trashbin = false;
@@ -204,23 +179,12 @@ public class PlayerInteract : MonoBehaviour
 
     void Grab(GameObject collidedObject)
     {
-        Debug.Log("Grab Called");
         if (grabbedObject == null)
         {
             grabbedObject = collidedObject.gameObject;
             grabbedObject.transform.SetParent(grabPoint); // Attach the object to the player
             grabbedObject.transform.localPosition = Vector3.zero; // Center the object on the player
             grabbedObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
-        }
-    }
-
-    void DropObject()
-    {
-        if (grabbedObject != null)
-        {
-            grabbedObject.transform.SetParent(null); // Release the object from the player
-            grabbedObject.GetComponent<Collider2D>().enabled = true; // Enable the object's collider
-            grabbedObject = null;
         }
     }
 }

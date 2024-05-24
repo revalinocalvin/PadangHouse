@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PI = GetComponent<PlayerInteract>();
         body = GetComponent<Rigidbody2D>();
-        rp = GameObject.Find("Player/RayPosition");
     }
 
     void FixedUpdate()
@@ -39,22 +38,18 @@ public class PlayerMovement : MonoBehaviour
         if (moveVector.x > 0)
         {
             PI.grabPoint.localPosition = new Vector3(1, 0, 0);
-            rp.transform.localPosition = new Vector2(1.0f, 0.0f);
         }
         else if (moveVector.x < 0)
         {
             PI.grabPoint.localPosition = new Vector3(-1, 0, 0);
-            rp.transform.localPosition = new Vector2(-1.0f, 0.0f);
         }
         else if (moveVector.y < 0)
         {
             PI.grabPoint.localPosition = new Vector3(0, -1, 0);
-            rp.transform.localPosition = new Vector2(0.0f, -1.3f);
         }
         else if (moveVector.y > 0)
         {
             PI.grabPoint.localPosition = new Vector3(0, 1, 0);
-            rp.transform.localPosition = new Vector2(0.0f, 1.3f);
         }
     }
 }

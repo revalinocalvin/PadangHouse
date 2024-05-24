@@ -10,7 +10,7 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public Transform customerFoodPoint;
 
-    public GameObject player; // Reference to the player GameObject
+    private GameObject player; // Reference to the player GameObject
     private PlayerInteract playerInteract;
     public string requiredObjectTag = "Food";
     public bool order = false;
