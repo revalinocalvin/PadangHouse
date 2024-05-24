@@ -12,9 +12,8 @@ public class CustomerFoodMerged : MonoBehaviour
 
     private GameObject player; // Reference to the player GameObject
     private PlayerInteract playerInteract;
-    public string requiredObjectTag = "Food";
+    private string requiredObjectTag;
     public bool order = false;
-    private int pathCounter = 0; // Added this to avoid compile errors. Adjust as needed.
     public bool receivedFood = false;
     Vector3 direction;
 
@@ -49,8 +48,8 @@ public class CustomerFoodMerged : MonoBehaviour
     public void TakeOrder() //Change to Random Food Tag
     {
         order = true;
-        string orderedFood = FoodList.Instance.GetRandomFood();
-        Debug.Log(orderedFood);
+        requiredObjectTag = FoodList.Instance.GetRandomFood();
+        Debug.Log(requiredObjectTag);
     }
 
     public void TrySubmitItem()
@@ -58,8 +57,6 @@ public class CustomerFoodMerged : MonoBehaviour
         // Determine if the player is close enough to the NPC to interact
         if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) // Interaction radius
         {
-            Debug.Log("Player is close enough to interact with NPC.");
-
             // Check if the player is holding an interactable item
             foreach (Transform child in player.transform)
             {
@@ -67,24 +64,16 @@ public class CustomerFoodMerged : MonoBehaviour
                 {
                     if (grandchild.gameObject.CompareTag(requiredObjectTag))
                     {
-                        Debug.Log("Interactable item found. Submitting item to MenuPlace.");
                         SubmitItem(grandchild.gameObject); // Submit the item to the MenuPlace
                         return;
                     }
                 }
             }
         }
-
-        else
-        {
-            Debug.Log("Player is not close enough " + player.transform.position + " - " + transform.position);
-        }
     }
 
     private void SubmitItem(GameObject food)
     {
-        Debug.Log("Submitting item to NPC.");
-
         food.transform.SetParent(customerFoodPoint);
         food.transform.localPosition = Vector2.zero;
         playerInteract.grabbedObject = null;

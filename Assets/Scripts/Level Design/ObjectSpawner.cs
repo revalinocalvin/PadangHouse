@@ -6,7 +6,7 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject player;
     public GameObject objectToSpawn;
-    public int maxInteractions = 1;
+    [SerializeField] private int maxInteractions;
     private int interactionCount = 0;
 
     public GameObject SpawnObject()
@@ -22,10 +22,7 @@ public class ObjectSpawner : MonoBehaviour
 
             return spawnedObject;
         }
-        else
-        {
-            Debug.Log("Object spawner has reached its maximum usage.");
-            return null;
-        }
+
+        return null;
     }
 }
