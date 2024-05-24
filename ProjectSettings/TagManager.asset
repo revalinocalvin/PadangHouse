@@ -11,6 +11,9 @@ TagManager:
   - FoodTray
   - FoodDisplay
   - Trashbin
+  - Food1
+  - Food2
+  - Food3
   layers:
   - Default
   - TransparentFX

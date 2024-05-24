@@ -12,9 +12,9 @@ public class CustomerFoodMerged : MonoBehaviour
 
     private GameObject player; // Reference to the player GameObject
     private PlayerInteract playerInteract;
-    public string requiredObjectTag = "Food";
+    private string requiredObjectTag;
     public bool order = false;
-    private int pathCounter = 0; // Added this to avoid compile errors. Adjust as needed.
+    //private int pathCounter = 0; // Added this to avoid compile errors. Adjust as needed.
     public bool receivedFood = false;
     Vector3 direction;
 
@@ -49,8 +49,8 @@ public class CustomerFoodMerged : MonoBehaviour
     public void TakeOrder() //Change to Random Food Tag
     {
         order = true;
-        string orderedFood = FoodList.Instance.GetRandomFood();
-        Debug.Log(orderedFood);
+        requiredObjectTag = FoodList.Instance.GetRandomFood();
+        Debug.Log(requiredObjectTag);
     }
 
     public void TrySubmitItem()
