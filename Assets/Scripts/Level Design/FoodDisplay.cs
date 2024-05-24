@@ -60,16 +60,5 @@ public class FoodDisplay : MonoBehaviour
 
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<Collider2D>().enabled = true;
-
-        // Set the grabbedObject property of PlayerInteract to null
-        if (playerInteract != null)
-        {
-            //playerInteract.grabbedObject = null;
-            Debug.Log("PlayerInteract reference is now null.");
-        }
-        else
-        {
-            Debug.LogError("PlayerInteract reference is null.");
-        }
     }
 }
