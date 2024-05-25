@@ -11,14 +11,15 @@ public class TimeManager : MonoBehaviour
     public static int Minute {  get; private set; }
     public static int Hour { get; private set; }
 
-    private float minuteToRealTime = 1f;
+    //private float minuteToRealTime = DayTransition.Instance.timer;
     private float timer;
 
     void Start()
     {
         Minute = 0;
         Hour = 8;
-        timer = minuteToRealTime;
+        timer = DayTransition.Instance.timer;
+        Debug.Log("Timer = " + timer);
     }
 
     void Update()
@@ -36,7 +37,7 @@ public class TimeManager : MonoBehaviour
                 OnHourChanged?.Invoke();
             }
 
-            timer = minuteToRealTime;
+            timer = DayTransition.Instance.timer;
         }
     }
 }
