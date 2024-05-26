@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour
 {
-
     public static Action OnDayChanged;
     public static int day { get; private set; } = 1;
     private void OnEnable()
@@ -21,16 +20,38 @@ public class DayManager : MonoBehaviour
 
     private void TimeCheck()
     {  
-        if (TimeManager.Hour == 20)
+        if (TimeManager.Hour >= 20 && TimeManager.Hour < 24)
+        {
+            CustomerManager.Instance.canSpawn = false;
+
+            if (CustomerManager.Instance.customersInside.Length == 0)
+            {
+                CustomerManager.Instance.canSpawn = true;
+                DayChanged();
+                OnDayChanged?.Invoke();
+            }
+        }
+        else if (TimeManager.Hour >= 24)
+        {
+            CustomerManager.Instance.canSpawn = true;
             DayChanged();
             OnDayChanged?.Invoke();
+        }
     }
 
     private void DayChanged()
     {
-        day++;
-        Debug.Log("Day Changed, DAY " + day);
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene); 
+        if (GameManager.Instance.CheckGameResults())
+        {
+            day++;
+            CustomerManager.Instance.numberOfCustomers = 0;
+            Debug.Log("Day Changed, DAY " + day);
+            int currentScene = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentScene);
+        }
+        else
+        {
+            GameManager.Instance.CheckGameResults();
+        }
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FoodList : MonoBehaviour
 {
-    public float customerMoveSpeed = 5f;
-
     public static FoodList instance;
     public static FoodList Instance
     {

@@ -5,19 +5,12 @@ using UnityEngine;
 
 public class DayUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public TextMeshProUGUI dayText;
+
     void Start()
     {
-
+        dayText.text = $"Day {DayManager.day}";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public TextMeshProUGUI dayText;
 
     private void OnEnable()
     {
