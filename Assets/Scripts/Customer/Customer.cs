@@ -8,7 +8,7 @@ public class Customer : MonoBehaviour
     CustomerFoodMerged customerFood;
 
     public int customerStarsAmount = 3;
-    [SerializeField] private float customerPatience = 10f;
+    [SerializeField] private float customerPatience = 2f;
     private float patienceTimer;
     private bool stillPatient;
     private bool patienceTimerSet;
@@ -74,7 +74,17 @@ public class Customer : MonoBehaviour
             if (customerStarsAmount == 0)
             {
                 stillPatient = false;
-                CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+
+                if (customerPathing.table == 1)
+                { 
+                    CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true; 
+                }
+
+                else if (customerPathing.table == 2)
+                {
+                    CustomerManager.Instance.chairAvailable2[customerPathing.chairNumber - 5] = true;
+                }
+                
             }
         }
     }

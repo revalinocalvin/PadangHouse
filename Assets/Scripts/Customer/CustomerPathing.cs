@@ -11,6 +11,8 @@ public class CustomerPathing : MonoBehaviour
     private int pathCounter = 0;
 
     public bool eatingFinished = false;
+
+    public int table;
     
     private Vector3 direction;
 
@@ -36,16 +38,34 @@ public class CustomerPathing : MonoBehaviour
 
     void DecideChair()
     {
-        for (int i = 0; i < CustomerManager.Instance.chairAvailable.Length; i++)
+        if (table == 1)
         {
-            if (CustomerManager.Instance.chairAvailable[i])
+            for (int i = 0; i < CustomerManager.Instance.chairAvailable.Length; i++)
             {
-                chairDecided = true;
-                CustomerManager.Instance.chairAvailable[i] = false;
-                chairNumber = i + 1;
-                break;
+                if (CustomerManager.Instance.chairAvailable[i])
+                {
+                    chairDecided = true;
+                    CustomerManager.Instance.chairAvailable[i] = false;
+                    chairNumber = i + 1;
+                    break;
+                }
             }
         }
+
+        else if (table == 2)
+        {
+            for (int i = 0; i < CustomerManager.Instance.chairAvailable2.Length; i++)
+            {
+                if (CustomerManager.Instance.chairAvailable2[i])
+                {
+                    chairDecided = true;
+                    CustomerManager.Instance.chairAvailable2[i] = false;
+                    chairNumber = i + 5;
+                    break;
+                }
+            }
+        }
+
     }
 
     void MoveToChair()
@@ -91,6 +111,16 @@ public class CustomerPathing : MonoBehaviour
     private bool ArrivedOnChairPoint(int index)
     {
         return Vector2.Distance(CustomerManager.Instance.chairPoint[index].transform.position, transform.position) <= 0.1f;
+    }
+
+    private Vector3 DirectionToChair2(int index)
+    {
+        return direction = (CustomerManager.Instance.chairPoint2[index].transform.position - transform.position).normalized;
+    }
+
+    private bool ArrivedOnChairPoint2(int index)
+    {
+        return Vector2.Distance(CustomerManager.Instance.chairPoint2[index].transform.position, transform.position) <= 0.1f;
     }
 
     private Vector3 DirectionToPath(int index)
@@ -183,9 +213,9 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            DirectionToChair(4);
+            DirectionToChair2(0);
         }
-        if (ArrivedOnChairPoint(4))
+        if (ArrivedOnChairPoint2(0))
         {
             onChair = true;
         }
@@ -195,9 +225,9 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            DirectionToChair(5);
+            DirectionToChair2(1);
         }
-        if (ArrivedOnChairPoint(5))
+        if (ArrivedOnChairPoint2(1))
         {
             onChair = true;
         }
@@ -211,14 +241,14 @@ public class CustomerPathing : MonoBehaviour
         }
         else if (pathCounter == 1)
         {
-            DirectionToChair(6);
+            DirectionToChair2(2);
         }
 
         if (ArrivedOnPathPoint(0) && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (ArrivedOnChairPoint(6) && pathCounter == 1)
+        else if (ArrivedOnChairPoint2(2) && pathCounter == 1)
         {
             onChair = true;
         }
@@ -232,14 +262,14 @@ public class CustomerPathing : MonoBehaviour
         }
         else if (pathCounter == 1)
         {
-            DirectionToChair(7);
+            DirectionToChair2(3);
         }
 
         if (ArrivedOnPathPoint(0) && pathCounter == 0)
         {
             pathCounter++;
         }
-        else if (ArrivedOnChairPoint(7) && pathCounter == 1)
+        else if (ArrivedOnChairPoint2(3) && pathCounter == 1)
         {
             onChair = true;
         }
