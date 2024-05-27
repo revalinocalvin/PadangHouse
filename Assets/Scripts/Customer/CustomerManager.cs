@@ -32,6 +32,9 @@ public class CustomerManager : MonoBehaviour
     public bool[] chairAvailable;
 
     public GameObject[] customersInside;
+    public int numberOfCustomers;
+
+    public bool canSpawn = true;
 
     void Start()
     {

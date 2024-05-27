@@ -33,43 +33,34 @@ public class GameManager : MonoBehaviour
     public int minStars;
     public int maxStars;
 
-    private float winConDelay;
-
     void Start()
     {
         Time.timeScale = 1;
         currentStars = 0;
-        winConDelay = Time.time + 15f;
     }
 
     void Update()
     {
         UpdateStarsText();
-
-        if (CustomerManager.Instance.customersInside.Length == 0 && Time.time >= winConDelay)
-        {
-            WinLose();
-        }
     }
 
     void UpdateStarsText()
     {
-        starsText.text = currentStars.ToString() + "/" + maxStars.ToString() + " Stars";
+        starsText.text = currentStars.ToString() + " Stars";
     }
 
-    void WinLose()
+    public bool CheckGameResults()
     {
-        if (currentStars < minStars)
+        if (currentStars >= minStars)
         {
-            gameResultBackground.SetActive(true);
-            gameResultText.text = "You lose!";
-            Time.timeScale = 0;
+            return true;
         }
-        else if (currentStars >= minStars)
+        else
         {
             gameResultBackground.SetActive(true);
-            gameResultText.text = "You win!";
+            gameResultText.text = "You lose!\n Stars needed: " + minStars;
             Time.timeScale = 0;
+            return false;
         }
     }
 
