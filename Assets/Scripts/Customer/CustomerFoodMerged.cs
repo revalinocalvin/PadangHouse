@@ -105,7 +105,17 @@ public class CustomerFoodMerged : MonoBehaviour
     private void EatingFinished(GameObject food)
     {
         customerPathing.eatingFinished = true;
-        CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+
+        if (customerPathing.table == 1)
+        {
+            CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+        }
+
+        else if (customerPathing.table == 2)
+        {
+            CustomerManager.Instance.chairAvailable2[customerPathing.chairNumber - 5] = true;
+        }
+
         Destroy(food);
         GameManager.Instance.AddStars(customer.customerStarsAmount);
     }
