@@ -27,9 +27,11 @@ public class CustomerManager : MonoBehaviour
 
     public GameObject[] pathPoint;
     public GameObject[] chairPoint;
+    public GameObject[] table;
     public GameObject exitPoint;
 
     public bool[] chairAvailable;
+    public bool[] tableAvailable;
 
     public GameObject[] customersInside;
     public int numberOfCustomers;
@@ -39,6 +41,7 @@ public class CustomerManager : MonoBehaviour
     void Start()
     {
         ChairAvailable();
+        TableAvailable();
         CheckCustomersInside();
     }
 
@@ -54,6 +57,16 @@ public class CustomerManager : MonoBehaviour
         for (int i = 0; i < chairPoint.Length; i++)
         {
             chairAvailable[i] = true;
+        }
+    }
+
+    private void TableAvailable()
+    {
+        tableAvailable = new bool[table.Length];
+
+        for (int i = 0; i < table.Length; i++)
+        {
+            tableAvailable[i] = true;
         }
     }
 

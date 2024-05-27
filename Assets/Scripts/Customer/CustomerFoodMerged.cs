@@ -109,22 +109,4 @@ public class CustomerFoodMerged : MonoBehaviour
         Destroy(food);
         GameManager.Instance.AddStars(customer.customerStarsAmount);
     }
-
-/*private IEnumerator Move()
-    {
-        if (pathCounter == 0)
-        {
-            direction = (Customer.instance.exitPoint[0].transform.position - transform.position).normalized;
-        }
-
-        while (Vector2.Distance(Customer.instance.exitPoint[0].transform.position, transform.position) > 0.1f)
-        {
-            transform.position += direction * Customer.instance.customerMoveSpeed * Time.deltaTime;
-            yield return null; // Wait for the next frame
-        }
-
-        // Movement finished
-        // onTable = false; // Uncomment if necessary
-        this.enabled = false;
-    }*/
 }

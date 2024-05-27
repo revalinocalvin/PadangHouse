@@ -10,6 +10,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private int customerPerDay = 100;
     private int maxCustomerInside;
+    private int customerGroupSpawn;
 
     void Start()
     {
@@ -36,14 +37,25 @@ public class CustomerSpawner : MonoBehaviour
         {
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
+
+            customerGroupSpawn = Random.Range(2, 5);
+
             customerPerDay--;
-            CustomerManager.Instance.numberOfCustomers++;
+            CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
+
             GameManager.Instance.minStars = (CustomerManager.Instance.numberOfCustomers * 3) / 2;
             GameManager.Instance.maxStars = (CustomerManager.Instance.numberOfCustomers * 3);
 
-            Debug.Log("Interval 1 = " + DayTransition.Instance.interval1);
+            StartCoroutine(SpawnCustomers());
+        }
+    }
 
+    IEnumerator SpawnCustomers()
+    {
+        for (int i = 0; i < customerGroupSpawn; i++)
+        {
             Instantiate(customerPrefab, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 }
