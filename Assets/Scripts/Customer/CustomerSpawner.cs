@@ -35,13 +35,15 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (customerPrefab != null && Time.time >= customerNextSpawnTime)
         {
+            Debug.Log("Spawning Customers");
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
 
+            Loop:
             int dineInOrTakeAway = Random.Range(1, 3);
 
-            if (dineInOrTakeAway == 1)
-            {
+            if (dineInOrTakeAway == 1 && CustomerManager.Instance.tableAvailable.Contains(true))
+            {                
                 customerGroupSpawn = Random.Range(4, 5);
 
                 if (CustomerManager.Instance.tableAvailable[0])
@@ -57,12 +59,18 @@ public class CustomerSpawner : MonoBehaviour
                     CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
                 }
             }
-            else if (dineInOrTakeAway == 2)
+
+            else
             {
                 if (CustomerManager.Instance.chairAvailable3.Contains(true))
                 {
                     Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = 0;
                     CustomerManager.Instance.numberOfCustomers++;
+                }
+
+                else
+                {
+                    goto Loop;
                 }
             }
 
