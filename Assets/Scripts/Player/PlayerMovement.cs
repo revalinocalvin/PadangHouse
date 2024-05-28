@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInteract PI;
-    GameObject rp;
 
     [SerializeField] private float playerMoveSpeed;
     Rigidbody2D body;
+    public Animator animator;
+    private Vector3 moveVector;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         WASDMovement();
+        Animation();
     }
 
     void WASDMovement()
@@ -26,11 +28,18 @@ public class PlayerMovement : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveVector = new Vector3(xInput, yInput, 0).normalized;
+        moveVector = new Vector3(xInput, yInput, 0).normalized;
 
         FaceDirection(moveVector);
 
         body.MovePosition(new Vector2(transform.position.x + moveVector.x * playerMoveSpeed * Time.deltaTime, transform.position.y + moveVector.y * playerMoveSpeed * Time.deltaTime));
+    }
+
+    void Animation()
+    {
+        animator.SetFloat("Horizontal", moveVector.x);
+        animator.SetFloat("Vertical", moveVector.y);
+        animator.SetFloat("Speed", moveVector.sqrMagnitude);
     }
 
     void FaceDirection(Vector3 moveVector)
