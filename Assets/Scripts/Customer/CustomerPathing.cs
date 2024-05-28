@@ -51,7 +51,6 @@ public class CustomerPathing : MonoBehaviour
                 }
             }
         }
-
         else if (table == 2)
         {
             for (int i = 0; i < CustomerManager.Instance.chairAvailable2.Length; i++)
@@ -65,7 +64,19 @@ public class CustomerPathing : MonoBehaviour
                 }
             }
         }
-
+        else
+        {
+            for (int i = 0; i < CustomerManager.Instance.chairAvailable3.Length; i++)
+            {
+                if (CustomerManager.Instance.chairAvailable3[i])
+                {
+                    chairDecided = true;
+                    CustomerManager.Instance.chairAvailable3[i] = false;
+                    chairNumber = i + 9;
+                    break;
+                }
+            }
+        }
     }
 
     void MoveToChair()
@@ -96,6 +107,15 @@ public class CustomerPathing : MonoBehaviour
             case 8:
                 MoveToChair8();
                 break;
+            case 9:
+                MoveToChair9();
+                break;
+            case 10:
+                MoveToChair10();
+                break;
+            case 11:
+                MoveToChair11();
+                break;
             default:
                 break;
         }
@@ -121,6 +141,16 @@ public class CustomerPathing : MonoBehaviour
     private bool ArrivedOnChairPoint2(int index)
     {
         return Vector2.Distance(CustomerManager.Instance.chairPoint2[index].transform.position, transform.position) <= 0.1f;
+    }
+
+    private Vector3 DirectionToChair3(int index)
+    {
+        return direction = (CustomerManager.Instance.chairPoint3[index].transform.position - transform.position).normalized;
+    }
+
+    private bool ArrivedOnChairPoint3(int index)
+    {
+        return Vector2.Distance(CustomerManager.Instance.chairPoint3[index].transform.position, transform.position) <= 0.1f;
     }
 
     private Vector3 DirectionToPath(int index)
@@ -275,9 +305,45 @@ public class CustomerPathing : MonoBehaviour
         }
     }
 
+    void MoveToChair9()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair3(0);
+        }
+        if (ArrivedOnChairPoint3(0))
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair10()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair3(1);
+        }
+        if (ArrivedOnChairPoint3(1))
+        {
+            onChair = true;
+        }
+    }
+
+    void MoveToChair11()
+    {
+        if (pathCounter == 0)
+        {
+            DirectionToChair3(2);
+        }
+        if (ArrivedOnChairPoint3(2))
+        {
+            onChair = true;
+        }
+    }
+
     void MoveToExit()
     {
-        if (chairNumber == 1 || chairNumber == 2 || chairNumber == 5 || chairNumber == 6)
+        if (chairNumber == 1 || chairNumber == 2 || chairNumber == 5 || chairNumber == 6 || chairNumber == 9 || chairNumber == 10 || chairNumber == 11)
         {
             MoveToExit1();
         }
