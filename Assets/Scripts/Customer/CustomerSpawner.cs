@@ -12,6 +12,9 @@ public class CustomerSpawner : MonoBehaviour
     private int maxCustomerInside;
     private int customerGroupSpawn;
 
+    public Table table1;
+    public Table table2;
+
     void Start()
     {
         maxCustomerInside = CustomerManager.Instance.chairPoint.Length + CustomerManager.Instance.chairPoint2.Length;
@@ -82,9 +85,19 @@ public class CustomerSpawner : MonoBehaviour
     IEnumerator SpawnCustomers(int tableNumber)
     {
         for (int i = 0; i < customerGroupSpawn; i++)
-        {
-            customerPrefab.tag = "CustomerGroup";
-            Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = tableNumber;
+        {           
+            GameObject customer = Instantiate(customerPrefab, transform.position, Quaternion.identity);
+            customer.tag = "CustomerGroup";
+            customer.GetComponent<CustomerPathing>().table = tableNumber;
+            if (tableNumber == 1)
+            {
+                table1.AddCustomers(customer);
+            }
+            else
+            {
+                table2.AddCustomers(customer);
+            }
+
             yield return new WaitForSeconds(0.5f);
         }
     }

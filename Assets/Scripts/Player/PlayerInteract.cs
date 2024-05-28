@@ -80,7 +80,14 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        
+        if (inTable)
+        {
+            table = FindClosest(_objectsInTrigger).GetComponent<Table>();
+            table.Interact();
+            Debug.Log("check inTable");
+        }
+
+
         if (grabbedObject == null)
         {
             Debug.Log("Not Full");
@@ -100,14 +107,7 @@ public class PlayerInteract : MonoBehaviour
                     objectToGrab = objectSpawner.SpawnObject();                    
                 }
                 Grab(objectToGrab);
-            }
-
-            if (inTable)
-            {               
-                table = FindClosest(_objectsInTrigger).GetComponent<Table>();
-                table.FindCustomer();
-                Debug.Log("check inTable");                
-            }
+            }            
         }
 
         else
@@ -134,6 +134,7 @@ public class PlayerInteract : MonoBehaviour
                         
                         if (customerFood.receivedFood)
                         {
+                            table.Eat();
                             break;
                         }
                     }                                     

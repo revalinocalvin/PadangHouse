@@ -10,10 +10,14 @@ public class CustomerFoodMerged : MonoBehaviour
     public Transform customerFoodPoint;
 
     private GameObject player;
+    public GameObject food;
     private PlayerInteract playerInteract;
+
     private string requiredObjectTag;
+
     public bool order = false;
     public bool receivedFood = false;
+    public bool ready = false;
     Vector3 direction;
 
     void Start()
@@ -80,19 +84,18 @@ public class CustomerFoodMerged : MonoBehaviour
         {
             if (food.CompareTag(requiredObjectTag) && receivedFood == false)
             {
+                this.food = food;
                 food.transform.SetParent(customerFoodPoint);
                 food.transform.localPosition = Vector2.zero;
                 playerInteract.grabbedObject = null;
-                receivedFood = true;
-
-                StartCoroutine(WaitEatingTime(food));
+                receivedFood = true;                
             }                        
-        }
+        }          
     }
 
-    private IEnumerator WaitEatingTime(GameObject food)
+    public IEnumerator WaitEatingTime()
     {
-        float eatingTime = 10f;
+        float eatingTime = 5f;
 
         yield return new WaitForSeconds(eatingTime);
 

@@ -477,6 +477,7 @@ MonoBehaviour:
   onChair: 0
   chairNumber: 0
   eatingFinished: 0
+  table: 0
 --- !u!114 &7840773578362805180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,10 +491,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerFoodPoint: {fileID: 3136665256917315442}
-  player: {fileID: 0}
-  requiredObjectTag: Food
+  food: {fileID: 0}
   order: 0
   receivedFood: 0
+  ready: 0
 --- !u!1 &9112500668843590432
 GameObject:
   m_ObjectHideFlags: 0
