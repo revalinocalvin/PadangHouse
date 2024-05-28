@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerStarsAmount: 3
-  customerPatience: 10
+  customerPatience: 30
   customerOrder: {fileID: 1539671248287028500}
   customerStars:
   - {fileID: 9112500668843590432}

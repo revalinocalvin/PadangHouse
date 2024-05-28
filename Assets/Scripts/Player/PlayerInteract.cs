@@ -84,7 +84,7 @@ public class PlayerInteract : MonoBehaviour
         {
             table = FindClosest(_objectsInTrigger).GetComponent<Table>();
             table.Interact();
-            Debug.Log("check inTable");
+            //Debug.Log("check inTable");
         }
 
 
@@ -125,11 +125,11 @@ public class PlayerInteract : MonoBehaviour
 
                 foreach (GameObject customer in table.customers)
                 {
-                    Debug.Log("Customer seen?");
+                    Debug.Log("ForEach run");
                     CustomerFoodMerged customerFood = customer.GetComponent<CustomerFoodMerged>();
                     if (customerFood.receivedFood == false)
                     {
-                        Debug.Log("trying submit");
+                        Debug.Log("Trying submit");
                         customerFood.SubmitItem(grabbedObject);
                         
                         if (customerFood.receivedFood)
@@ -164,7 +164,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("FoodTray"))
         {
-            Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
+            //Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
 
             InArea = true;
             _objectsInTrigger.Add(collidedObject);
@@ -172,7 +172,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition collided with a Food Spawn object: " + collidedObject.gameObject.name);
+            //Debug.Log("RayPosition collided with a Food Spawn object: " + collidedObject.gameObject.name);
 
             InArea = true;
             _objectsInTrigger.Add(collidedObject);
@@ -181,13 +181,13 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Customer"))
         {
-            Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
+            //Debug.Log("RayPosition collided with a Customer object: " + collidedObject.gameObject.name);
             _objectsInTrigger.Add(collidedObject);
         }
 
         if (collidedObject.CompareTag("Trashbin"))
         {
-            Debug.Log("RayPosition collided with a Trashbin object: " + collidedObject.gameObject.name);
+            //Debug.Log("RayPosition collided with a Trashbin object: " + collidedObject.gameObject.name);
 
             InArea = false;
             trashbin = true;
@@ -206,7 +206,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (collidedObject.CompareTag("FoodTray"))
         {
-            Debug.Log("RayPosition not collided with a Menu Dish object");
+            //Debug.Log("RayPosition not collided with a Menu Dish object");
             InArea = false;
             objectToGrab = null;
             _objectsInTrigger.Remove(collidedObject);
@@ -214,7 +214,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("FoodSpawn"))
         {
-            Debug.Log("RayPosition not collided with a Food Spawn object");
+            //Debug.Log("RayPosition not collided with a Food Spawn object");
             InArea = false;
             _objectsInTrigger.Remove(collidedObject);
             objectToGrab = null;
@@ -228,7 +228,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Trashbin"))
         {
-            Debug.Log("RayPosition not collided with a Trashbin object");
+            //Debug.Log("RayPosition not collided with a Trashbin object");
             InArea = false;
             objectToGrab = null;
             trashbin = false;

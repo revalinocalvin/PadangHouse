@@ -75,6 +75,7 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public void SubmitItem(GameObject food)
     {
+        Debug.Log("Submit Item Function");
         if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
         {
             EatingFinished(food);
@@ -84,6 +85,7 @@ public class CustomerFoodMerged : MonoBehaviour
         {
             if (food.CompareTag(requiredObjectTag) && receivedFood == false)
             {
+                Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
                 this.food = food;
                 food.transform.SetParent(customerFoodPoint);
                 food.transform.localPosition = Vector2.zero;

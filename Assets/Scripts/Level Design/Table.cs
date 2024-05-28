@@ -20,7 +20,10 @@ public class Table : MonoBehaviour
             foreach (GameObject customer in customers) 
             {
                 CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
-                customerOrder.TakeOrder();
+                if (customerOrder.order == false)
+                {
+                    customerOrder.TakeOrder();
+                }               
             }
         }
     }

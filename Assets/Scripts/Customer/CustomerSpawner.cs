@@ -38,7 +38,7 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (customerPrefab != null && Time.time >= customerNextSpawnTime)
         {
-            Debug.Log("Spawning Customers");
+            //Debug.Log("Spawning Customers");
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
 
