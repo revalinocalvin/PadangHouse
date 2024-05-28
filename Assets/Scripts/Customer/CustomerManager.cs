@@ -91,6 +91,7 @@ public class CustomerManager : MonoBehaviour
     void CheckCustomersInside()
     {
         customersInside = GameObject.FindGameObjectsWithTag("Customer");
+        customersInside = GameObject.FindGameObjectsWithTag("CustomerGroup");
     }
 
     public void CheckTableAvailable(int tableNumber)

@@ -40,11 +40,11 @@ public class CustomerFoodMerged : MonoBehaviour
     {
         if (customerPathing.chairNumber == 1 || customerPathing.chairNumber == 2 || customerPathing.chairNumber == 5 || customerPathing.chairNumber == 6)
         {
-            customerFoodPoint.transform.localPosition = new Vector3(0, -2, 0);
+            customerFoodPoint.transform.localPosition = new Vector2(-2, 0);
         }
         else
         {
-            customerFoodPoint.transform.localPosition = new Vector3(0, 2, 0);
+            customerFoodPoint.transform.localPosition = new Vector2(2, 0);
         }
     }
 
