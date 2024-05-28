@@ -9,7 +9,6 @@ public class CustomerSpawner : MonoBehaviour
 
     private float customerNextSpawnTime;
 
-    private int customerPerDay = 100;
     private int maxCustomerInside;
     private int customerGroupSpawn;
 
@@ -21,15 +20,12 @@ public class CustomerSpawner : MonoBehaviour
 
     void Update()
     {
-        if (customerPerDay > 0 && CustomerManager.Instance.customersInside.Length < maxCustomerInside && CustomerManager.Instance.canSpawn && CustomerManager.Instance.tableAvailable.Contains(true))
+        if (CustomerManager.Instance.customersInside.Length < maxCustomerInside && CustomerManager.Instance.canSpawn && (CustomerManager.Instance.tableAvailable.Contains(true) || CustomerManager.Instance.chairAvailable3.Contains(true)))
         {
-            Debug.Log("Customer spawner update spawn");
             SpawnCustomer();
-            
         }
         else
         {
-            Debug.Log("Customer spawner update spawn else");
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
         }
@@ -42,35 +38,44 @@ public class CustomerSpawner : MonoBehaviour
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
 
-            customerGroupSpawn = Random.Range(4, 5);
+            int dineInOrTakeAway = Random.Range(1, 3);
 
-            Debug.Log("Customer spawner update spawncustomer inside if");
+            if (dineInOrTakeAway == 1)
+            {
+                customerGroupSpawn = Random.Range(4, 5);
 
-            customerPerDay--;
-            CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
+                if (CustomerManager.Instance.tableAvailable[0])
+                {
+                    StartCoroutine(SpawnCustomers(1));
+                    CustomerManager.Instance.tableAvailable[0] = false;
+                    CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
+                }
+                else if (CustomerManager.Instance.tableAvailable[1])
+                {
+                    StartCoroutine(SpawnCustomers(2));
+                    CustomerManager.Instance.tableAvailable[1] = false;
+                    CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
+                }
+            }
+            else if (dineInOrTakeAway == 2)
+            {
+                if (CustomerManager.Instance.chairAvailable3.Contains(true))
+                {
+                    Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = 0;
+                    CustomerManager.Instance.numberOfCustomers++;
+                }
+            }
 
             GameManager.Instance.minStars = (CustomerManager.Instance.numberOfCustomers * 3) / 2;
             GameManager.Instance.maxStars = (CustomerManager.Instance.numberOfCustomers * 3);
-
-            if (CustomerManager.Instance.tableAvailable[0])
-            {
-                StartCoroutine(SpawnCustomers(1));
-                CustomerManager.Instance.tableAvailable[0] = false;
-            }
-            else if (CustomerManager.Instance.tableAvailable[1])
-            {
-                StartCoroutine(SpawnCustomers(2));
-                CustomerManager.Instance.tableAvailable[1] = false; 
-            }
-            
         }
     }
 
-    IEnumerator SpawnCustomers(int table)
+    IEnumerator SpawnCustomers(int tableNumber)
     {
         for (int i = 0; i < customerGroupSpawn; i++)
         {
-            Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = table;
+            Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = tableNumber;
             yield return new WaitForSeconds(0.5f);
         }
     }

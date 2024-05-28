@@ -9,11 +9,10 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public Transform customerFoodPoint;
 
-    private GameObject player; // Reference to the player GameObject
+    private GameObject player;
     private PlayerInteract playerInteract;
     private string requiredObjectTag;
     public bool order = false;
-    //private int pathCounter = 0; // Added this to avoid compile errors. Adjust as needed.
     public bool receivedFood = false;
     Vector3 direction;
 
@@ -45,7 +44,7 @@ public class CustomerFoodMerged : MonoBehaviour
         }
     }
 
-    public void TakeOrder() //Change to Random Food Tag
+    public void TakeOrder()
     {
         order = true;
         requiredObjectTag = FoodList.Instance.GetRandomFood();
@@ -54,43 +53,37 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public void TrySubmitItem()
     {
-        // Determine if the player is close enough to the NPC to interact
-        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f) // Interaction radius
+        if (Vector3.Distance(player.transform.position, transform.position) < 1.5f)
         {
-            Debug.Log("Player is close enough to interact with NPC.");
-
-            // Check if the player is holding an interactable item
             foreach (Transform child in player.transform)
             {
                 foreach (Transform grandchild in child)
                 {
                     if (grandchild.gameObject.CompareTag(requiredObjectTag))
                     {
-                        Debug.Log("Interactable item found. Submitting item to MenuPlace.");
-                        SubmitItem(grandchild.gameObject); // Submit the item to the MenuPlace
+                        SubmitItem(grandchild.gameObject);
                         return;
                     }
                 }
             }
         }
-
-        else
-        {
-            Debug.Log("Player is not close enough " + player.transform.position + " - " + transform.position);
-        }
     }
 
     private void SubmitItem(GameObject food)
     {
-        Debug.Log("Submitting item to NPC.");
+        if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
+        {
+            EatingFinished(food);
+        }
+        else
+        {
+            food.transform.SetParent(customerFoodPoint);
+            food.transform.localPosition = Vector2.zero;
+            playerInteract.grabbedObject = null;
+            receivedFood = true;
 
-        food.transform.SetParent(customerFoodPoint);
-        food.transform.localPosition = Vector2.zero;
-        playerInteract.grabbedObject = null;
-        receivedFood = true;
-
-        StartCoroutine(WaitEatingTime(food));
-
+            StartCoroutine(WaitEatingTime(food));
+        }
     }
 
     private IEnumerator WaitEatingTime(GameObject food)
@@ -109,11 +102,16 @@ public class CustomerFoodMerged : MonoBehaviour
         if (customerPathing.table == 1)
         {
             CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+            CustomerManager.Instance.CheckTableAvailable(1);
         }
-
         else if (customerPathing.table == 2)
         {
             CustomerManager.Instance.chairAvailable2[customerPathing.chairNumber - 5] = true;
+            CustomerManager.Instance.CheckTableAvailable(2);
+        }
+        else
+        {
+            CustomerManager.Instance.chairAvailable3[customerPathing.chairNumber - 9] = true;
         }
 
         Destroy(food);

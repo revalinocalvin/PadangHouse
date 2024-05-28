@@ -29,20 +29,15 @@ public class FoodDisplay : MonoBehaviour
 
     private void TrySubmitItem()
     {
-        // Determine if the player is close enough to the MenuPlace to interact
-        if (Vector3.Distance(player.transform.position, transform.position) < 2f) // Interaction radius
+        if (Vector3.Distance(player.transform.position, transform.position) < 2f)
         {
-            Debug.Log("Player is close enough to interact with MenuPlace.");
-
-            // Check if the player is holding an interactable item
             foreach (Transform child in player.transform)
             {
                 foreach (Transform grandchild in child)
                 {
                     if (grandchild.gameObject.CompareTag(requiredObjectTag) && transform.childCount == 0)
                     {
-                        Debug.Log("Interactable item found. Submitting item to MenuPlace.");
-                        SubmitItem(grandchild.gameObject); // Submit the item to the MenuPlace
+                        SubmitItem(grandchild.gameObject);
                         return;
                     }
                 }
@@ -52,8 +47,6 @@ public class FoodDisplay : MonoBehaviour
 
     private void SubmitItem(GameObject item)
     {
-
-        Debug.Log("Submitting item to Menu Shelf.");
         item.transform.position = transform.position; // Set the position of the submitted item to the MenuPlace's position
 
         item.transform.SetParent(this.gameObject.transform); // Detach the submitted item from the player
