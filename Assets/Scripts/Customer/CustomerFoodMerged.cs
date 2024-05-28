@@ -69,26 +69,30 @@ public class CustomerFoodMerged : MonoBehaviour
         }
     }
 
-    private void SubmitItem(GameObject food)
+    public void SubmitItem(GameObject food)
     {
         if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
         {
             EatingFinished(food);
         }
+
         else
         {
-            food.transform.SetParent(customerFoodPoint);
-            food.transform.localPosition = Vector2.zero;
-            playerInteract.grabbedObject = null;
-            receivedFood = true;
+            if (food.CompareTag(requiredObjectTag) && receivedFood == false)
+            {
+                food.transform.SetParent(customerFoodPoint);
+                food.transform.localPosition = Vector2.zero;
+                playerInteract.grabbedObject = null;
+                receivedFood = true;
 
-            StartCoroutine(WaitEatingTime(food));
+                StartCoroutine(WaitEatingTime(food));
+            }                        
         }
     }
 
     private IEnumerator WaitEatingTime(GameObject food)
     {
-        float eatingTime = 5f;
+        float eatingTime = 10f;
 
         yield return new WaitForSeconds(eatingTime);
 

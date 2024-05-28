@@ -8,7 +8,6 @@ public class PlayerInteract : MonoBehaviour
 
     public Transform grabPoint;
 
-    public GameObject rp;
     public GameObject grabbedObject;
     private GameObject objectToGrab;
 
@@ -16,11 +15,12 @@ public class PlayerInteract : MonoBehaviour
     private ObjectSpawner objectSpawner;
     private CustomerFoodMerged customerRoutine;
     private CustomerPathing customerPathing;
+    private Table table;
 
-    public bool CustomerInteract = false;
     bool InArea = false; //prevent grab function error log
     private bool foodReady = false;
     private bool trashbin = false;
+    private bool inTable = false;
 
     void Start()
     {
@@ -80,24 +80,33 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        // Grabbing object method
+        
         if (grabbedObject == null)
         {
             Debug.Log("Not Full");
 
-            if (InArea == true)
+            // Grabbing object method
+            if (InArea)
             {
                 if (_objectsInTrigger.Count != 0)
                 {
                     objectToGrab = FindClosest(_objectsInTrigger).gameObject;
+                    
                 }
 
                 if (foodReady)
                 {
                     objectSpawner = FindClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
-                    objectToGrab = objectSpawner.SpawnObject();
+                    objectToGrab = objectSpawner.SpawnObject();                    
                 }
                 Grab(objectToGrab);
+            }
+
+            if (inTable)
+            {               
+                table = FindClosest(_objectsInTrigger).GetComponent<Table>();
+                table.FindCustomer();
+                Debug.Log("check inTable");                
             }
         }
 
@@ -108,6 +117,27 @@ public class PlayerInteract : MonoBehaviour
             {
                 Destroy(grabbedObject);
                 grabbedObject = null;
+            }
+
+            if (inTable)
+            {
+                table = FindClosest(_objectsInTrigger).GetComponent<Table>();
+
+                foreach (GameObject customer in table.customers)
+                {
+                    Debug.Log("Customer seen?");
+                    CustomerFoodMerged customerFood = customer.GetComponent<CustomerFoodMerged>();
+                    if (customerFood.receivedFood == false)
+                    {
+                        Debug.Log("trying submit");
+                        customerFood.SubmitItem(grabbedObject);
+                        
+                        if (customerFood.receivedFood)
+                        {
+                            break;
+                        }
+                    }                                     
+                }
             }
         }
     }
@@ -161,6 +191,14 @@ public class PlayerInteract : MonoBehaviour
             InArea = false;
             trashbin = true;
         }
+
+        if (collidedObject.CompareTag("Table"))
+        {
+            Debug.Log("RayPosition collided with a Table object: " + collidedObject.gameObject.name);
+            _objectsInTrigger.Add(collidedObject);
+            inTable = true;
+        }
+
     }
 
     void OnTriggerExit2D(Collider2D collidedObject)
@@ -194,6 +232,13 @@ public class PlayerInteract : MonoBehaviour
             objectToGrab = null;
             trashbin = false;
             _objectsInTrigger.Remove(collidedObject);
+        }
+
+        if (collidedObject.CompareTag("Table"))
+        {
+            Debug.Log("RayPosition not collided with a Table object");
+            _objectsInTrigger.Remove(collidedObject);
+            inTable = false;
         }
     }
 

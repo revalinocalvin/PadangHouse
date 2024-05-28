@@ -44,7 +44,7 @@ public class CustomerSpawner : MonoBehaviour
 
             if (dineInOrTakeAway == 1 && CustomerManager.Instance.tableAvailable.Contains(true))
             {                
-                customerGroupSpawn = Random.Range(4, 5);
+                customerGroupSpawn = Random.Range(2, 5);
 
                 if (CustomerManager.Instance.tableAvailable[0])
                 {
@@ -83,6 +83,7 @@ public class CustomerSpawner : MonoBehaviour
     {
         for (int i = 0; i < customerGroupSpawn; i++)
         {
+            customerPrefab.tag = "CustomerGroup";
             Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = tableNumber;
             yield return new WaitForSeconds(0.5f);
         }
