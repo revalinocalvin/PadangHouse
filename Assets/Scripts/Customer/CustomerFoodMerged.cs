@@ -18,6 +18,7 @@ public class CustomerFoodMerged : MonoBehaviour
     public bool order = false;
     public bool receivedFood = false;
     public bool ready = false;
+
     Vector3 direction;
 
     void Start()
@@ -53,6 +54,7 @@ public class CustomerFoodMerged : MonoBehaviour
         order = true;
         requiredObjectTag = FoodList.Instance.GetRandomFood();
         Debug.Log(requiredObjectTag);
+        customer.Foodsign(requiredObjectTag);
     }
 
     public void TrySubmitItem()

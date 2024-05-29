@@ -1815,6 +1815,11 @@ MonoBehaviour:
   customerPrefab: {fileID: 7641059811202406160, guid: 18069ea7bd0d9744d81a8122f543a9a3, type: 3}
   table1: {fileID: 1571120224}
   table2: {fileID: 135286275}
+  sprite1: {fileID: 1651298073, guid: 354afc55e9978df429caa054f9c6ed2b, type: 3}
+  sprite2: {fileID: -1991725172, guid: 7df256fd464dbdd469fd4a59be072c92, type: 3}
+  sprite3: {fileID: -353270763, guid: 717fb19b147309c4bacaa983feb856a4, type: 3}
+  sprite4: {fileID: -1661827713, guid: c3d56ecefa738e04faeba807bdcf299b, type: 3}
+  sprite5: {fileID: -881270255, guid: c73d3cc9a8da0b347acc0c26c7ab2799, type: 3}
 --- !u!1 &745461270
 GameObject:
   m_ObjectHideFlags: 0
