@@ -121,32 +121,4 @@ public class CustomerManager : MonoBehaviour
             tableAvailable[1] = true;
         }
     }
-
-    public void CheckTableAvailable(int tableNumber)
-    {
-        if (tableNumber == 1)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (chairAvailable[i] != true)
-                {
-                    break;
-                }
-            }
-
-            tableAvailable[0] = true;
-        }
-        else if (tableNumber == 2)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if (chairAvailable2[i] != true)
-                {
-                    break;
-                }
-            }
-
-            tableAvailable[1] = true;
-        }
-    }
 }
