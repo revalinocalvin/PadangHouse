@@ -10,10 +10,15 @@ public class CustomerFoodMerged : MonoBehaviour
     public Transform customerFoodPoint;
 
     private GameObject player;
+    public GameObject food;
     private PlayerInteract playerInteract;
+
     private string requiredObjectTag;
+
     public bool order = false;
     public bool receivedFood = false;
+    public bool ready = false;
+
     Vector3 direction;
 
     void Start()
@@ -36,11 +41,11 @@ public class CustomerFoodMerged : MonoBehaviour
     {
         if (customerPathing.chairNumber == 1 || customerPathing.chairNumber == 2 || customerPathing.chairNumber == 5 || customerPathing.chairNumber == 6)
         {
-            customerFoodPoint.transform.localPosition = new Vector3(0, -2, 0);
+            customerFoodPoint.transform.localPosition = new Vector2(-2, 0);
         }
         else
         {
-            customerFoodPoint.transform.localPosition = new Vector3(0, 2, 0);
+            customerFoodPoint.transform.localPosition = new Vector2(2, 0);
         }
     }
 
@@ -49,6 +54,7 @@ public class CustomerFoodMerged : MonoBehaviour
         order = true;
         requiredObjectTag = FoodList.Instance.GetRandomFood();
         Debug.Log(requiredObjectTag);
+        customer.Foodsign(requiredObjectTag);
     }
 
     public void TrySubmitItem()
@@ -69,24 +75,29 @@ public class CustomerFoodMerged : MonoBehaviour
         }
     }
 
-    private void SubmitItem(GameObject food)
+    public void SubmitItem(GameObject food)
     {
+        Debug.Log("Submit Item Function");
         if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
         {
             EatingFinished(food);
         }
+
         else
         {
-            food.transform.SetParent(customerFoodPoint);
-            food.transform.localPosition = Vector2.zero;
-            playerInteract.grabbedObject = null;
-            receivedFood = true;
-
-            StartCoroutine(WaitEatingTime(food));
-        }
+            if (food.CompareTag(requiredObjectTag) && receivedFood == false)
+            {
+                Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
+                this.food = food;
+                food.transform.SetParent(customerFoodPoint);
+                food.transform.localPosition = Vector2.zero;
+                playerInteract.grabbedObject = null;
+                receivedFood = true;                
+            }                        
+        }          
     }
 
-    private IEnumerator WaitEatingTime(GameObject food)
+    public IEnumerator WaitEatingTime()
     {
         float eatingTime = 5f;
 

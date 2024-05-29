@@ -8,12 +8,15 @@ public class Customer : MonoBehaviour
     CustomerFoodMerged customerFood;
 
     public int customerStarsAmount = 3;
-    [SerializeField] private float customerPatience = 10f;
+    [SerializeField] private float customerPatience = 15f;
     private float patienceTimer;
     private bool stillPatient;
     private bool patienceTimerSet;
 
     public GameObject customerOrder;
+    public GameObject FoodOrange;
+    public GameObject FoodBlue;
+    public GameObject FoodRed;
     public GameObject[] customerStars;
 
     void Start()
@@ -52,6 +55,22 @@ public class Customer : MonoBehaviour
         else
         {
             customerOrder.SetActive(false);
+        }
+    }
+
+    public void Foodsign(string tag)
+    {
+        if (tag == "Food1")
+        {
+            FoodRed.SetActive(true) ;
+        }
+        else if (tag == "Food2")
+        {
+            FoodBlue.SetActive(true);
+        }
+        else if (tag == "Food3")
+        {
+            FoodOrange.SetActive(true);
         }
     }
 

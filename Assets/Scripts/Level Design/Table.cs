@@ -4,16 +4,70 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
+    
+    public HashSet<GameObject> customers = new HashSet<GameObject>();
+    public float radius = 3f;
 
-    // Start is called before the first frame update
-    void Start()
+    public void AddCustomers(GameObject customer)
     {
-        
+        customers.Add(customer);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
+    {                
+        if (InteractCheck())
+        {
+            foreach (GameObject customer in customers) 
+            {
+                CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
+                if (customerOrder.order == false)
+                {
+                    customerOrder.TakeOrder();
+                }               
+            }
+        }
+    }
+
+    public bool InteractCheck()
     {
-        
+        bool allOnChair = true;
+
+        foreach (GameObject customer in customers)
+        {
+            CustomerPathing customerPathing = customer.GetComponent<CustomerPathing>();
+            if (!customerPathing.onChair)
+            {
+                allOnChair = false;
+            }
+        }
+        return allOnChair;
+    }
+
+    public void Eat()
+    {
+        if (FoodCheck())
+        {
+            foreach (GameObject customer in customers)
+            {
+                CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
+                customerOrder.ready = true;
+                customerOrder.StartCoroutine(customerOrder.WaitEatingTime());
+            }
+            customers.Clear();
+        }        
+    }
+    public bool FoodCheck()
+    {
+        bool foodsPlaced = true;
+
+        foreach (GameObject customer in customers)
+        {
+            CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
+            if (!customerOrder.receivedFood)
+            {
+                foodsPlaced = false;
+            }
+        }
+        return foodsPlaced;
     }
 }

@@ -14,15 +14,17 @@ TagManager:
   - Food1
   - Food2
   - Food3
+  - Table
+  - CustomerGroup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
+  - Object
+  - Interactable
   - 
   - 
   - 
