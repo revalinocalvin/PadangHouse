@@ -22,8 +22,11 @@ public class Table : MonoBehaviour
                 CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
                 if (customerOrder.order == false)
                 {
-                    customerOrder.TakeOrder();
-                }               
+                    customerOrder.TakeOrder();                    
+                }
+
+                Customer customerSatisfaction = customer.GetComponent<Customer>();
+                customerSatisfaction.table = this.GetComponent<Table>();
             }
         }
     }
@@ -69,5 +72,31 @@ public class Table : MonoBehaviour
             }
         }
         return foodsPlaced;
+    }
+
+    /*public void CustomerAngry()
+    {
+        foreach (GameObject customer in customers)
+        {
+            Customer customerSatisfaction = customer.GetComponent<Customer>();
+            customerSatisfaction.customerStarsAmount = 0;
+            customerSatisfaction.Angry();
+            //customerSatisfaction.angry = false;           
+        }
+        customers.Clear();
+    }*/
+
+    public void CustomerAngry(Customer exclude)
+    {
+        foreach (GameObject customer in customers)
+        {
+            Customer customerSatisfaction = customer.GetComponent<Customer>();
+            if (customerSatisfaction != exclude)
+            {
+                
+                customerSatisfaction.Angry();
+            }
+        }
+        customers.Clear();
     }
 }

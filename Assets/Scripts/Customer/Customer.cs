@@ -10,8 +10,10 @@ public class Customer : MonoBehaviour
     public int customerStarsAmount = 3;
     [SerializeField] private float customerPatience = 15f;
     private float patienceTimer;
-    private bool stillPatient;
+    public bool stillPatient;
     private bool patienceTimerSet;
+    public bool angry = true;
+    public Table table;
 
     public GameObject customerOrder;
     public GameObject FoodOrange;
@@ -74,14 +76,18 @@ public class Customer : MonoBehaviour
         }
     }
 
-    void Patience()
+    public void Patience()
     {
+        
         if (!stillPatient)
         {
-            customerPathing.eatingFinished = true;
+            Angry();
 
-            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-            sprite.color = Color.red;
+            if (this.gameObject.CompareTag("CustomerGroup"))
+            {
+                table.CustomerAngry(this);
+
+            }                      
         }
         else if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
         {
@@ -110,5 +116,26 @@ public class Customer : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Angry()
+    {
+        customerPathing.eatingFinished = true;
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.color = Color.red;
+        customerFood.receivedFood = true;
+        customerStarsAmount = 0;
+
+        if (customerPathing.table == 1)
+        {
+            CustomerManager.Instance.chairAvailable[customerPathing.chairNumber - 1] = true;
+            CustomerManager.Instance.CheckTableAvailable(1);
+        }
+        else if (customerPathing.table == 2)
+        {
+            CustomerManager.Instance.chairAvailable2[customerPathing.chairNumber - 5] = true;
+            CustomerManager.Instance.CheckTableAvailable(2);
+        }
+
     }
 }
