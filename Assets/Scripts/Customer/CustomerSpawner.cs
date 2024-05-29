@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
@@ -14,6 +15,12 @@ public class CustomerSpawner : MonoBehaviour
 
     public Table table1;
     public Table table2;
+
+    public Sprite sprite1;
+    public Sprite sprite2;
+    public Sprite sprite3;
+    public Sprite sprite4;
+    public Sprite sprite5;
 
     void Start()
     {
@@ -67,7 +74,32 @@ public class CustomerSpawner : MonoBehaviour
             {
                 if (CustomerManager.Instance.chairAvailable3.Contains(true))
                 {
-                    Instantiate(customerPrefab, transform.position, Quaternion.identity).GetComponent<CustomerPathing>().table = 0;
+                    GameObject customer = Instantiate(customerPrefab, transform.position, Quaternion.identity);
+                    customer.GetComponent<CustomerPathing>().table = 0;
+
+                    SpriteRenderer asset = customer.GetComponent<SpriteRenderer>();
+                    int spriteNumber = Random.Range(0, 5);
+                    switch (spriteNumber)
+                    {
+                        case 0:
+                            asset.sprite = sprite1;
+                            break;
+                        case 1:
+                            asset.sprite = sprite2;
+                            break;
+                        case 2:
+                            asset.sprite = sprite3;
+                            break;
+                        case 3:
+                            asset.sprite = sprite4;
+                            break;
+                        case 4:
+                            asset.sprite = sprite5;
+                            break;
+                        default:
+                            break;
+                    }
+
                     CustomerManager.Instance.numberOfCustomers++;
                 }
 
@@ -82,12 +114,38 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnCustomers(int tableNumber)
+    
+
+IEnumerator SpawnCustomers(int tableNumber)
     {
         for (int i = 0; i < customerGroupSpawn; i++)
         {           
             GameObject customer = Instantiate(customerPrefab, transform.position, Quaternion.identity);
             customer.tag = "CustomerGroup";
+
+            SpriteRenderer asset = customer.GetComponent<SpriteRenderer>();
+            int spriteNumber = Random.Range(0, 5);           
+            switch (spriteNumber)
+            {
+                case 0:
+                    asset.sprite = sprite1;
+                    break;
+                case 1:
+                    asset.sprite = sprite2;
+                    break;
+                case 2:
+                    asset.sprite = sprite3;
+                    break;
+                case 3:
+                    asset.sprite = sprite4;
+                    break;
+                case 4:
+                    asset.sprite = sprite5;
+                    break;
+                default:
+                    break;
+            }
+            
             customer.GetComponent<CustomerPathing>().table = tableNumber;
             if (tableNumber == 1)
             {
