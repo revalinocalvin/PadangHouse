@@ -8,7 +8,7 @@ public class Customer : MonoBehaviour
     CustomerFoodMerged customerFood;
 
     public int customerStarsAmount = 3;
-    [SerializeField] private float customerPatience = 20f;
+    [SerializeField] private float customerPatience = 15f;
     private float patienceTimer;
     private bool stillPatient;
     private bool patienceTimerSet;

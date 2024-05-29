@@ -543,11 +543,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerStarsAmount: 3
-  customerPatience: 30
+  customerPatience: 15
   customerOrder: {fileID: 1539671248287028500}
-  FoodRed: {fileID: 7891605391959187297}
-  FoodBlue: {fileID: 8117024004408448682}
   FoodOrange: {fileID: 4653155684979690167}
+  FoodBlue: {fileID: 8117024004408448682}
+  FoodRed: {fileID: 7891605391959187297}
   customerStars:
   - {fileID: 9112500668843590432}
   - {fileID: 5929217877379443549}
