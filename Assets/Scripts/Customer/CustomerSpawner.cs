@@ -49,8 +49,9 @@ public class CustomerSpawner : MonoBehaviour
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
 
-            Loop:
+        Loop:
             int dineInOrTakeAway = Random.Range(1, 11);
+            Debug.Log(dineInOrTakeAway);
 
             if (dineInOrTakeAway <= 7 && CustomerManager.Instance.tableAvailable.Contains(true))
             {                

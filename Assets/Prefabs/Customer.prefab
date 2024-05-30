@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 3065367507560085700}
   - component: {fileID: 5626373545274205286}
   - component: {fileID: 7840773578362805180}
+  - component: {fileID: 1893819775635828588}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -544,6 +545,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerStarsAmount: 3
   customerPatience: 5
+  patienceTimer: 0
+  patienceTimerSet: 0
   stillPatient: 0
   angry: 1
   table: {fileID: 0}
@@ -571,6 +574,7 @@ MonoBehaviour:
   chairNumber: 0
   eatingFinished: 0
   table: 0
+  animator: {fileID: 1893819775635828588}
 --- !u!114 &7840773578362805180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +592,27 @@ MonoBehaviour:
   order: 0
   receivedFood: 0
   ready: 0
+--- !u!95 &1893819775635828588
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641059811202406160}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af8d4d2fc56445644b07a0089a768356, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7891605391959187297
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class CustomerPathing : MonoBehaviour
     public int table;
     
     private Vector3 direction;
+    public Animator animator;
 
     void Update()
     {
@@ -34,6 +35,8 @@ public class CustomerPathing : MonoBehaviour
             chairDecided = false;
             MoveToExit();
         }
+
+        Animation();
     }
 
     void DecideChair()
@@ -121,15 +124,24 @@ public class CustomerPathing : MonoBehaviour
         }
 
         transform.position += direction * CustomerManager.Instance.customerMoveSpeed * Time.deltaTime;
+        //Debug.Log("X = " + direction.x + " Y = " + direction.y);
+    }
+
+    void Animation()
+    {
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 
     private Vector3 DirectionToChair(int index)
     {
-        return direction = (CustomerManager.Instance.chairPoint[index].transform.position - transform.position).normalized;
+        //Debug.Log("X = " + CustomerManager.Instance.chairPoint[index].transform.position + " Y = " + transform.position + " Direction =  " + direction);
+        return direction = (CustomerManager.Instance.chairPoint[index].transform.position - transform.position).normalized;        
     }
 
     private bool ArrivedOnChairPoint(int index)
-    {
+    {        
         return Vector2.Distance(CustomerManager.Instance.chairPoint[index].transform.position, transform.position) <= 0.1f;
     }
 
@@ -139,7 +151,7 @@ public class CustomerPathing : MonoBehaviour
     }
 
     private bool ArrivedOnChairPoint2(int index)
-    {
+    {        
         return Vector2.Distance(CustomerManager.Instance.chairPoint2[index].transform.position, transform.position) <= 0.1f;
     }
 
@@ -149,7 +161,7 @@ public class CustomerPathing : MonoBehaviour
     }
 
     private bool ArrivedOnChairPoint3(int index)
-    {
+    {       
         return Vector2.Distance(CustomerManager.Instance.chairPoint3[index].transform.position, transform.position) <= 0.1f;
     }
 
@@ -182,6 +194,9 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint(0))
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -195,6 +210,9 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint(1))
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -217,6 +235,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint(2) && pathCounter == 1)
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -239,7 +260,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint(3) && pathCounter == 1)
         {
             onChair = true;
-            Debug.Log(this.GetComponent<Customer>().table.InteractCheck());
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -262,6 +285,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(0) && pathCounter == 1)
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -284,6 +310,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(1) && pathCounter == 1)
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -306,6 +335,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(2) && pathCounter == 1)
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }
@@ -328,6 +360,9 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(3) && pathCounter == 1)
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
+
             PatienceCheck();
         }
     }

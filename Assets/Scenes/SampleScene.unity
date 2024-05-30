@@ -1019,7 +1019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &375782752
 Transform:
   m_ObjectHideFlags: 0
@@ -2532,7 +2532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1226151505
 Transform:
   m_ObjectHideFlags: 0
@@ -2809,7 +2809,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.21178591, y: 0}
+  m_Offset: {x: 0.21178591, y: -0.7308668}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2820,7 +2820,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0364282, y: 2.48}
+  m_Size: {x: 1.0364282, y: 0.6771953}
   m_EdgeRadius: 0
 --- !u!1 &1257321508
 GameObject:
@@ -3260,7 +3260,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.047254324, y: 0.13703793}
+  m_Offset: {x: -0.012862295, y: -0.6608567}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3271,7 +3271,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2797635, y: 2.205924}
+  m_Size: {x: 1.2109795, y: 0.6101346}
   m_EdgeRadius: 0
 --- !u!1 &1502654385
 GameObject:
@@ -3796,7 +3796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1615643926
 Transform:
   m_ObjectHideFlags: 0
@@ -4848,7 +4848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2139080497
 Transform:
   m_ObjectHideFlags: 0
@@ -5045,11 +5045,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1908511855160222929, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 1.085268
       objectReference: {fileID: 0}
     - target: {fileID: 1908511855160222929, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.5
+      value: -1.1395085
       objectReference: {fileID: 0}
     - target: {fileID: 2453841925521623590, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: animator
@@ -5121,7 +5121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8443448384768286519, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
