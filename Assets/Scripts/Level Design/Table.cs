@@ -26,7 +26,7 @@ public class Table : MonoBehaviour
                 }
 
                 Customer customerSatisfaction = customer.GetComponent<Customer>();
-                customerSatisfaction.table = this.GetComponent<Table>();
+                //customerSatisfaction.table = this.GetComponent<Table>();
             }
         }
     }
@@ -92,8 +92,7 @@ public class Table : MonoBehaviour
         {
             Customer customerSatisfaction = customer.GetComponent<Customer>();
             if (customerSatisfaction != exclude)
-            {
-                
+            {                
                 customerSatisfaction.Angry();
             }
         }

@@ -150,10 +150,12 @@ IEnumerator SpawnCustomers(int tableNumber)
             if (tableNumber == 1)
             {
                 table1.AddCustomers(customer);
+                customer.GetComponent<Customer>().table = table1;
             }
             else
             {
                 table2.AddCustomers(customer);
+                customer.GetComponent<Customer>().table = table2;
             }
 
             yield return new WaitForSeconds(0.5f);
