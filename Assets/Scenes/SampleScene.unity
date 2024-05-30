@@ -1820,6 +1820,11 @@ MonoBehaviour:
   sprite3: {fileID: -353270763, guid: 717fb19b147309c4bacaa983feb856a4, type: 3}
   sprite4: {fileID: -1661827713, guid: c3d56ecefa738e04faeba807bdcf299b, type: 3}
   sprite5: {fileID: -881270255, guid: c73d3cc9a8da0b347acc0c26c7ab2799, type: 3}
+  anime1: {fileID: 9100000, guid: 0890bee8e5cc95b44a51817bf91752b3, type: 2}
+  anime2: {fileID: 9100000, guid: 4167d405d8303aa488a81b2fd1b2000d, type: 2}
+  anime3: {fileID: 9100000, guid: b315efa86f1f86d4aa0616ee8b8494c6, type: 2}
+  anime4: {fileID: 9100000, guid: baec3586e350d3343a43dcaa2e654fb5, type: 2}
+  anime5: {fileID: 9100000, guid: 86027ff679a9d4e46b5b1c21dbb18c0e, type: 2}
 --- !u!1 &745461270
 GameObject:
   m_ObjectHideFlags: 0

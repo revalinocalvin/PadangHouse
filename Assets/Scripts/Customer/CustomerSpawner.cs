@@ -22,6 +22,12 @@ public class CustomerSpawner : MonoBehaviour
     public Sprite sprite4;
     public Sprite sprite5;
 
+    public RuntimeAnimatorController anime1;
+    public RuntimeAnimatorController anime2;
+    public RuntimeAnimatorController anime3;
+    public RuntimeAnimatorController anime4;
+    public RuntimeAnimatorController anime5;
+
     void Start()
     {
         maxCustomerInside = CustomerManager.Instance.chairPoint.Length + CustomerManager.Instance.chairPoint2.Length;
@@ -79,23 +85,30 @@ public class CustomerSpawner : MonoBehaviour
                     customer.GetComponent<CustomerPathing>().table = 0;
 
                     SpriteRenderer asset = customer.GetComponent<SpriteRenderer>();
+
+                    Animator animate = customer.GetComponent<Animator>();
                     int spriteNumber = Random.Range(0, 5);
                     switch (spriteNumber)
                     {
                         case 0:
                             asset.sprite = sprite1;
+                            animate.runtimeAnimatorController = anime1;
                             break;
                         case 1:
                             asset.sprite = sprite2;
+                            animate.runtimeAnimatorController = anime2;
                             break;
                         case 2:
                             asset.sprite = sprite3;
+                            animate.runtimeAnimatorController = anime3;
                             break;
                         case 3:
                             asset.sprite = sprite4;
+                            animate.runtimeAnimatorController = anime4;
                             break;
                         case 4:
                             asset.sprite = sprite5;
+                            animate.runtimeAnimatorController = anime5;
                             break;
                         default:
                             break;
@@ -125,23 +138,30 @@ IEnumerator SpawnCustomers(int tableNumber)
             customer.tag = "CustomerGroup";
 
             SpriteRenderer asset = customer.GetComponent<SpriteRenderer>();
+
+            Animator animate = customer.GetComponent<Animator>();
             int spriteNumber = Random.Range(0, 5);           
             switch (spriteNumber)
             {
                 case 0:
                     asset.sprite = sprite1;
+                    animate.runtimeAnimatorController = anime1;
                     break;
                 case 1:
                     asset.sprite = sprite2;
+                    animate.runtimeAnimatorController = anime2;
                     break;
                 case 2:
                     asset.sprite = sprite3;
+                    animate.runtimeAnimatorController = anime3;
                     break;
                 case 3:
                     asset.sprite = sprite4;
+                    animate.runtimeAnimatorController = anime4;
                     break;
                 case 4:
                     asset.sprite = sprite5;
+                    animate.runtimeAnimatorController = anime5;
                     break;
                 default:
                     break;
