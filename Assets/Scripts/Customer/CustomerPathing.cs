@@ -243,9 +243,18 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
+            DirectionToPath(0);
+        }
+        else if (pathCounter == 1)
+        {
             DirectionToChair2(0);
         }
-        if (ArrivedOnChairPoint2(0))
+
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        {
+            pathCounter++;
+        }
+        else if (ArrivedOnChairPoint2(0) && pathCounter == 1)
         {
             onChair = true;
         }
@@ -255,9 +264,18 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
+            DirectionToPath(0);
+        }
+        else if (pathCounter == 1)
+        {
             DirectionToChair2(1);
         }
-        if (ArrivedOnChairPoint2(1))
+
+        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        {
+            pathCounter++;
+        }
+        else if (ArrivedOnChairPoint2(1) && pathCounter == 1)
         {
             onChair = true;
         }
@@ -267,14 +285,14 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            DirectionToPath(0);
+            DirectionToPath(1);
         }
         else if (pathCounter == 1)
         {
             DirectionToChair2(2);
         }
 
-        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        if (ArrivedOnPathPoint(1) && pathCounter == 0)
         {
             pathCounter++;
         }
@@ -288,14 +306,14 @@ public class CustomerPathing : MonoBehaviour
     {
         if (pathCounter == 0)
         {
-            DirectionToPath(0);
+            DirectionToPath(1);
         }
         else if (pathCounter == 1)
         {
             DirectionToChair2(3);
         }
 
-        if (ArrivedOnPathPoint(0) && pathCounter == 0)
+        if (ArrivedOnPathPoint(1) && pathCounter == 0)
         {
             pathCounter++;
         }

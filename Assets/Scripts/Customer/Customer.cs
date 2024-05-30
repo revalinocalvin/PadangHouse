@@ -86,7 +86,6 @@ public class Customer : MonoBehaviour
             if (this.gameObject.CompareTag("CustomerGroup"))
             {
                 table.CustomerAngry(this);
-
             }                      
         }
         else if (Time.time >= patienceTimer && patienceTimerSet == true && customerFood.receivedFood == false)
