@@ -9,9 +9,9 @@ public class Customer : MonoBehaviour
 
     public int customerStarsAmount = 3;
     [SerializeField] private float customerPatience = 15f;
-    private float patienceTimer;
-    public bool stillPatient;
-    private bool patienceTimerSet;
+    public float patienceTimer;
+    public bool patienceTimerSet;
+    public bool stillPatient;    
     public bool angry = true;
     public Table table;
 
@@ -34,7 +34,7 @@ public class Customer : MonoBehaviour
 
     void Update()
     {
-        if (customerPathing.onChair == true && patienceTimerSet == false)
+        if (customerPathing.onChair == true && patienceTimerSet == false && this.CompareTag("Customer"))
         {
             patienceTimerSet = true;
             patienceTimer = Time.time + customerPatience;

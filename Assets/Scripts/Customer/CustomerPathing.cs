@@ -182,6 +182,7 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint(0))
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -194,6 +195,7 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint(1))
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -215,6 +217,7 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint(2) && pathCounter == 1)
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -236,6 +239,8 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint(3) && pathCounter == 1)
         {
             onChair = true;
+            Debug.Log(this.GetComponent<Customer>().table.InteractCheck());
+            PatienceCheck();
         }
     }
 
@@ -257,6 +262,7 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(0) && pathCounter == 1)
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -278,6 +284,7 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(1) && pathCounter == 1)
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -299,6 +306,7 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(2) && pathCounter == 1)
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -320,6 +328,7 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnChairPoint2(3) && pathCounter == 1)
         {
             onChair = true;
+            PatienceCheck();
         }
     }
 
@@ -401,6 +410,15 @@ public class CustomerPathing : MonoBehaviour
         else if (ArrivedOnExitPoint())
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    void PatienceCheck()
+    {
+        Debug.Log(this.GetComponent<Customer>().table.InteractCheck());
+        if (this.GetComponent<Customer>().table.InteractCheck())
+        {
+            this.GetComponent<Customer>().table.PatienceStart();
         }
     }
 }

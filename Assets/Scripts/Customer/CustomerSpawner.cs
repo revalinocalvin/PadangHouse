@@ -50,9 +50,9 @@ public class CustomerSpawner : MonoBehaviour
             customerNextSpawnTime = Time.time + randomNumber;
 
             Loop:
-            int dineInOrTakeAway = Random.Range(1, 3);
+            int dineInOrTakeAway = Random.Range(1, 11);
 
-            if (dineInOrTakeAway == 1 && CustomerManager.Instance.tableAvailable.Contains(true))
+            if (dineInOrTakeAway <= 7 && CustomerManager.Instance.tableAvailable.Contains(true))
             {                
                 customerGroupSpawn = Random.Range(2, 5);
 

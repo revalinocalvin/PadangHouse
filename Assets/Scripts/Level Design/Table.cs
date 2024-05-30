@@ -98,4 +98,14 @@ public class Table : MonoBehaviour
         }
         customers.Clear();
     }
+
+    public void PatienceStart()
+    {
+        foreach (GameObject customer in customers)
+        {
+            Customer customerSatisfaction = customer.GetComponent<Customer>();
+            customerSatisfaction.patienceTimer = Time.time + 5f;
+            customerSatisfaction.patienceTimerSet = true;
+        }
+    }
 }
