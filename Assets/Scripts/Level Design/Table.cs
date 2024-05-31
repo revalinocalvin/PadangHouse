@@ -74,18 +74,6 @@ public class Table : MonoBehaviour
         return foodsPlaced;
     }
 
-    /*public void CustomerAngry()
-    {
-        foreach (GameObject customer in customers)
-        {
-            Customer customerSatisfaction = customer.GetComponent<Customer>();
-            customerSatisfaction.customerStarsAmount = 0;
-            customerSatisfaction.Angry();
-            //customerSatisfaction.angry = false;           
-        }
-        customers.Clear();
-    }*/
-
     public void CustomerAngry(Customer exclude)
     {
         foreach (GameObject customer in customers)

@@ -6,6 +6,7 @@ public class CustomerPathing : MonoBehaviour
 {
     public bool onChair = false;
     private bool chairDecided = false;
+    public bool isEating = false;
     public int chairNumber;
 
     private int pathCounter = 0;
@@ -132,6 +133,11 @@ public class CustomerPathing : MonoBehaviour
         animator.SetFloat("Horizontal", direction.x);
         animator.SetFloat("Vertical", direction.y);
         animator.SetFloat("Speed", direction.sqrMagnitude);
+        if (this.CompareTag("CustomerGroup"))
+        {
+            animator.SetBool("OnChair", onChair);
+        }        
+        animator.SetBool("Eating", isEating);
     }
 
     private Vector3 DirectionToChair(int index)
@@ -237,6 +243,7 @@ public class CustomerPathing : MonoBehaviour
             onChair = true;
             direction.x = 0;
             direction.y = 0;
+            this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
 
             PatienceCheck();
         }
@@ -262,6 +269,7 @@ public class CustomerPathing : MonoBehaviour
             onChair = true;
             direction.x = 0;
             direction.y = 0;
+            this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
 
             PatienceCheck();
         }
@@ -337,6 +345,7 @@ public class CustomerPathing : MonoBehaviour
             onChair = true;
             direction.x = 0;
             direction.y = 0;
+            this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
 
             PatienceCheck();
         }
@@ -362,6 +371,7 @@ public class CustomerPathing : MonoBehaviour
             onChair = true;
             direction.x = 0;
             direction.y = 0;
+            this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 180f, transform.rotation.z);
 
             PatienceCheck();
         }
@@ -376,6 +386,8 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint3(0))
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
         }
     }
 
@@ -388,6 +400,8 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint3(1))
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
         }
     }
 
@@ -400,6 +414,8 @@ public class CustomerPathing : MonoBehaviour
         if (ArrivedOnChairPoint3(2))
         {
             onChair = true;
+            direction.x = 0;
+            direction.y = 0;
         }
     }
 

@@ -571,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onChair: 0
+  isEating: 0
   chairNumber: 0
   eatingFinished: 0
   table: 0
@@ -602,7 +603,7 @@ Animator:
   m_GameObject: {fileID: 7641059811202406160}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4167d405d8303aa488a81b2fd1b2000d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

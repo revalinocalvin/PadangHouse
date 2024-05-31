@@ -45,7 +45,7 @@ public class CustomerFoodMerged : MonoBehaviour
         }
         else
         {
-            customerFoodPoint.transform.localPosition = new Vector2(2, 0);
+            customerFoodPoint.transform.localPosition = new Vector2(-2, 0);            
         }
     }
 
@@ -99,6 +99,7 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public IEnumerator WaitEatingTime()
     {
+        customerPathing.isEating = true;
         float eatingTime = 5f;
 
         yield return new WaitForSeconds(eatingTime);
@@ -109,6 +110,7 @@ public class CustomerFoodMerged : MonoBehaviour
     private void EatingFinished(GameObject food)
     {
         customerPathing.eatingFinished = true;
+        this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
 
         if (customerPathing.table == 1)
         {
