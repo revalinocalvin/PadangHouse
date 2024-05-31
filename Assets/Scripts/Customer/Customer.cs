@@ -120,9 +120,18 @@ public class Customer : MonoBehaviour
     public void Angry()
     {
         customerPathing.eatingFinished = true;
+
         this.GetComponent<Transform>().transform.rotation = Quaternion.Euler(transform.rotation.x, 0f, transform.rotation.z);
+
+
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         sprite.color = Color.red;
+
+        if (customerFood.food != null)
+        {
+            Destroy(customerFood.food);
+        }
+
         customerFood.receivedFood = true;
         customerStarsAmount = 0;
 
