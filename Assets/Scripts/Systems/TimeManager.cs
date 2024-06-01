@@ -37,7 +37,15 @@ public class TimeManager : MonoBehaviour
                 OnHourChanged?.Invoke();
             }
 
-            timer = DayTransition.Instance.timer;
+            if (Hour >= 20)
+            {
+                timer = 1f;
+            }
+            else
+            {
+                timer = DayTransition.Instance.timer;
+            }
+            
         }
     }
 }

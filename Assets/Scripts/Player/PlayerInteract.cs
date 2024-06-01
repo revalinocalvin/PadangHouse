@@ -83,8 +83,7 @@ public class PlayerInteract : MonoBehaviour
         if (inTable)
         {
             table = FindClosest(_objectsInTrigger).GetComponent<Table>();
-            table.Interact();
-            //Debug.Log("check inTable");
+            table.Interact();            
         }
 
 
@@ -92,7 +91,6 @@ public class PlayerInteract : MonoBehaviour
         {
             Debug.Log("Not Full");
 
-            // Grabbing object method
             if (InArea)
             {
                 if (_objectsInTrigger.Count != 0)

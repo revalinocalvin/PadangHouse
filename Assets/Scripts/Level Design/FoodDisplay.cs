@@ -29,7 +29,7 @@ public class FoodDisplay : MonoBehaviour
 
     private void TrySubmitItem()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 2f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 1f)
         {
             foreach (Transform child in player.transform)
             {
