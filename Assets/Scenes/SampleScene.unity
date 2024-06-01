@@ -267,6 +267,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1442181211}
+  - {fileID: 1256865753}
+  - {fileID: 1211723192}
   - {fileID: 1324796424}
   - {fileID: 1023890232}
   - {fileID: 1290221336}
@@ -3055,9 +3058,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ac160cd8d133c4fac99793e82d8f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foods: []
+  foods:
+  - {fileID: 7447941085043148517, guid: 2eec161c663bbaa47a158e9d312a882a, type: 3}
+  - {fileID: 6142489569150054518, guid: 655bcb51ccc2d6a4ebae9f1f9d41179f, type: 3}
+  - {fileID: 5217249496043306908, guid: dff549ebb3cc3174184b528ddd37c9df, type: 3}
   sprites: []
-  dish: {fileID: 0}
+  dish: {fileID: 2848265983279272944, guid: dbdc737fba838064fa648c4404329c2e, type: 3}
+  slotPoint:
+  - {fileID: 2099702347}
+  - {fileID: 995569339}
+  - {fileID: 1389674281}
+  slotAvailable: 010101
 --- !u!1 &1087685034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,12 +3546,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211723190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.03, y: -6.22, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.00843, y: -14.297367, z: 0.011019631}
   m_LocalScale: {x: 1.4107, y: 1.4107, z: 1.4107}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 81291442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226151504
 GameObject:
@@ -3878,12 +3889,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256865751}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.94, y: 2.93, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.9615707, y: -5.1473665, z: 0.011019631}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 81291442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1256865754
 BoxCollider2D:
@@ -4510,12 +4521,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442181209}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.77, y: 2.931, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.791571, y: -5.146367, z: 0.011019631}
   m_LocalScale: {x: 8.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 81291442}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1442181212
 BoxCollider2D:
@@ -6087,6 +6098,8 @@ MonoBehaviour:
   foods: []
   sprites: []
   dish: {fileID: 0}
+  slotPoint: []
+  slotAvailable: 
 --- !u!114 &1977909639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6102,6 +6115,8 @@ MonoBehaviour:
   foods: []
   sprites: []
   dish: {fileID: 0}
+  slotPoint: []
+  slotAvailable: 
 --- !u!1001 &2007781211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6964,7 +6979,4 @@ SceneRoots:
   - {fileID: 135286274}
   - {fileID: 6953528999634559386}
   - {fileID: 355163131}
-  - {fileID: 1256865753}
-  - {fileID: 1442181211}
-  - {fileID: 1211723192}
   - {fileID: 81291442}
