@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 0}
-  m_LocalScale: {x: 0.6666667, y: 0.12500001, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6192074992376016350, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
   objectToSpawn: {fileID: 0}
-  maxInteractions: 5
+  maxInteractions: 6
