@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 5626373545274205286}
   - component: {fileID: 7840773578362805180}
   - component: {fileID: 1893819775635828588}
+  - component: {fileID: 4062436922938154027}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -485,7 +486,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 85008266, guid: c3d56ecefa738e04faeba807bdcf299b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -528,8 +529,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.92957366}
+  m_Size: {x: 1, y: 1.4359891}
   m_Direction: 0
 --- !u!114 &3065367507560085700
 MonoBehaviour:
@@ -603,7 +604,7 @@ Animator:
   m_GameObject: {fileID: 7641059811202406160}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4167d405d8303aa488a81b2fd1b2000d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0890bee8e5cc95b44a51817bf91752b3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -614,6 +615,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &4062436922938154027
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7641059811202406160}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01, y: 2.73}
+  m_Size: {x: 1.65, y: 1.85}
+  m_Direction: 0
 --- !u!1 &7891605391959187297
 GameObject:
   m_ObjectHideFlags: 0
