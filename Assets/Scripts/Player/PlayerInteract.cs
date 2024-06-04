@@ -24,6 +24,9 @@ public class PlayerInteract : MonoBehaviour
     private bool inTable = false;
     private bool inBell = false;
 
+    public Animator animator;
+    private bool grabbing = false;
+
     void Start()
     {
         grabPoint = GameObject.Find("Player/GrabPosition").transform;
@@ -43,13 +46,24 @@ public class PlayerInteract : MonoBehaviour
             CheckGrabPointChild();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (grabbedObject != null)
+        {
+            grabbing = true;
+            animator.SetBool("Grabbing", grabbing);
+        }
+        else
+        {
+            grabbing = false;
+            animator.SetBool("Grabbing", grabbing);
+        }
+
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             foreach (Collider2D collider in _objectsInTrigger)
             {
                 Debug.Log("Current GameObject" + collider.name);
             }
-        }
+        }*/
     }
 
     void CheckGrabPointChild()
@@ -97,8 +111,8 @@ public class PlayerInteract : MonoBehaviour
             {
                 Input.ResetInputAxes();
                 dishUI.SetActive(true);
-                //DishSpawn selectUI = bell.GetComponent<DishSpawn>();
-                //selectUI.SelectFoods();
+                PlayerMovement playerMovement = this.GetComponent<PlayerMovement>();
+                playerMovement.enabled = false;
             }            
         }
 

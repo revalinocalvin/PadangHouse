@@ -12,6 +12,7 @@ public class DishSpawn : MonoBehaviour
 
     public GameObject dish;
     public GameObject dishUI;
+    public GameObject player;
 
     public GameObject[] slotPoint;
     public bool[] slotAvailable;
@@ -58,9 +59,12 @@ public class DishSpawn : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 CheckSlot();
-                Debug.Log("DishSpawn Set false");
+
                 ChooseFood();
+
                 dishUI.SetActive(false);
+                PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+                playerMovement.enabled = true;
             }
         }
     }
