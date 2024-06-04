@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
-using UnityEditor.VersionControl;
 using TMPro;
 using UnityEngine;
 
 public class DishSpawn : MonoBehaviour
 {
     public GameObject[] foods;
+
+    [Header("Assigned Sprite for Dish")]
     public Sprite[] sprites;
 
     public GameObject dish;
@@ -79,6 +80,8 @@ public class DishSpawn : MonoBehaviour
                 GameObject tray = Instantiate(dish, slot.transform.position, Quaternion.identity);
                 tray.transform.SetParent(slot.transform);
                 ObjectSpawner trayInfo = tray.GetComponent<ObjectSpawner>();
+                SpriteRenderer asset = tray.GetComponent<SpriteRenderer>();
+                asset.sprite = sprites[choose];
                 trayInfo.objectToSpawn = foods[choose]; 
                 slotAvailable[i] = false;
                 

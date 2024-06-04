@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseCanvas;
+
+    [Header("Selected")]
+    [SerializeField] private GameObject resumeFirst;
 
     private bool isPaused;
     
@@ -29,6 +33,8 @@ public class PauseManager : MonoBehaviour
         }        
     }
 
+    #region pause mechanic
+
     public void Pause()
     {
         isPaused = true;
@@ -45,6 +51,9 @@ public class PauseManager : MonoBehaviour
         ClosePause();
     }
 
+    #endregion
+
+    #region pause function
     private void OpenPauseMenu()
     {
         pauseCanvas.SetActive(true);
@@ -54,4 +63,24 @@ public class PauseManager : MonoBehaviour
     {
         pauseCanvas.SetActive(false);
     }
+
+    private void QuitGame()
+    {
+        Application.Quit();
+    }
+    #endregion
+
+    #region pause button actions
+
+    public void onResumePress()
+    {
+        Unpause();
+    }
+
+    public void onQuitPress()
+    {
+        QuitGame();
+    }
+
+    #endregion
 }

@@ -17,6 +17,9 @@ TagManager:
   - Table
   - CustomerGroup
   - Bell
+  - Food4
+  - Food5
+  - Food6
   layers:
   - Default
   - TransparentFX
