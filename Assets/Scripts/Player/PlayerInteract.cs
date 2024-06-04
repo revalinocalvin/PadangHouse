@@ -10,6 +10,7 @@ public class PlayerInteract : MonoBehaviour
 
     public GameObject grabbedObject;
     private GameObject objectToGrab;
+    public GameObject dishUI;
 
     private HashSet<Collider2D> _objectsInTrigger = new HashSet<Collider2D>();
     private ObjectSpawner objectSpawner;
@@ -21,10 +22,12 @@ public class PlayerInteract : MonoBehaviour
     private bool foodReady = false;
     private bool trashbin = false;
     private bool inTable = false;
+    private bool inBell = false;
 
     void Start()
     {
         grabPoint = GameObject.Find("Player/GrabPosition").transform;
+        
     }
 
     void Update()
@@ -86,6 +89,19 @@ public class PlayerInteract : MonoBehaviour
             table.Interact();            
         }
 
+        if (inBell && dishUI.active == false)
+        {
+            Debug.Log("inBell Interacted");
+            GameObject bell = FindClosest(_objectsInTrigger).gameObject;
+            if (bell.CompareTag("Bell"))
+            {
+                Input.ResetInputAxes();
+                dishUI.SetActive(true);
+                //DishSpawn selectUI = bell.GetComponent<DishSpawn>();
+                //selectUI.SelectFoods();
+            }            
+        }
+
 
         if (grabbedObject == null)
         {
@@ -104,7 +120,11 @@ public class PlayerInteract : MonoBehaviour
                     objectSpawner = FindClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
                     objectToGrab = objectSpawner.SpawnObject();                    
                 }
-                Grab(objectToGrab);
+
+                if (!objectToGrab.CompareTag("Bell"))
+                {
+                    Grab(objectToGrab);
+                }                
             }            
         }
 
@@ -162,7 +182,7 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("FoodTray"))
         {
-            //Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
+            Debug.Log("RayPosition collided with a Menu Dish object: " + collidedObject.gameObject.name);
 
             InArea = true;
             _objectsInTrigger.Add(collidedObject);
@@ -193,11 +213,17 @@ public class PlayerInteract : MonoBehaviour
 
         if (collidedObject.CompareTag("Table"))
         {
-            Debug.Log("RayPosition collided with a Table object: " + collidedObject.gameObject.name);
+            //Debug.Log("RayPosition collided with a Table object: " + collidedObject.gameObject.name);
             _objectsInTrigger.Add(collidedObject);
             inTable = true;
         }
 
+        if (collidedObject.CompareTag("Bell"))
+        {
+            Debug.Log("RayPosition collided with a Bell object: " + collidedObject.gameObject.name);
+            _objectsInTrigger.Add(collidedObject);
+            inBell = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collidedObject)
@@ -238,6 +264,12 @@ public class PlayerInteract : MonoBehaviour
             Debug.Log("RayPosition not collided with a Table object");
             _objectsInTrigger.Remove(collidedObject);
             inTable = false;
+        }
+
+        if (collidedObject.CompareTag("Bell"))
+        {
+            _objectsInTrigger.Remove(collidedObject);
+            inBell = false;
         }
     }
 
