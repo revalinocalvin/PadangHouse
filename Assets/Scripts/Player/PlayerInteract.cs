@@ -157,13 +157,10 @@ public class PlayerInteract : MonoBehaviour
 
                 foreach (GameObject customer in table.customers)
                 {
-                    Debug.Log("ForEach run");
                     CustomerFoodMerged customerFood = customer.GetComponent<CustomerFoodMerged>();
                     if (customerFood.receivedFood == false)
                     {
-                        Debug.Log("Trying submit");
-                        customerFood.SubmitItem(grabbedObject);
-                        
+                        customerFood.SubmitItem(grabbedObject);                       
                         if (customerFood.receivedFood)
                         {
                             table.Eat();
@@ -296,6 +293,7 @@ public class PlayerInteract : MonoBehaviour
             grabbedObject.transform.SetParent(grabPoint); // Attach the object to the player
             grabbedObject.transform.localPosition = Vector3.zero; // Center the object on the player
             grabbedObject.GetComponent<Collider2D>().enabled = false; // Disable the object's collider
+            grabbedObject.transform.localScale = new Vector3(0, 0, 0);
         }
     }
 

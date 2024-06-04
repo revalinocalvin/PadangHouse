@@ -91,6 +91,7 @@ public class CustomerFoodMerged : MonoBehaviour
                 this.food = food;
                 food.transform.SetParent(customerFoodPoint);
                 food.transform.localPosition = Vector2.zero;
+                food.transform.localScale = Vector3.one;
                 playerInteract.grabbedObject = null;
                 receivedFood = true;                
             }                        

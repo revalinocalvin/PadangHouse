@@ -50,7 +50,7 @@ public class FoodDisplay : MonoBehaviour
         item.transform.position = transform.position; // Set the position of the submitted item to the MenuPlace's position
 
         item.transform.SetParent(this.gameObject.transform); // Detach the submitted item from the player
-
+        item.transform.localScale = Vector3.one;
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<Collider2D>().enabled = true;
     }
