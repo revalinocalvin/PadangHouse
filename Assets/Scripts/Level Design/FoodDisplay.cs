@@ -51,6 +51,8 @@ public class FoodDisplay : MonoBehaviour
 
         item.transform.SetParent(this.gameObject.transform); // Detach the submitted item from the player
         item.transform.localScale = Vector3.one;
+        SpriteRenderer layerItem = item.GetComponent<SpriteRenderer>();
+        layerItem.sortingOrder = 2;
         item.tag = "FoodSpawn"; // Optionally change the tag or enable the collider as needed
         item.GetComponent<Collider2D>().enabled = true;
     }

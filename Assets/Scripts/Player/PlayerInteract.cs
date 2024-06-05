@@ -87,7 +87,8 @@ public class PlayerInteract : MonoBehaviour
                 if (customerRoutine.order == true)
                 {
                     Debug.Log("trying submit item");
-                    customerRoutine.TrySubmitItem();
+                    //customerRoutine.TrySubmitItem();
+                    customerRoutine.SubmitItem(grabbedObject);
                 }
 
                 else
