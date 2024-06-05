@@ -19,6 +19,10 @@ public class Customer : MonoBehaviour
     public GameObject FoodOrange;
     public GameObject FoodBlue;
     public GameObject FoodRed;
+    public GameObject FoodVeggies;
+    public GameObject FoodEggs;
+    public GameObject FoodDendeng;
+
     public GameObject[] customerStars;
 
     void Start()
@@ -73,6 +77,18 @@ public class Customer : MonoBehaviour
         else if (tag == "Food3")
         {
             FoodOrange.SetActive(true);
+        }
+        else if (tag == "Food4")
+        {
+            FoodVeggies.SetActive(true);
+        }
+        else if (tag == "Food5")
+        {
+            FoodEggs.SetActive(true);
+        }
+        else if (tag == "Food6")
+        {
+            FoodDendeng.SetActive(true);
         }
     }
 

@@ -57,11 +57,15 @@ public class PauseManager : MonoBehaviour
     private void OpenPauseMenu()
     {
         pauseCanvas.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(resumeFirst);
     }
 
     private void ClosePause()
     {
         pauseCanvas.SetActive(false);
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     private void QuitGame()

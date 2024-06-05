@@ -59,13 +59,16 @@ public class DishSpawn : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Input.ResetInputAxes();
                 CheckSlot();
 
                 ChooseFood();
 
+                Debug.Log("setting dish ui false");
                 dishUI.SetActive(false);
                 PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
                 playerMovement.enabled = true;
+
             }
         }
     }
