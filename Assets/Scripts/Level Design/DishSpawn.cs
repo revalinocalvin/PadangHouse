@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DishSpawn : MonoBehaviour
 {
@@ -25,7 +26,29 @@ public class DishSpawn : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bottomButton;
     [SerializeField] private TextMeshProUGUI bottomButton2;
 
+    [Header("Assigned Icons")]
+    [SerializeField] private GameObject selectedIcon;
+    [SerializeField] private GameObject topIcon;
+    [SerializeField] private GameObject bottomIcon;
+
+    [Header("Assigned Sprites")]
+    [SerializeField] public Sprite Rendang;
+    [SerializeField] public Sprite Chicken;
+    [SerializeField] public Sprite Fish;
+    [SerializeField] public Sprite Veggies;
+    [SerializeField] public Sprite Eggs;
+    [SerializeField] public Sprite Dendeng;
+
+    /*public Image selectImage;
+    public Image topImage;
+    public Image bottomImage;*/
+
     private int choose;
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
@@ -95,7 +118,11 @@ public class DishSpawn : MonoBehaviour
     }
 
     public void SelectFoods()
-    {        
+    {
+        Image selectImage = selectedIcon.GetComponent<Image>();
+        Image topImage = topIcon.GetComponent<Image>();
+        Image bottomImage = bottomIcon.GetComponent<Image>();
+
         switch (choose)
         {
             case 0:
@@ -105,6 +132,10 @@ public class DishSpawn : MonoBehaviour
                 bottomButton.text = "Fried Chicken";
                 bottomButton2.text = "Fish";
 
+                topImage.sprite = Dendeng;
+                selectImage.sprite = Rendang;
+                bottomImage.sprite = Chicken;
+
                 break;
             case 1:
                 topButton2.text = "Dendeng";
@@ -112,6 +143,10 @@ public class DishSpawn : MonoBehaviour
                 selectedButton.text = "Fried Chicken";
                 bottomButton.text = "Fish";
                 bottomButton2.text = "Veggies";
+
+                topImage.sprite = Rendang;
+                selectImage.sprite = Chicken;
+                bottomImage.sprite = Fish;
 
                 break;
             case 2:
@@ -121,6 +156,10 @@ public class DishSpawn : MonoBehaviour
                 bottomButton.text = "Veggies";
                 bottomButton2.text = "Fried Egg";
 
+                topImage.sprite = Chicken;
+                selectImage.sprite = Fish;
+                bottomImage.sprite = Veggies;
+
                 break;
             case 3:
                 topButton2.text = "Fried Chicken";
@@ -128,6 +167,10 @@ public class DishSpawn : MonoBehaviour
                 selectedButton.text = "Veggies";
                 bottomButton.text = "Fried Egg";
                 bottomButton2.text = "Dendeng";
+
+                topImage.sprite = Fish;
+                selectImage.sprite = Veggies;
+                bottomImage.sprite = Eggs;
 
                 break;
             case 4:
@@ -137,6 +180,10 @@ public class DishSpawn : MonoBehaviour
                 bottomButton.text = "Dendeng";
                 bottomButton2.text = "Rendang";
 
+                topImage.sprite = Veggies;
+                selectImage.sprite = Eggs;
+                bottomImage.sprite = Dendeng;
+
                 break;
             case 5:
                 topButton2.text = "Veggies";
@@ -144,6 +191,10 @@ public class DishSpawn : MonoBehaviour
                 selectedButton.text = "Dendeng";
                 bottomButton.text = "Rendang";
                 bottomButton2.text = "Fried Chicken";
+
+                topImage.sprite = Eggs;
+                selectImage.sprite = Dendeng;
+                bottomImage.sprite = Rendang;
 
                 break;
 
