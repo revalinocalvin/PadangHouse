@@ -22,6 +22,7 @@ public class Customer : MonoBehaviour
     public GameObject FoodVeggies;
     public GameObject FoodEggs;
     public GameObject FoodDendeng;
+    public GameObject orderIcon;
 
     public GameObject[] customerStars;
 
@@ -69,26 +70,32 @@ public class Customer : MonoBehaviour
         if (tag == "Food1")
         {
             FoodRed.SetActive(true) ;
+            orderIcon = FoodRed;
         }
         else if (tag == "Food2")
         {
             FoodBlue.SetActive(true);
+            orderIcon = FoodBlue;
         }
         else if (tag == "Food3")
         {
             FoodOrange.SetActive(true);
+            orderIcon = FoodOrange;
         }
         else if (tag == "Food4")
         {
             FoodVeggies.SetActive(true);
+            orderIcon = FoodVeggies;
         }
         else if (tag == "Food5")
         {
             FoodEggs.SetActive(true);
+            orderIcon = FoodEggs;
         }
         else if (tag == "Food6")
         {
             FoodDendeng.SetActive(true);
+            orderIcon = FoodDendeng;
         }
     }
 

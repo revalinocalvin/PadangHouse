@@ -55,8 +55,14 @@ public class Table : MonoBehaviour
                 CustomerFoodMerged customerOrder = customer.GetComponent<CustomerFoodMerged>();
                 customerOrder.ready = true;
                 customerOrder.StartCoroutine(customerOrder.WaitEatingTime());
+                
+                Customer icon = customer.GetComponent<Customer>();
+                icon.orderIcon.SetActive(false);
+            
             }
             customers.Clear();
+
+            
         }        
     }
     public bool FoodCheck()
@@ -83,6 +89,13 @@ public class Table : MonoBehaviour
             {                
                 customerSatisfaction.Angry();
             }
+
+            Customer icon = customer.GetComponent<Customer>();
+            if (icon.orderIcon != null)
+            {
+                icon.orderIcon.SetActive(false);
+            }
+            
         }
         customers.Clear();
     }
