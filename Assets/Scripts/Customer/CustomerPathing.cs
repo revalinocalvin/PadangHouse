@@ -466,7 +466,6 @@ public class CustomerPathing : MonoBehaviour
 
     void PatienceCheck()
     {
-        Debug.Log(this.GetComponent<Customer>().table.InteractCheck());
         if (this.GetComponent<Customer>().table.InteractCheck())
         {
             this.GetComponent<Customer>().table.PatienceStart();
