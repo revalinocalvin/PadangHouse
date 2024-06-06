@@ -80,7 +80,10 @@ public class CustomerFoodMerged : MonoBehaviour
     {
         if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
         {
-            EatingFinished(food);
+            if (food.CompareTag(requiredObjectTag))
+            {
+                EatingFinished(food);
+            }            
         }
 
         else

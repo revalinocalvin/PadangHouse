@@ -84,10 +84,8 @@ public class PlayerInteract : MonoBehaviour
             customerRoutine = FindClosest(_objectsInTrigger).GetComponent<CustomerFoodMerged>();
             if (customerPathing.onChair == true)
             {
-                if (customerRoutine.order == true)
-                {
-                    Debug.Log("trying submit item");
-                    //customerRoutine.TrySubmitItem();
+                if (customerRoutine.order == true && grabbedObject != null)
+                {                   
                     customerRoutine.SubmitItem(grabbedObject);
                 }
 
