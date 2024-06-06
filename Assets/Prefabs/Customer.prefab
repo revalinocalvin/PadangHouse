@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerStarsAmount: 3
-  customerPatience: 15
+  customerPatience: 30
   patienceTimer: 0
   patienceTimerSet: 0
   stillPatient: 0
@@ -813,6 +813,7 @@ MonoBehaviour:
   FoodVeggies: {fileID: 3251455579340926283}
   FoodEggs: {fileID: 4947812729540848174}
   FoodDendeng: {fileID: 4461984889316897129}
+  orderIcon: {fileID: 0}
   customerStars:
   - {fileID: 9112500668843590432}
   - {fileID: 5929217877379443549}

@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class DayManager : MonoBehaviour
 {
     public static Action OnDayChanged;
-    public static int day { get; private set; } = 1;
+    public GameObject resultUI;
+    public GameObject loseUI;
+    public static int day { get; set; } = 1;
     private void OnEnable()
     {
         TimeManager.OnMinuteChanged += TimeCheck;
@@ -43,15 +45,11 @@ public class DayManager : MonoBehaviour
     {
         if (GameManager.Instance.CheckGameResults())
         {
-            day++;
-            CustomerManager.Instance.numberOfCustomers = 0;
-            Debug.Log("Day Changed, DAY " + day);
-            int currentScene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentScene);
+            resultUI.SetActive(true);
         }
         else
         {
-            GameManager.Instance.CheckGameResults();
+            loseUI.SetActive(true);
         }
     }
 }

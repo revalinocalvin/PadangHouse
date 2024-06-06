@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameResultBackground;
     public TMP_Text gameResultText;
 
-    private int currentStars;
+    public int currentStars;
+    public int totalStars;
     public int minStars;
     public int maxStars;
 
@@ -39,27 +40,18 @@ public class GameManager : MonoBehaviour
         currentStars = 0;
     }
 
-    void Update()
-    {
-        UpdateStarsText();
-    }
-
-    void UpdateStarsText()
-    {
-        starsText.text = currentStars.ToString() + " Stars";
-    }
-
     public bool CheckGameResults()
     {
         if (currentStars >= minStars)
         {
+            Time.timeScale = 0;
+            totalStars += currentStars;
             return true;
         }
         else
         {
-            gameResultBackground.SetActive(true);
-            gameResultText.text = "You lose!\n Stars needed: " + minStars;
             Time.timeScale = 0;
+            totalStars += currentStars;
             return false;
         }
     }

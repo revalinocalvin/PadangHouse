@@ -39,6 +39,8 @@ public class CustomerManager : MonoBehaviour
 
     public GameObject[] customersInside;
     public int numberOfCustomers;
+    public int angryCustomers;
+    public int servedCustomer;
 
     public bool canSpawn = true;
 

@@ -51,7 +51,7 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (customerPrefab != null && Time.time >= customerNextSpawnTime)
         {
-            //Debug.Log("Spawning Customers");
+            Debug.Log("Spawning Customers");
             float randomNumber = Random.Range(DayTransition.Instance.interval1, DayTransition.Instance.interval2);
             customerNextSpawnTime = Time.time + randomNumber;
 
@@ -74,6 +74,10 @@ public class CustomerSpawner : MonoBehaviour
                     StartCoroutine(SpawnCustomers(2));
                     CustomerManager.Instance.tableAvailable[1] = false;
                     CustomerManager.Instance.numberOfCustomers += customerGroupSpawn;
+                }
+                else
+                {
+                    goto Loop;
                 }
             }
 

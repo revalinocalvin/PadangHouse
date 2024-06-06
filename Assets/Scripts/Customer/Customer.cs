@@ -104,7 +104,7 @@ public class Customer : MonoBehaviour
         
         if (!stillPatient)
         {
-            Angry();
+            Angry();            
 
             if (this.gameObject.CompareTag("CustomerGroup"))
             {
@@ -156,6 +156,7 @@ public class Customer : MonoBehaviour
         }
 
         customerFood.receivedFood = true;
+        CustomerManager.Instance.angryCustomers++;
         customerStarsAmount = 0;
 
         if (customerPathing.table == 1)

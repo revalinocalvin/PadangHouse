@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomerFoodMerged : MonoBehaviour
@@ -77,7 +78,6 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public void SubmitItem(GameObject food)
     {
-        Debug.Log("Submit Item Function");
         if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
         {
             EatingFinished(food);
@@ -95,7 +95,9 @@ public class CustomerFoodMerged : MonoBehaviour
                 playerInteract.grabbedObject = null;
                 receivedFood = true;                
             }                        
-        }          
+        }
+
+        CustomerManager.Instance.servedCustomer++;
     }
 
     public IEnumerator WaitEatingTime()
