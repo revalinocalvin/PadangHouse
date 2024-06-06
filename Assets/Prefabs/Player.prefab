@@ -258,6 +258,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabPoint: {fileID: 0}
   grabbedObject: {fileID: 0}
+  dishUI: {fileID: 0}
+  animator: {fileID: 6623758343584168995}
 --- !u!95 &6623758343584168995
 Animator:
   serializedVersion: 5

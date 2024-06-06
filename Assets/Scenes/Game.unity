@@ -8472,11 +8472,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6192074992376016350, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
   m_PrefabInstance: {fileID: 4785680166974686783}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1297642183 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6623758343584168995, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
-  m_PrefabInstance: {fileID: 4785680166974686783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1300582726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13112,18 +13107,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6192074992376016350, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8057146524802974186, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
       propertyPath: dishUI
       value: 
       objectReference: {fileID: 1843336998}
-    - target: {fileID: 8057146524802974186, guid: 8e60d677c9edbd4429c67f1abe55952f, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1297642183}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
