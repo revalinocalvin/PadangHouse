@@ -83,6 +83,7 @@ public class CustomerFoodMerged : MonoBehaviour
             if (food.CompareTag(requiredObjectTag))
             {
                 EatingFinished(food);
+                AudioManager.Instance.DoAudio("ding");
             }            
         }
 
@@ -90,13 +91,14 @@ public class CustomerFoodMerged : MonoBehaviour
         {
             if (food.CompareTag(requiredObjectTag) && receivedFood == false)
             {
-                Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
+                //Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
                 this.food = food;
                 food.transform.SetParent(customerFoodPoint);
                 food.transform.localPosition = Vector2.zero;
                 food.transform.localScale = Vector3.one;
                 playerInteract.grabbedObject = null;
-                receivedFood = true;                
+                receivedFood = true;
+                AudioManager.Instance.DoAudio("ding");
             }                        
         }
 

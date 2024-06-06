@@ -24,6 +24,6 @@ public class DayUI : MonoBehaviour
 
     private void UpdateDay()
     {
-        dayText.text = $"Day {DayManager.day}";
+        dayText.text = $"{DayManager.day}";
     }
 }

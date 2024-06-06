@@ -15,6 +15,7 @@ public class Customer : MonoBehaviour
     public bool angry = true;
     public Table table;
 
+    [Header("Sprites")]
     public GameObject customerOrder;
     public GameObject FoodOrange;
     public GameObject FoodBlue;
@@ -26,6 +27,15 @@ public class Customer : MonoBehaviour
 
     public GameObject[] customerStars;
 
+    public AudioSource audioSource;
+    public AudioClip[] audios;
+    private AudioClip audio;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        Audio();
+    }
     void Start()
     {
         stillPatient = true;
@@ -51,6 +61,15 @@ public class Customer : MonoBehaviour
         }
 
         OrderSign();
+    }
+
+    void Audio()
+    {
+        int i = Random.Range(0, 4);
+        audio = audios[i];
+
+        audioSource.clip = audio;
+        audioSource.Play();
     }
 
     void OrderSign()

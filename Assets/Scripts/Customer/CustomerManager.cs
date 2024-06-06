@@ -42,7 +42,7 @@ public class CustomerManager : MonoBehaviour
     public int angryCustomers;
     public int servedCustomer;
 
-    public bool canSpawn = true;
+    public bool canSpawn = false;
 
     void Start()
     {

@@ -22,20 +22,25 @@ public class DayManager : MonoBehaviour
 
     private void TimeCheck()
     {  
+        if (TimeManager.Hour == 8)
+        {
+            CustomerManager.Instance.canSpawn = true;
+        }
+
         if (TimeManager.Hour >= 20 && TimeManager.Hour < 24)
         {
             CustomerManager.Instance.canSpawn = false;
 
             if (CustomerManager.Instance.customersInside.Length == 0)
             {
-                CustomerManager.Instance.canSpawn = true;
+                CustomerManager.Instance.canSpawn = false;
                 DayChanged();
                 OnDayChanged?.Invoke();
             }
         }
         else if (TimeManager.Hour >= 24)
         {
-            CustomerManager.Instance.canSpawn = true;
+            CustomerManager.Instance.canSpawn = false;
             DayChanged();
             OnDayChanged?.Invoke();
         }

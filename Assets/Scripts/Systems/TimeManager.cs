@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
     void Start()
     {
         Minute = 0;
-        Hour = 8;
+        Hour = 7;
         timer = DayTransition.Instance.timer;
         Debug.Log("Timer = " + timer);
     }

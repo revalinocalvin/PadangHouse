@@ -40,6 +40,16 @@ public class GameManager : MonoBehaviour
         currentStars = 0;
     }
 
+    void Update()
+    {
+        UpdateStarsText();
+    }
+
+    void UpdateStarsText()
+    {
+        starsText.text = currentStars.ToString();
+    }
+
     public bool CheckGameResults()
     {
         if (currentStars >= minStars)

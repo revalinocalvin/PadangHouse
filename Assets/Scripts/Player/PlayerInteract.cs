@@ -131,7 +131,8 @@ public class PlayerInteract : MonoBehaviour
                 if (foodReady)
                 {
                     objectSpawner = FindClosest(_objectsInTrigger).GetComponent<ObjectSpawner>();
-                    objectToGrab = objectSpawner.SpawnObject();                    
+                    objectToGrab = objectSpawner.SpawnObject();
+                    AudioManager.Instance.DoAudio("plates");
                 }
 
                 if (!objectToGrab.CompareTag("Bell"))
