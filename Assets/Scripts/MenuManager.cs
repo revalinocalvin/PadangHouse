@@ -27,8 +27,9 @@ public class MenuManager : MonoBehaviour
 
     public void onContinuePress()
     {
-        if (File.Exists(Application.dataPath + "/Save/PlayerSaveFile.json"))
+        if (File.Exists(SaveSystem.savePath))
         {
+
             SceneManager.LoadScene("Game");
             AudioManager.Instance.DoAudio("click");
             EventSystem.current.SetSelectedGameObject(null);

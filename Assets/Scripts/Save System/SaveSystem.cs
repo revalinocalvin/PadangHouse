@@ -11,35 +11,40 @@ public class SaveSystem : MonoBehaviour
     //Scripts
     private GameManager GM;
     private DayManager DM;
+    public static string savePath;
 
     private void Awake()
     {
         GM = GameManager.Instance;
         DM = DayManager.Instance;
+        savePath = Path.Combine(Application.persistentDataPath, "save.json");
     }
 
     public void SaveToJson()
     {
         PlayerSaveData data = new PlayerSaveData();
 
-        //Data
+        // Data
         data.totalStars = GM.totalStars;
         data.dayValue = DM.dayValue;
 
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(Application.dataPath + "/Save/PlayerSaveFile.json", json);
-        Debug.Log("Saved");
+
+        // Write to the correct path
+        File.WriteAllText(savePath, json);
+        Debug.Log("Saved to " + savePath);
     }
 
     public void LoadFromJson()
     {
-        if (File.Exists(Application.dataPath + "/Save/PlayerSaveFile.json"))
+
+        if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(Application.dataPath + "/Save/PlayerSaveFile.json");
+            string json = File.ReadAllText(savePath);
             PlayerSaveData data = JsonUtility.FromJson<PlayerSaveData>(json);
             Debug.Log("Loaded");
 
-            //Data
+            // Data
             GM.totalStars = data.totalStars;
             DM.dayValue = data.dayValue;
 

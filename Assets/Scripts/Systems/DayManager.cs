@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,6 +35,7 @@ public class DayManager : MonoBehaviour
     public GameObject loseUI;
     public static int day { get; set; } = 1;
     public int dayValue;
+    private bool hasDayChanged = false;
 
     private void Update()
     {
@@ -83,15 +85,23 @@ public class DayManager : MonoBehaviour
             if (CustomerManager.Instance.customersInside.Length == 0)
             {
                 CustomerManager.Instance.canSpawn = false;
-                DayChanged();
-                OnDayChanged?.Invoke();
+                if (!hasDayChanged)
+                {
+                    DayChanged();
+                    OnDayChanged?.Invoke();
+                    hasDayChanged = true; // Set the flag to true after execution
+                }
             }
         }
         else if (TimeManager.Hour >= 24)
         {
             CustomerManager.Instance.canSpawn = false;
-            DayChanged();
-            OnDayChanged?.Invoke();
+            if (!hasDayChanged)
+            {
+                DayChanged();
+                OnDayChanged?.Invoke();
+                hasDayChanged = true; // Set the flag to true after execution
+            }
         }
     }
 
