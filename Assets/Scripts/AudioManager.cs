@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public AudioSource audioSource;
+    public AudioSource musicSource;
 
     [Header("Audios not in object here")]
     [SerializeField] private AudioClip[] plates;
@@ -32,11 +33,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip uiClick;
 
     private AudioClip audio;
-
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void DoAudio(string setAudio)
     {
@@ -62,5 +58,10 @@ public class AudioManager : MonoBehaviour
             audioSource.clip = audio;
             audioSource.Play();
         }
+    }
+
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
     }
 }

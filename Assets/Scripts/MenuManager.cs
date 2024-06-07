@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject playFirst;
+    [SerializeField] private GameObject optionMenu;
 
     private SaveSystem saveSystem;
 
@@ -27,11 +28,10 @@ public class MenuManager : MonoBehaviour
 
     public void onContinuePress()
     {
+        AudioManager.Instance.DoAudio("click");
         if (File.Exists(SaveSystem.savePath))
         {
-
             SceneManager.LoadScene("Game");
-            AudioManager.Instance.DoAudio("click");
             EventSystem.current.SetSelectedGameObject(null);
             saveSystem = FindObjectOfType<SaveSystem>();
             saveSystem.LoadFromJson();
@@ -40,6 +40,9 @@ public class MenuManager : MonoBehaviour
 
     public void onOptionPress()
     {
+        optionMenu.SetActive(true);
+        this.gameObject.SetActive(false);
+
         AudioManager.Instance.DoAudio("click");
         EventSystem.current.SetSelectedGameObject(null);
     }
