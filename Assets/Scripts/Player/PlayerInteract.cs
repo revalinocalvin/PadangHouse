@@ -85,11 +85,11 @@ public class PlayerInteract : MonoBehaviour
             if (customerPathing.onChair == true)
             {
                 if (customerRoutine.order == true && grabbedObject != null)
-                {                   
+                {
                     customerRoutine.SubmitItem(grabbedObject);
                 }
 
-                else
+                else if (customerRoutine.order == false)
                 {
                     customerRoutine.TakeOrder();
                 }
