@@ -19,24 +19,26 @@ public class MenuManager : MonoBehaviour
     #region Button action
     public void onPlayPress()
     {
-        SceneManager.LoadScene("Game");        
+        SceneManager.LoadScene("Game");
+        AudioManager.Instance.DoAudio("click");
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void onContinuePress()
     {
-
+        AudioManager.Instance.DoAudio("click");
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void onOptionPress()
     {
-
+        AudioManager.Instance.DoAudio("click");
         EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void onExitPress()
     {
+        AudioManager.Instance.DoAudio("click");
         Application.Quit();
         EventSystem.current.SetSelectedGameObject(null);
     }

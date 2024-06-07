@@ -80,11 +80,18 @@ public class PauseManager : MonoBehaviour
 
     public void onResumePress()
     {
+        AudioManager.Instance.DoAudio("click");
         Unpause();
+    }
+
+    public void onOptionPress()
+    {
+        AudioManager.Instance.DoAudio("click");
     }
 
     public void onQuitPress()
     {
+        AudioManager.Instance.DoAudio("click");
         QuitGame();
     }
 

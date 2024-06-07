@@ -32,11 +32,13 @@ public class UI_LoseOverlay : MonoBehaviour
     #region Button action
     public void onRestartPress()
     {
+        AudioManager.Instance.DoAudio("click");
         Restart();
     }
 
     public void onLeavePress()
     {
+        AudioManager.Instance.DoAudio("click");
         SceneManager.LoadScene("Menu");
     }
     #endregion

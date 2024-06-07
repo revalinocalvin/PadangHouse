@@ -64,6 +64,7 @@ public class DishSpawn : MonoBehaviour
                 {
                     choose++;
                 }
+                AudioManager.Instance.DoAudio("click");
                 SelectFoods();
             }
 
@@ -77,6 +78,7 @@ public class DishSpawn : MonoBehaviour
                 {
                     choose--;
                 }
+                AudioManager.Instance.DoAudio("click");
                 SelectFoods();
             }            
 
@@ -85,7 +87,7 @@ public class DishSpawn : MonoBehaviour
                 Input.ResetInputAxes();
                 CheckSlot();
 
-                ChooseFood();
+                ChooseFood();                
 
                 Debug.Log("setting dish ui false");
                 dishUI.SetActive(false);

@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audios not in object here")]
     [SerializeField] private AudioClip[] plates;
     [SerializeField] private AudioClip ding;
+    [SerializeField] private AudioClip uiClick;
 
     private AudioClip audio;
 
@@ -50,6 +51,13 @@ public class AudioManager : MonoBehaviour
         else if (setAudio == "ding")
         {            
             audio = ding;
+
+            audioSource.clip = audio;
+            audioSource.Play();
+        }
+        else if (setAudio == "click")
+        {
+            audio = uiClick;
 
             audioSource.clip = audio;
             audioSource.Play();

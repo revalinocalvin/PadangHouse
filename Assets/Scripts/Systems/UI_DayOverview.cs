@@ -31,11 +31,13 @@ public class UI_DayOverview : MonoBehaviour
     #region Button action
     public void onAdvancePress()
     {
+        AudioManager.Instance.DoAudio("click");
         nextDay();
     }
 
     public void onLeavePress() 
     {
+        AudioManager.Instance.DoAudio("click");
         SceneManager.LoadScene("Menu");
     }
     #endregion

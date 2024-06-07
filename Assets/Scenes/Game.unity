@@ -10631,6 +10631,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4ff3eb2e8013c324a96667faef302596, type: 3}
   - {fileID: 8300000, guid: 861d1fdfcf404a84e95a91eb2b013dc6, type: 3}
   ding: {fileID: 8300000, guid: ea91d73dd5824f84b9f26d295b0cf317, type: 3}
+  uiClick: {fileID: 8300000, guid: f0a10480101d56440ac086eb57a11929, type: 3}
 --- !u!4 &1671128764
 Transform:
   m_ObjectHideFlags: 0
