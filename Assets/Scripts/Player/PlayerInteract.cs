@@ -102,7 +102,7 @@ public class PlayerInteract : MonoBehaviour
             table.Interact();            
         }
 
-        if (inBell && dishUI.active == false)
+        if (inBell && dishUI.activeSelf == false)
         {
             Debug.Log("inBell Interacted");
             GameObject bell = FindClosest(_objectsInTrigger).gameObject;

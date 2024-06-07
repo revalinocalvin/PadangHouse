@@ -52,7 +52,7 @@ public class DishSpawn : MonoBehaviour
 
     private void Update()
     {
-        if (dishUI.active)
+        if (dishUI.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
