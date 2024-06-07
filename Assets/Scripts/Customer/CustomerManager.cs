@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CustomerManager : MonoBehaviour
@@ -92,8 +93,7 @@ public class CustomerManager : MonoBehaviour
 
     void CheckCustomersInside()
     {
-        customersInside = GameObject.FindGameObjectsWithTag("Customer");
-        customersInside = GameObject.FindGameObjectsWithTag("CustomerGroup");
+        customersInside = GameObject.FindGameObjectsWithTag("CustomerGroup").Concat(GameObject.FindGameObjectsWithTag("Customer")).ToArray();
     }
 
     public void CheckTableAvailable(int tableNumber)
