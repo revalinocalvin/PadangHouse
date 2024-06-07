@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private GameObject optionPause;
 
     [Header("Selected")]
     [SerializeField] private GameObject resumeFirst;
@@ -81,12 +82,14 @@ public class PauseManager : MonoBehaviour
     public void onResumePress()
     {
         AudioManager.Instance.DoAudio("click");
+        optionPause.SetActive(false);
         Unpause();
     }
 
     public void onOptionPress()
     {
         AudioManager.Instance.DoAudio("click");
+        optionPause.SetActive(true);
     }
 
     public void onQuitPress()

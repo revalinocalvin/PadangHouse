@@ -18,6 +18,11 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(playFirst);
     }
 
+    private void OnEnable()
+    {                
+        EventSystem.current.SetSelectedGameObject(playFirst);       
+    }
+
     #region Button action
     public void onPlayPress()
     {

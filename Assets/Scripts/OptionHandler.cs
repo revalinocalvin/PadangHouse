@@ -26,10 +26,18 @@ public class OptionHandler : MonoBehaviour
             slider.value += 0.1f;
         }
 
+
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
         {
-            this.gameObject.SetActive(false);
-            mainMenu.SetActive(true);
+            if (mainMenu != null) 
+            {
+                this.gameObject.SetActive(false);
+                mainMenu.SetActive(true);
+            }
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
         }
     }
 
