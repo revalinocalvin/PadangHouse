@@ -1,3 +1,4 @@
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,9 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    
-
     [SerializeField] private GameObject playFirst;
+
+    private SaveSystem saveSystem;
 
     private void Start()
     {
@@ -26,8 +27,14 @@ public class MenuManager : MonoBehaviour
 
     public void onContinuePress()
     {
-        AudioManager.Instance.DoAudio("click");
-        EventSystem.current.SetSelectedGameObject(null);
+        if (File.Exists(Application.dataPath + "/Save/PlayerSaveFile.json"))
+        {
+            SceneManager.LoadScene("Game");
+            AudioManager.Instance.DoAudio("click");
+            EventSystem.current.SetSelectedGameObject(null);
+            saveSystem = FindObjectOfType<SaveSystem>();
+            saveSystem.LoadFromJson();
+        }
     }
 
     public void onOptionPress()

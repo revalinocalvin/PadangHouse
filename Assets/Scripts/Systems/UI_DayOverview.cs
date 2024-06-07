@@ -50,7 +50,7 @@ public class UI_DayOverview : MonoBehaviour
         CustomerManager.Instance.numberOfCustomers = 0;
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         EventSystem.current.SetSelectedGameObject(null);
-        SceneManager.LoadScene(currentScene);        
+        SceneManager.LoadScene(currentScene);
     }
     #endregion
 }

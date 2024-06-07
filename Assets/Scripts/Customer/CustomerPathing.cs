@@ -421,13 +421,17 @@ public class CustomerPathing : MonoBehaviour
 
     void MoveToExit()
     {
-        if (chairNumber == 1 || chairNumber == 2 || chairNumber == 5 || chairNumber == 6 || chairNumber == 9 || chairNumber == 10 || chairNumber == 11)
+        if (chairNumber == 1 || chairNumber == 2 || chairNumber == 9 || chairNumber == 10 || chairNumber == 11)
         {
             MoveToExit1();
         }
-        else if (chairNumber == 3 || chairNumber == 4 || chairNumber == 7 || chairNumber == 8)
+        else if (chairNumber == 3 || chairNumber == 4 || chairNumber == 5 || chairNumber == 6)
         {
             MoveToExit2();
+        }
+        else if (chairNumber == 7 || chairNumber == 8)
+        {
+            MoveToExit3();
         }
 
         transform.position += direction * CustomerManager.Instance.customerMoveSpeed * Time.deltaTime;
@@ -455,6 +459,27 @@ public class CustomerPathing : MonoBehaviour
         }
 
         if (ArrivedOnPathPoint(0) && pathCounter == 1)
+        {
+            pathCounter--;
+        }
+        else if (ArrivedOnExitPoint())
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    void MoveToExit3()
+    {
+        if (pathCounter == 1)
+        {
+            DirectionToPath(1);
+        }
+        else if (pathCounter == 0)
+        {
+            DirectionToExitPoint();
+        }
+
+        if (ArrivedOnPathPoint(1) && pathCounter == 1)
         {
             pathCounter--;
         }

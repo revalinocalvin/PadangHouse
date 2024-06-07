@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -42,7 +43,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateStarsText();
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            UpdateStarsText();
+        }
     }
 
     void UpdateStarsText()
@@ -55,13 +59,11 @@ public class GameManager : MonoBehaviour
         if (currentStars >= minStars)
         {
             Time.timeScale = 0;
-            totalStars += currentStars;
             return true;
         }
         else
         {
             Time.timeScale = 0;
-            totalStars += currentStars;
             return false;
         }
     }

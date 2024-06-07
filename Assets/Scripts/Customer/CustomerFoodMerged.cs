@@ -78,31 +78,33 @@ public class CustomerFoodMerged : MonoBehaviour
 
     public void SubmitItem(GameObject food)
     {
-        if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
+        if (food.CompareTag("FoodTray") == false)
         {
-            if (food.CompareTag(requiredObjectTag))
+            if (customerPathing.chairNumber == 9 || customerPathing.chairNumber == 10 || customerPathing.chairNumber == 11)
             {
-                EatingFinished(food);
-                AudioManager.Instance.DoAudio("ding");
-            }            
-        }
-
-        else
-        {
-            if (food.CompareTag(requiredObjectTag) && receivedFood == false)
+                if (food.CompareTag(requiredObjectTag))
+                {
+                    EatingFinished(food);
+                    AudioManager.Instance.DoAudio("ding");
+                    CustomerManager.Instance.servedCustomer++;
+                }
+            }
+            else
             {
-                //Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
-                this.food = food;
-                food.transform.SetParent(customerFoodPoint);
-                food.transform.localPosition = Vector2.zero;
-                food.transform.localScale = Vector3.one;
-                playerInteract.grabbedObject = null;
-                receivedFood = true;
-                AudioManager.Instance.DoAudio("ding");
-            }                        
+                if (food.CompareTag(requiredObjectTag) && receivedFood == false)
+                {
+                    //Debug.Log("Food Matched!, needed : " + requiredObjectTag + " in hand : " + food.tag);
+                    this.food = food;
+                    food.transform.SetParent(customerFoodPoint);
+                    food.transform.localPosition = Vector2.zero;
+                    food.transform.localScale = Vector3.one;
+                    playerInteract.grabbedObject = null;
+                    receivedFood = true;
+                    AudioManager.Instance.DoAudio("ding");
+                    CustomerManager.Instance.servedCustomer++;
+                }
+            }
         }
-
-        CustomerManager.Instance.servedCustomer++;
     }
 
     public IEnumerator WaitEatingTime()
@@ -137,5 +139,6 @@ public class CustomerFoodMerged : MonoBehaviour
 
         Destroy(food);
         GameManager.Instance.AddStars(customer.customerStarsAmount);
+        GameManager.Instance.totalStars += customer.customerStarsAmount;
     }
 }

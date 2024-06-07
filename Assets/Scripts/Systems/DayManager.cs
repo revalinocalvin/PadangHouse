@@ -1,15 +1,64 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour
 {
+    private static DayManager instance;
+    public static DayManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<DayManager>();
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(DayManager).Name;
+                    instance = obj.AddComponent<DayManager>();
+                    DontDestroyOnLoad(obj);
+                }
+            }
+            return instance;
+        }
+    }
+
+    public SaveSystem SS;
+
     public static Action OnDayChanged;
     public GameObject resultUI;
     public GameObject loseUI;
     public static int day { get; set; } = 1;
+    public int dayValue;
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            SetReference();
+        }
+    }
+
+    private void SetReference()
+    {
+        UIManager uiManager = UIManager.Instance;
+        if (uiManager != null)
+        {
+            SS = GameObject.Find("Save System").GetComponent<SaveSystem>();
+            resultUI = uiManager.resultUI;
+            loseUI = uiManager.loseUI;
+        }
+    }
+
+    public void SetDay()
+    {
+        day = dayValue;
+    }
+
     private void OnEnable()
     {
         TimeManager.OnMinuteChanged += TimeCheck;
@@ -21,7 +70,7 @@ public class DayManager : MonoBehaviour
     }
 
     private void TimeCheck()
-    {  
+    {
         if (TimeManager.Hour == 8)
         {
             CustomerManager.Instance.canSpawn = true;
@@ -51,6 +100,8 @@ public class DayManager : MonoBehaviour
         if (GameManager.Instance.CheckGameResults())
         {
             resultUI.SetActive(true);
+            dayValue = day + 1;
+            SS.SaveToJson();
         }
         else
         {
