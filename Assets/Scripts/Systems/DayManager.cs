@@ -6,10 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour
 {
+    private SaveSystem SS;
+
     public static Action OnDayChanged;
     public GameObject resultUI;
     public GameObject loseUI;
     public static int day { get; set; } = 1;
+    public int dayValue;
+
+    public void SetDay()
+    {
+        day = dayValue;
+    }
+
     private void OnEnable()
     {
         TimeManager.OnMinuteChanged += TimeCheck;
@@ -51,6 +60,8 @@ public class DayManager : MonoBehaviour
         if (GameManager.Instance.CheckGameResults())
         {
             resultUI.SetActive(true);
+            dayValue = day + 1;
+            SS.SaveToJson();
         }
         else
         {
