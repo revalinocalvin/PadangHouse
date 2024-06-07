@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -70,7 +71,8 @@ public class PauseManager : MonoBehaviour
 
     private void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Menu");
+        
     }
     #endregion
 

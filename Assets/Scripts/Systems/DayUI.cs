@@ -9,7 +9,7 @@ public class DayUI : MonoBehaviour
 
     void Start()
     {
-        dayText.text = $"Day {DayManager.day}";
+        dayText.text = $"{DayManager.day}";
     }
 
     private void OnEnable()

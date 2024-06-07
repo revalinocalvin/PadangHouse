@@ -37,7 +37,7 @@ public class UI_LoseOverlay : MonoBehaviour
 
     public void onLeavePress()
     {
-
+        SceneManager.LoadScene("Menu");
     }
     #endregion
 

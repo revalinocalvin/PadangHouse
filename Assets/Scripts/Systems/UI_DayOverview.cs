@@ -36,7 +36,7 @@ public class UI_DayOverview : MonoBehaviour
 
     public void onLeavePress() 
     {
-    
+        SceneManager.LoadScene("Menu");
     }
     #endregion
 

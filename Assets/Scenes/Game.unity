@@ -6079,7 +6079,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1042850248}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1142610743}
+        m_TargetAssemblyTypeName: UI_DayOverview, Assembly-CSharp
+        m_MethodName: onLeavePress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1042850248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7798,7 +7810,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1246873257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 761694418}
+        m_TargetAssemblyTypeName: UI_LoseOverlay, Assembly-CSharp
+        m_MethodName: onLeavePress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1246873257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12151,7 +12175,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 433268019}
   - {fileID: 1479453277}
   - {fileID: 1312523521}
   - {fileID: 1609334934}
@@ -12161,6 +12184,7 @@ RectTransform:
   - {fileID: 1843336999}
   - {fileID: 1142610740}
   - {fileID: 761694417}
+  - {fileID: 433268019}
   m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

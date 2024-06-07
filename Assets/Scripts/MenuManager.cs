@@ -19,8 +19,7 @@ public class MenuManager : MonoBehaviour
     #region Button action
     public void onPlayPress()
     {
-        SceneManager.LoadScene("Game");
-        SceneManager.UnloadScene("Menu");
+        SceneManager.LoadScene("Game");        
         EventSystem.current.SetSelectedGameObject(null);
     }
 
@@ -38,21 +37,12 @@ public class MenuManager : MonoBehaviour
 
     public void onExitPress()
     {
-
+        Application.Quit();
         EventSystem.current.SetSelectedGameObject(null);
     }
     #endregion
 
     #region Button function
-    public void nextDay()
-    {
-        this.gameObject.SetActive(false);
-        DayManager.day++;
-        CustomerManager.Instance.numberOfCustomers = 0;
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        EventSystem.current.SetSelectedGameObject(null);
-        SceneManager.LoadScene(currentScene);
-    }
     #endregion
 }
 
