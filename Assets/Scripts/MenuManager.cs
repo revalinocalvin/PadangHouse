@@ -10,6 +10,8 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject playFirst;
     [SerializeField] private GameObject optionMenu;
+    [SerializeField] private GameObject tutorial2;
+    [SerializeField] private GameObject tutorial1;
 
     private SaveSystem saveSystem;
 
@@ -26,7 +28,8 @@ public class MenuManager : MonoBehaviour
     #region Button action
     public void onPlayPress()
     {
-        SceneManager.LoadScene("Game");
+        tutorial1.SetActive(true);
+        tutorial2.SetActive(true);
         AudioManager.Instance.DoAudio("click");
         EventSystem.current.SetSelectedGameObject(null);
     }

@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customerStarsAmount: 3
-  customerPatience: 30
+  customerPatience: 20
   patienceTimer: 0
   patienceTimerSet: 0
   stillPatient: 0
